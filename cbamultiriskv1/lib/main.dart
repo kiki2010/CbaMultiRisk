@@ -12,13 +12,20 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Position position = await getUserLocation();
+
+  runApp(MyApp(
+    position: position
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final Position? position;
+
+  const MyApp({super.key, required this.position});
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'MultiRisk',
       home: Scaffold(
@@ -26,7 +33,7 @@ class MyApp extends StatelessWidget {
           title: const Text('MultiRisk'),
         ),
         body: Center(
-          child: Text('Test'),
+          child: Text(position != null ? 'Lat: ${position!.latitude}' : 'Ubicación no disponible'),
         ),
       ),
     );
