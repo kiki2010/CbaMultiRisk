@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:math';
 
-const apiKey = ''; //This is a secret lol
+const apiKey = 'this is the api key'; //This is a secret lol
 
 class WeatherStationService {
 
@@ -58,5 +58,39 @@ class WeatherStationService {
       _stationSaved = data; //_stationSaved = stations.first; for the nearest station data
     }
     return _stationSaved!;
+  }
+
+
+  Map<String, dynamic>? _actualDataSaved;
+
+  Future<Map<String, dynamic>> getActualData(Position position) async {
+    if (_actualDataSaved != null) return _actualDataSaved!;
+    if (_selectedStationId == null) await getNearestStation(position);
+
+    final stationId = _selectedStationId;
+    final url = 'https://api.weather.com/v2/pws/observations/current?stationId=$stationId&format=json&units=m&apiKey=$apiKey';
+
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      final observation = data['observations'][0];
+      final double humidity = observation['humidity']?.toDouble() ?? 0.0;
+      final double temp = observation['metric']['temp']?.toDouble() ?? 0.0;
+      final double windSpeed = observation['metric']['windSpeed']?.toDouble() ?? 0.0;
+      final double precipTotal = observation['metric']['precipTotal']?.toDouble() ?? 0.0;
+      final double precipRate = observation['metric']['precipRate']?.toDouble() ?? 0.0;
+
+      return {
+        'temperature': temp,
+        'windSpeed': windSpeed,
+        'humidity': humidity,
+        'rain': precipTotal,
+        'precipRate': precipRate,
+      };
+
+    } else {
+      throw Exception('error getting the actual weather data');
+    }
   }
 }
