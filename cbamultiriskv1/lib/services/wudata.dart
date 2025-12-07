@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:math';
 
-const apiKey = 'Nya'; //This is a secret lol
+const apiKey = ''; //This is a secret lol
 
 class WeatherStationService {
 
@@ -55,7 +55,7 @@ class WeatherStationService {
       else {
         throw Exception("No valid station");
       }
-      _stationSaved = data;
+      _stationSaved = data; //_stationSaved = stations.first; for the nearest station data
     }
     return _stationSaved!;
   }
