@@ -8,6 +8,7 @@ const apiKey = 'this is the api key'; //This is a secret lol
 class WeatherStationService {
 
   String? _selectedStationId;
+  Map<String, dynamic>? _selectedStationData;
   Map<String, dynamic>? _stationSaved;
 
   Future<Map<String, dynamic>> getNearestStation(Position position) async {
@@ -51,6 +52,7 @@ class WeatherStationService {
       //Save the first station || selected station
       if (stations.isNotEmpty) {
         _selectedStationId = stations.first['stationId'];
+        _selectedStationData = stations.first;
       }
       else {
         throw Exception("No valid station");
