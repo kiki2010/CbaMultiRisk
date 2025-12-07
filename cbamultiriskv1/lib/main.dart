@@ -32,9 +32,28 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('MultiRisk'),
         ),
-        body: Center(
-          child: Text(position != null ? 'Lat: ${position!.latitude}' : 'Ubicación no disponible'),
-        ),
+
+        body: FutureBuilder<Map<String, dynamic>> (
+          
+          future: WeatherStationService().getNearestStation(position!), 
+          
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('error: ${snapshot.error}'));
+            } else if (!snapshot.hasData) {
+              return const Center(child: Text('No se encontraron datos'));
+            }
+
+            final data = snapshot.data!;
+            final stationName = data;
+
+            return Center(
+              child: Text('data: $data'),
+            );
+          }
+        )
       ),
     );
   }
