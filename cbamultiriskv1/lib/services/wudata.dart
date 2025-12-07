@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -94,5 +95,28 @@ class WeatherStationService {
     } else {
       throw Exception('error getting the actual weather data');
     }
+  }
+
+  Map<String, dynamic>? _historicalDataSaved;
+
+  Future<Map<String, dynamic>> getHistoricalData(Position position) async {
+    if (_historicalDataSaved != null) return _historicalDataSaved!;
+    if (_selectedStationId == null) await getNearestStation(position);
+
+    final stationId = _selectedStationId;
+    final url = 'https://api.weather.com/v2/pws/dailysummary/7day?stationId=$stationId&format=json&units=m&apiKey=$apiKey';
+    
+    final response = await http.get(Uri.parse(url));
+    
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      final summaries = data['sumaries'];
+
+      if (summaries == null || summaries is! List) {
+        throw Exception('Empty summary data');
+      }
+      
+    }
+    return _historicalDataSaved!;
   }
 }
