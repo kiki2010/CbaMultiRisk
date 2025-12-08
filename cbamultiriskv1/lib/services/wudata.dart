@@ -171,5 +171,16 @@ class WeatherStationService {
       throw Exception('error getting historical data');
     }
   }
-}
 
+  Future<Map<String, dynamic>> getAllWeatherDta(Position position) async {
+    final station = await getNearestStation(position);
+    final actual = await getActualData(position);
+    final historical = await getHistoricalData(position);
+
+    return {
+      'station': station,
+      'actual': actual,
+      'historical': historical,
+    };
+  }
+}

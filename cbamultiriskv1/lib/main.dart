@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
 
         body: FutureBuilder<Map<String, dynamic>> (
           
-          future: WeatherStationService().getNearestStation(position!), 
+          future: WeatherStationService().getAllWeatherDta(position!), 
           
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -46,11 +46,46 @@ class MyApp extends StatelessWidget {
               return const Center(child: Text('No se encontraron datos'));
             }
 
-            final data = snapshot.data!;
-            final stationName = data;
+            final station = snapshot.data!['station'];
+            final actual = snapshot.data!['actual'];
+            final historical = snapshot.data!['historical'];
+
+            final stationid = station['stationId'];
+            final updateTime = station['updateTime'];
+            final distance = station['distance'];
+
+            final temp = actual['temperature'];
+            final humidity = actual['humidity'];
+            final wind = actual['windSpeed'];
+            final rain = actual['rain'];
+            final precipRate = actual['precipRate'];
+
+            final totalRain = historical['totalPrecipitations'];
+            final avgRain = historical['average'];
+            final stdDev = historical['standarDeviation'];
+            final spi = historical['spi'];
 
             return Center(
-              child: Text('data: $data'),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 20,),
+                  const Text('Station'),
+                  Text('Temperatura $temp'),
+                  Text('Humedad: $humidity'),
+                  
+                  const SizedBox(height: 20,),
+                  const Text('Clima Actual'),
+                  Text('Temperatura $temp'),
+                  Text('Humedad: $humidity'),
+                  
+                  const SizedBox(height: 20,),
+                  const Text('Clima Actual'),
+                  Text('Temperatura $temp'),
+                  Text('Humedad: $humidity'),
+                  
+                ],
+              ),
             );
           }
         )
