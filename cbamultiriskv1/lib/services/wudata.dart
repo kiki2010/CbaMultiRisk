@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:intl/intl.dart';
 
-const apiKey = 'this is the api key'; //This is a secret lol
+const apiKey = '026cda1f35b54cddacda1f35b53cdda3'; //This is a secret lol
 
 class WeatherStationService {
 
