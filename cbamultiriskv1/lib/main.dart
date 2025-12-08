@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
               return const Center(child: Text('No se encontraron datos'));
             }
 
-            
             //station Id data
             final station = snapshot.data!['station'];
             final stationid = station['stationId'];
