@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:intl/intl.dart';
 
-const apiKey = 'this is the api key'; //This is a secret lol
+const apiKey = '026cda1f35b54cddacda1f35b53cdda3'; //This is a secret lol
 
 class WeatherStationService {
 
@@ -53,15 +53,15 @@ class WeatherStationService {
 
       //Save the first station || selected station
       if (stations.isNotEmpty) {
-        _selectedStationId = stations.first['stationId'];
         _selectedStationData = stations.first;
+        _selectedStationId = stations.first['stationId'];
       }
       else {
         throw Exception("No valid station");
       }
-      _stationSaved = data; //_stationSaved = stations.first; for the nearest station data
+      // _stationSaved = data; //_stationSaved = stations.first; for the nearest station data
     }
-    return _stationSaved!;
+    return _selectedStationData!;
   }
 
 
@@ -111,7 +111,7 @@ class WeatherStationService {
     
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      final summaries = data['sumaries'];
+      final summaries = data['summaries'];
 
       if (summaries == null || summaries is! List) {
         throw Exception('Empty summary data');
@@ -124,7 +124,7 @@ class WeatherStationService {
       
       for (var entry in summaries) {
         if(entry['obsTimeLocal'] != null) {
-          String dateStr = entry['obsTimeLocal'].split('')[0];
+          String dateStr = entry['obsTimeLocal'].split('T')[0];
           DateTime date = DateFormat('yyyy-MM-dd').parse(dateStr);
           groupedByDay.putIfAbsent(date, () => []).add(entry);
         }
@@ -172,7 +172,7 @@ class WeatherStationService {
     }
   }
 
-  Future<Map<String, dynamic>> getAllWeatherDta(Position position) async {
+  Future<Map<String, dynamic>> getAllWeatherData(Position position) async {
     final station = await getNearestStation(position);
     final actual = await getActualData(position);
     final historical = await getHistoricalData(position);
