@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
 
         body: FutureBuilder<Map<String, dynamic>> (
           
-          future: WeatherStationService().getAllWeatherDta(position!), 
+          future: WeatherStationService().getAllWeatherData(position!), 
           
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -46,44 +46,54 @@ class MyApp extends StatelessWidget {
               return const Center(child: Text('No se encontraron datos'));
             }
 
+            
+            //station Id data
             final station = snapshot.data!['station'];
-            final actual = snapshot.data!['actual'];
-            final historical = snapshot.data!['historical'];
-
             final stationid = station['stationId'];
             final updateTime = station['updateTime'];
             final distance = station['distance'];
 
+            //Actual data
+            final actual = snapshot.data!['actual'];
             final temp = actual['temperature'];
+            final windSpeed = actual['windSpeed'];
             final humidity = actual['humidity'];
-            final wind = actual['windSpeed'];
             final rain = actual['rain'];
-            final precipRate = actual['precipRate'];
+            final precioRate = actual['precipRate'];
 
-            final totalRain = historical['totalPrecipitations'];
-            final avgRain = historical['average'];
-            final stdDev = historical['standarDeviation'];
+            //Historical Data
+            final historical = snapshot.data!['historical'];
+            final dailyPrecipitations = historical['dailyPrecipitations'];
+            final totalPrecipitations = historical['totalPrecipitations'];
+            final average = historical['average'];
+            final standarDeviation = historical['standarDeviation'];
             final spi = historical['spi'];
 
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 20,),
                   const Text('Station'),
                   Text('Id $stationid'),
-                  Text('Humedad: $humidity'),
-                  
+                  Text('UTC: $updateTime'),
+                  Text('Distance: $distance'),
+
+                  const SizedBox(height: 20),
+                  const Text('Current data'),
+                  Text('Temp: $temp °C'),
+                  Text('Wind: $windSpeed km/h'),
+                  Text('Humidity: $humidity %'),
+                  Text('Rain: $rain mm'),
+                  Text('PrecipRate: $precioRate mm/h'),
+
                   const SizedBox(height: 20,),
-                  const Text('Clima Actual'),
-                  Text('Temperatura $temp'),
-                  Text('Humedad: $humidity'),
-                  
-                  const SizedBox(height: 20,),
-                  const Text('Clima Actual'),
-                  Text('Temperatura $temp'),
-                  Text('Humedad: $humidity'),
-                  
+                  const Text('Historical Data'),
+                  Text('Daily Precipitations: $dailyPrecipitations'),
+                  Text('Total Precipitations: $totalPrecipitations'),
+                  Text('Average: $average'),
+                  Text('Standar Deviation: $standarDeviation'),
+                  Text('Spi: $spi')
                 ],
               ),
             );
