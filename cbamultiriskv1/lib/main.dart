@@ -69,9 +69,9 @@ class MyApp extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 20),
                   const Text('Station'),
-                  Text('Temperatura $temp'),
+                  Text('Id $stationid'),
                   Text('Humedad: $humidity'),
                   
                   const SizedBox(height: 20,),
