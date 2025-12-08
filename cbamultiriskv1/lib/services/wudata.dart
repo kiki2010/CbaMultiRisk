@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:math';
+import 'package:intl/intl.dart';
 
 const apiKey = 'this is the api key'; //This is a secret lol
 
@@ -115,8 +116,60 @@ class WeatherStationService {
       if (summaries == null || summaries is! List) {
         throw Exception('Empty summary data');
       }
+
+      double totalPrecipitation = 0;
+      List<double> precipitationValues = [];
+
+      Map<DateTime, List<dynamic>> groupedByDay = {};
       
+      for (var entry in summaries) {
+        if(entry['obsTimeLocal'] != null) {
+          String dateStr = entry['obsTimeLocal'].split('')[0];
+          DateTime date = DateFormat('yyyy-MM-dd').parse(dateStr);
+          groupedByDay.putIfAbsent(date, () => []).add(entry);
+        }
+      }
+
+      groupedByDay.forEach((date, entries) {
+        List<double> dailyValues = entries
+          .where((e) => e['metric']?['precipTotal'] != null)
+          .map((e) => (e['metric']['precipTotal'] as num).toDouble())
+          .toList();
+        
+        double dailyPrecip = dailyValues.isNotEmpty
+          ? dailyValues.reduce((a, b) => a + b)
+          : 0.0;
+        
+        totalPrecipitation += dailyPrecip;
+        precipitationValues.add(dailyPrecip);
+      });
+
+      int n = precipitationValues.length;
+      double avg = n > 0 ? totalPrecipitation / n : 0.0;
+
+      double variance  = 0.0;
+
+      for (var value in precipitationValues) {
+        variance += pow(value - avg, 2);
+      }
+
+      variance = n > 0 ? variance / n : 0.0;
+      double stdDev = sqrt(variance);
+
+      double spi = stdDev > 0 ? (totalPrecipitation - avg * n) / (stdDev * sqrt(n)) : 0.0;
+
+      _historicalDataSaved = {
+        'dailyPrecipitations': precipitationValues,
+        'totalPrecipitations': totalPrecipitation,
+        'average': avg,
+        'standarDeviation': stdDev,
+        'spi': spi,
+      };
+
+      return _historicalDataSaved!;
+    } else {
+      throw Exception('error getting historical data');
     }
-    return _historicalDataSaved!;
   }
 }
+
