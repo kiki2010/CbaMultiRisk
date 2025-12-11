@@ -20,8 +20,28 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final Position? position;
+  final flood = FloodPrediction();
 
-  const MyApp({super.key, required this.position});
+  MyApp({super.key, required this.position});
+
+  Future<Map<String, dynamic>> loadEverything() async {
+    if (position == null) {
+      throw Exception('No se pudo obtener la ubicación del usuario.');
+    }
+
+    final weatherService = WeatherStationService();
+    final flood = FloodPrediction();
+
+    await flood.loadFloodModel();
+
+    final weatherData = await weatherService.getAllWeatherData(position!);
+    final floodRisk = await flood.predictFlood(position!);
+
+    return {
+      'weather' : weatherData,
+      'floodRisk' : floodRisk,
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +55,7 @@ class MyApp extends StatelessWidget {
 
         body: FutureBuilder<Map<String, dynamic>> (
           
-          future: WeatherStationService().getAllWeatherData(position!), 
+          future: loadEverything(), 
           
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -46,15 +66,17 @@ class MyApp extends StatelessWidget {
               return const Center(child: Text('No se encontraron datos'));
             }
 
-            
+            final weather = snapshot.data!['weather'];
+            final floodRisk = snapshot.data!['floodRisk'];
+
             //station Id data
-            final station = snapshot.data!['station'];
+            final station = weather!['station'];
             final stationid = station['stationId'];
             final updateTime = station['updateTime'];
             final distance = station['distance'];
 
             //Actual data
-            final actual = snapshot.data!['actual'];
+            final actual = weather!['actual'];
             final temp = actual['temperature'];
             final windSpeed = actual['windSpeed'];
             final humidity = actual['humidity'];
@@ -62,7 +84,7 @@ class MyApp extends StatelessWidget {
             final precioRate = actual['precipRate'];
 
             //Historical Data
-            final historical = snapshot.data!['historical'];
+            final historical = weather!['historical'];
             final dailyPrecipitations = historical['dailyPrecipitations'];
             final totalPrecipitations = historical['totalPrecipitations'];
             final average = historical['average'];
@@ -93,7 +115,11 @@ class MyApp extends StatelessWidget {
                   Text('Total Precipitations: $totalPrecipitations'),
                   Text('Average: $average'),
                   Text('Standar Deviation: $standarDeviation'),
-                  Text('Spi: $spi')
+                  Text('Spi: $spi'),
+
+                  const SizedBox(height: 20,),
+                  const Text('Flood Risk'),
+                  Text('Risk: $floodRisk'),
                 ],
               ),
             );
