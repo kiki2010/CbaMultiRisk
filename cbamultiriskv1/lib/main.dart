@@ -21,6 +21,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final Position? position;
   final flood = FloodPrediction();
+  final fire = FirePrediction();
 
   MyApp({super.key, required this.position});
 
@@ -31,15 +32,19 @@ class MyApp extends StatelessWidget {
 
     final weatherService = WeatherStationService();
     final flood = FloodPrediction();
+    final fire = FirePrediction();
 
     await flood.loadFloodModel();
+    await fire.loadFireModel();
 
     final weatherData = await weatherService.getAllWeatherData(position!);
     final floodRisk = await flood.predictFlood(position!);
+    final fireRisk = await fire.predictFire(position!);
 
     return {
       'weather' : weatherData,
       'floodRisk' : floodRisk,
+      'fireRisk' : fireRisk,
     };
   }
 
@@ -68,6 +73,7 @@ class MyApp extends StatelessWidget {
 
             final weather = snapshot.data!['weather'];
             final floodRisk = snapshot.data!['floodRisk'];
+            final fireRisk = snapshot.data!['fireRisk'];
 
             //station Id data
             final station = weather!['station'];
@@ -118,8 +124,9 @@ class MyApp extends StatelessWidget {
                   Text('Spi: $spi'),
 
                   const SizedBox(height: 20,),
-                  const Text('Flood Risk'),
-                  Text('Risk: $floodRisk'),
+                  const Text('Flood and fire Risk'),
+                  Text('Flood Risk: $floodRisk'),
+                  Text('Fire Risk: $fireRisk')
                 ],
               ),
             );
