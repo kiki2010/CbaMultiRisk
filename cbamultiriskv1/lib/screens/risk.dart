@@ -76,6 +76,10 @@ class RiskScreen extends StatelessWidget {
           final standarDeviation = historical['standarDeviation'];
           final spi = historical['spi'];
 
+          //Forecast Data
+          final forecast = weather!['forecast'];
+          final List<Map<String, dynamic>> threeDayForecast = List<Map<String, dynamic>>.from(forecast);
+
           return Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -196,29 +200,18 @@ class RiskScreen extends StatelessWidget {
 
                       Expanded(child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Column(
+                        children: threeDayForecast.map((day) {
+                          return Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.cloud, color: Colors.grey, size: 65,),
-                              Text("Friday")
+                              Icon(Icons.cloud, color: Colors.grey, size: 50,),
+                              const SizedBox(height: 5,),
+                              Text(day['dayOfWeek']),
+                              //Text(day['precipChance']),
+                              //Text(day['precipType']),
                             ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.cloud, color: Colors.grey, size: 65,),
-                              Text("Saturday")
-                            ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.cloud, color: Colors.grey, size: 65,),
-                              Text("Sunday")
-                            ],
-                          ),
-                        ],
+                          );
+                        }).toList(),
                       ))
                     ],
                   ),
