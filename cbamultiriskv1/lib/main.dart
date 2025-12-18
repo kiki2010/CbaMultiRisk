@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cbamultiriskv1/screens/nearme.dart';
+import 'package:cbamultiriskv1/screens/suqui.dart';
 import 'package:cbamultiriskv1/screens/risk.dart';
 import 'package:cbamultiriskv1/screens/settings.dart';
 import 'package:cbamultiriskv1/services/firepredict.dart';
@@ -87,7 +87,7 @@ class MyApp extends StatelessWidget {
             final windSpeed = actual['windSpeed'];
             final humidity = actual['humidity'];
             final rain = actual['rain'];
-            final precioRate = actual['precipRate'];
+            final precipRate = actual['precipRate'];
 
             //Historical Data
             final historical = weather!['historical'];
@@ -99,34 +99,50 @@ class MyApp extends StatelessWidget {
 
             return Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 20,),
-                  const Text('Station'),
-                  Text('Id $stationid'),
-                  Text('UTC: $updateTime'),
-                  Text('Distance: $distance'),
+                  Row(
+                    children: [
+                      Expanded(child: 
+                        Column(
+                          children: [
+                            Text("Fire Risk $fireRisk"),
+                            SizedBox(height: 8,),
+                            Text("Flood Risk $floodRisk"),
+                          ],
+                        )
+                      ),
 
-                  const SizedBox(height: 20),
-                  const Text('Current data'),
-                  Text('Temp: $temp °C'),
-                  Text('Wind: $windSpeed km/h'),
-                  Text('Humidity: $humidity %'),
-                  Text('Rain: $rain mm'),
-                  Text('PrecipRate: $precioRate mm/h'),
+                      Expanded(
+                        flex: 2,
+                        child: Text("Esto es Suqui"),
+                      ),
+                    ],
+                  ),
 
-                  const SizedBox(height: 20,),
-                  const Text('Historical Data'),
-                  Text('Daily Precipitations: $dailyPrecipitations'),
-                  Text('Total Precipitations: $totalPrecipitations'),
-                  Text('Average: $average'),
-                  Text('Standar Deviation: $standarDeviation'),
-                  Text('Spi: $spi'),
+                  SizedBox(height: 16,),
 
-                  const SizedBox(height: 20,),
-                  const Text('Flood and fire Risk'),
-                  Text('Flood Risk: $floodRisk'),
-                  Text('Fire Risk: $fireRisk')
+                  Row(
+                    children: [
+                      Expanded(child:
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Weather Data:",),
+                            Text("Temperature: $temp °C"),
+                            Text("Wind Speed: $windSpeed km/h"),
+                            Text("Humidity: $humidity %"),
+                            Text("Rain: $rain mm"),
+                            Text("Rain Rate: $precipRate mm/h"),
+                            Text("Spi: $spi")
+                          ],
+                        ),
+                      ),
+
+                      SizedBox(width: 12,),
+
+                      Expanded(child: Text("Forecast")),
+                    ],
+                  ),
                 ],
               ),
             );
