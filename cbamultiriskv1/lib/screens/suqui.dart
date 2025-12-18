@@ -5,12 +5,12 @@ import 'package:cbamultiriskv1/services/floodpredict.dart';
 import 'package:cbamultiriskv1/services/getlocation.dart';
 import 'package:cbamultiriskv1/services/wudata.dart';
 
-class SettingScreen extends StatelessWidget {
+class SuquiScreen extends StatelessWidget {
   final Position? position;
   final flood = FloodPrediction();
   final fire = FirePrediction();
 
-  SettingScreen({super.key, required this.position});
+  SuquiScreen({super.key, required this.position});
 
   Future<Map<String, dynamic>> loadEverything() async {
     if (position == null) {
