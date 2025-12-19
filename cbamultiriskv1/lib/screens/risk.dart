@@ -17,22 +17,73 @@ class RiskScreen extends StatelessWidget {
     }
 
     final weatherService = WeatherStationService();
-    final flood = FloodPrediction();
-    final fire = FirePrediction();
 
     await flood.loadFloodModel();
     await fire.loadFireModel();
 
-    final weatherData = await weatherService.getAllWeatherData(position!);
-    final floodRisk = await flood.predictFlood(position!); 
-    final fireRisk = await fire.predictFire(position!);
-
     return  {
-      'weather' : weatherData,
-      'floodRisk' : floodRisk,
-      'fireRisk' : fireRisk,
+      'weather' : await weatherService.getAllWeatherData(position!),
+      'floodRisk' : await flood.predictFlood(position!),
+      'fireRisk' : await fire.predictFire(position!),
     };
   }
+
+  Color riskColor(String level) {
+    switch (level.toUpperCase()) {
+      case 'LOW':
+        return Colors.green;
+      case 'MEDIUM':
+        return Colors.amber;
+      case 'HIGH':
+        return Colors.redAccent;
+      default:
+        return Colors.grey;
+    }
+  }
+
+  Widget riskCard({
+    required IconData icon,
+    required String title,
+    required String value,
+  }) {
+    final color = riskColor(value);
+
+    return SizedBox(
+      height: 160,
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(18),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 8,
+              offset: Offset(0, 4),
+            )
+          ]
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: color, size: 60),
+            const SizedBox(height: 8),
+            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 4),
+            Text(
+              value,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -89,65 +140,19 @@ class RiskScreen extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
-                          Container(
-                            padding: const EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(18),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 8,
-                                  offset: Offset(0, 4)
-                                )
-                              ]
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.local_fire_department, color: Colors.amber, size: 65,),
-                                    SizedBox(width: 8,),
-                                    Text("Fire Risk: "),
-                                    Text("$fireRisk")
-                                  ],
-                                )
-                              ],
-                            ),
+                          riskCard(
+                            icon: Icons.local_fire_department, 
+                            title: 'Fire Risk', 
+                            value: fireRisk,
                           ),
 
                           const SizedBox(height: 15),
 
-                          Container(
-                            padding: const EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(18),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 8,
-                                  offset: Offset(0, 4)
-                                )
-                              ]
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.flood, color: Colors.amber, size: 65,),
-                                    SizedBox(width: 8,),
-                                    Text("Flood Risk:"),
-                                    Text("$floodRisk")
-                                  ],
-                                )
-                              ],
-                            ),
-                          )
+                          riskCard(
+                            icon: Icons.flood, 
+                            title: 'Flood Risk', 
+                            value: floodRisk,
+                          ),
                         ],
                       ),
                     ),
@@ -157,7 +162,10 @@ class RiskScreen extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
-                          Text("Este es Suqui lol")
+                          Image.asset(
+                            'assets/gif/2.gif',
+                            fit: BoxFit.fill,
+                          ),
                         ],
                       ),
                     ),
