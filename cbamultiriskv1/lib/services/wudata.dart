@@ -79,6 +79,7 @@ class WeatherStationService {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       final observation = data['observations'][0];
+      final String neighborhood = observation['neighborhood'] ?? 'tu zona';
       final double humidity = observation['humidity']?.toDouble() ?? 0.0;
       final double temp = observation['metric']['temp']?.toDouble() ?? 0.0;
       final double windSpeed = observation['metric']['windSpeed']?.toDouble() ?? 0.0;
@@ -91,6 +92,7 @@ class WeatherStationService {
         'humidity': humidity,
         'rain': precipTotal,
         'precipRate': precipRate,
+        'neighborhood': neighborhood,
       };
 
     } else {

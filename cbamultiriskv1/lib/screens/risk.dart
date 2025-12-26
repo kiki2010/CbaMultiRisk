@@ -3,6 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:cbamultiriskv1/services/floodpredict.dart';
 import 'package:cbamultiriskv1/services/wudata.dart';
+import 'dart:math';
+
+class _BubbleTailPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.white
+      ..style = PaintingStyle.fill;
+
+    final path = Path();
+    path.moveTo(0, 0);
+    path.lineTo(size.width / 2, size.height);
+    path.lineTo(size.width, 0);
+    path.close();
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
 
 class RiskScreen extends StatelessWidget {
   final Position? position;
@@ -50,6 +71,7 @@ class RiskScreen extends StatelessWidget {
 
     return SizedBox(
       height: 160,
+      width: 140,
       child: Container(
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
@@ -83,6 +105,50 @@ class RiskScreen extends StatelessWidget {
     );
   }
 
+  Widget speechBubble({
+    required String title,
+  }) {
+    return SizedBox(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 14,
+              vertical: 10,
+            ),
+            constraints: const BoxConstraints(
+              maxWidth: 180,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(14),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 6,
+                  offset: Offset(0, 3)
+                )
+              ]
+            ),
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontSize: 13,
+                height: 1.2,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+
+          CustomPaint(
+            size: const Size(20, 10),
+            painter: _BubbleTailPainter(),
+          ),
+        ],
+      ),
+    );
+  }
 
 
   @override
@@ -118,6 +184,9 @@ class RiskScreen extends StatelessWidget {
           final humidity = actual['humidity'];
           final rain = actual['rain'];
           final precipRate = actual['precipRate'];
+          final city = actual['neighborhood'];
+
+          final suquiText = 'Hola soy Suqui! \n Datos de $city';
 
           //Historical Data
           final historical = weather!['historical'];
@@ -130,6 +199,13 @@ class RiskScreen extends StatelessWidget {
           //Forecast Data
           final forecast = weather!['forecast'];
           final List<Map<String, dynamic>> threeDayForecast = List<Map<String, dynamic>>.from(forecast);
+
+          Random random = Random();
+          int min = 1;
+          int max = 3;
+
+          final suquiRandom = random.nextInt(max - min + 1) + min;
+          final file = 'assets/gif/$suquiRandom.gif';
 
           return Padding(
             padding: const EdgeInsets.all(16),
@@ -160,11 +236,22 @@ class RiskScreen extends StatelessWidget {
                     const SizedBox(width: 15,),
 
                     Expanded(
-                      child: Column(
+                      child: Stack(
+                        alignment: Alignment.topCenter,
+                        clipBehavior: Clip.none,
                         children: [
-                          Image.asset(
-                            'assets/gif/2.gif',
-                            fit: BoxFit.fill,
+                          Positioned(
+                            top: -40,
+                            child: speechBubble(title: suquiText),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.only(top: 50),
+                            child: Image.asset(
+                              file,
+                              scale: 1.9,
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ],
                       ),
