@@ -79,6 +79,7 @@ class WeatherStationService {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       final observation = data['observations'][0];
+      final String neighborhood = observation['neighborhood'] ?? 'tu zona';
       final double humidity = observation['humidity']?.toDouble() ?? 0.0;
       final double temp = observation['metric']['temp']?.toDouble() ?? 0.0;
       final double windSpeed = observation['metric']['windSpeed']?.toDouble() ?? 0.0;
@@ -91,6 +92,7 @@ class WeatherStationService {
         'humidity': humidity,
         'rain': precipTotal,
         'precipRate': precipRate,
+        'neighborhood': neighborhood,
       };
 
     } else {
@@ -172,15 +174,49 @@ class WeatherStationService {
     }
   }
 
+  List<Map<String, dynamic>> threeDayForecast = [];
+
+  Future<List<Map<String, dynamic>>> getForecast(Position position) async {
+    final lat = position.latitude;
+    final lon = position.longitude;
+
+    final url = "https://api.weather.com/v3/wx/forecast/daily/5day?geocode=$lat,$lon&format=json&units=m&language=en-US&apiKey=$apiKey";
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode != 200) {
+      throw Exception('error al obtener datos api');
+    } 
+    else if (response.statusCode == 200) {  
+      final data = json.decode(response.body);
+
+      final precipChances = data['daypart'][0]['precipChance'];
+      final precipTypes = data['daypart'][0]['precipType']; 
+      final daysOfWeek = data['dayOfWeek']; 
+      final forecast = data['daypart'][0]['wxPhraseLong'];
+
+      for (int i = 0; i < 3; i++) {
+        final dailyForecast = {
+          'dayOfWeek': daysOfWeek[i],
+          'precipChance': precipChances[i * 2],
+          'precipType': precipTypes[i * 2] ?? 'N/A',
+          'forecast': forecast[i * 2],
+        };
+        threeDayForecast.add(dailyForecast);
+      }
+    }
+    return threeDayForecast;
+  }
+
   Future<Map<String, dynamic>> getAllWeatherData(Position position) async {
     final station = await getNearestStation(position);
     final actual = await getActualData(position);
     final historical = await getHistoricalData(position);
-
+    final threedayForecast = await getForecast(position);
     return {
       'station': station,
       'actual': actual,
       'historical': historical,
+      'forecast': threedayForecast,
     };
   }
 }

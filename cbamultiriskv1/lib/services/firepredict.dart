@@ -24,9 +24,9 @@ class FirePrediction {
     final allData = await weatherService.getAllWeatherData(position);
     final actualData = allData['actual'];
     
-    double temperature = actualData['temperature'];
+    double temperature = actualData['temperature'] / 50;
     double humidity = actualData['humidity'];
-    double wind = actualData['windSpeed'];
+    double wind = actualData['windSpeed'] / 100;
 
     List<double> fireInputData = [temperature, humidity, wind];
 
