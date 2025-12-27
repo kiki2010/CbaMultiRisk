@@ -4,6 +4,67 @@ import 'package:geolocator/geolocator.dart';
 import 'package:cbamultiriskv1/services/floodpredict.dart';
 import 'package:cbamultiriskv1/services/wudata.dart';
 import 'dart:math';
+import 'dart:async';
+
+import 'package:cbamultiriskv1/widgets/cards.dart';
+
+class TypewriterText extends StatefulWidget {
+  final String text;
+  final Duration speed;
+  final TextStyle? style;
+  final TextAlign textAlign;
+
+  const TypewriterText({
+    super.key,
+    required this.text,
+    this.speed = const Duration(milliseconds: 40),
+    this.style,
+    this.textAlign = TextAlign.center,
+  });
+
+  @override
+  State<TypewriterText> createState() => _TypewriterTextState();
+}
+
+class _TypewriterTextState extends State<TypewriterText> {
+  String _displayedText = "";
+  int _index = 0;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTyping();
+  }
+
+  void _startTyping() {
+    _timer = Timer.periodic(widget.speed, (timer) {
+      if (_index < widget.text.length) {
+        setState(() {
+          _displayedText += widget.text[_index];
+          _index++;
+        });
+      } else {
+        timer.cancel();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      _displayedText,
+      style: widget.style,
+      textAlign: widget.textAlign,
+    );
+  }
+}
 
 class _BubbleTailPainter extends CustomPainter {
   @override
@@ -49,62 +110,6 @@ class RiskScreen extends StatelessWidget {
     };
   }
 
-  Color riskColor(String level) {
-    switch (level.toUpperCase()) {
-      case 'LOW':
-        return Colors.green;
-      case 'MEDIUM':
-        return Colors.amber;
-      case 'HIGH':
-        return Colors.redAccent;
-      default:
-        return Colors.grey;
-    }
-  }
-
-  Widget riskCard({
-    required IconData icon,
-    required String title,
-    required String value,
-  }) {
-    final color = riskColor(value);
-
-    return SizedBox(
-      height: 160,
-      width: 140,
-      child: Container(
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(18),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 8,
-              offset: Offset(0, 4),
-            )
-          ]
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, color: color, size: 60),
-            const SizedBox(height: 8),
-            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-            const SizedBox(height: 4),
-            Text(
-              value,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget speechBubble({
     required String title,
   }) {
@@ -131,14 +136,14 @@ class RiskScreen extends StatelessWidget {
                 )
               ]
             ),
-            child: Text(
-              title,
+            child: TypewriterText(
+              text: title,
+              speed: const Duration(milliseconds: 35),
               style: const TextStyle(
                 fontSize: 13,
                 height: 1.2,
               ),
-              textAlign: TextAlign.center,
-            ),
+            )
           ),
 
           CustomPaint(
@@ -259,58 +264,18 @@ class RiskScreen extends StatelessWidget {
                   ],
                 ),
 
-                const SizedBox(height: 25,),
+                const SizedBox(height: 15),
 
-                Container(
-                  padding: const EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(18),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 8,
-                        offset: Offset(0, 4)
-                      )
-                    ]
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(child: 
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Weather Data:",),
-                            Text("Temperature: $temp °C"),
-                            Text("Wind Speed: $windSpeed km/h"),
-                            Text("Humidity: $humidity %"),
-                            Text("Rain: $rain mm"),
-                            Text("Rain Rate: $precipRate mm/h"),
-                            Text("Spi: $spi")
-                          ],
-                        ),
-                      ),
-
-                      const SizedBox(width: 12,),
-
-                      Expanded(child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: threeDayForecast.map((day) {
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.cloud, color: Colors.grey, size: 50,),
-                              const SizedBox(height: 5,),
-                              Text(day['dayOfWeek']),
-                              //Text(day['precipChance']),
-                              //Text(day['precipType']),
-                            ],
-                          );
-                        }).toList(),
-                      ))
-                    ],
-                  ),
-                ),
+                weatherCard(
+                  context,
+                  temp: temp,
+                  wind: windSpeed,
+                  hum: humidity,
+                  rain: rain,
+                  rainRate: precipRate,
+                  spi: spi,
+                  forecast: forecast,
+                )
               ],
             ),
           );
