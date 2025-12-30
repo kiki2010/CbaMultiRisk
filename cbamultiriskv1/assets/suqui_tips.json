@@ -1,0 +1,22 @@
+{
+    "tips": [
+        {
+            "id": 1,
+            "category": "fire",
+            "es": "No arrojes colillas de cigarrillo en zonas secas.",
+            "en": "Do not throw cigarette butts in dry areas."
+        },
+        {
+            "id": 2,
+            "category": "flood",
+            "es": "Evitá cruzar calles inundadas, aunque parezcan poco profundas.",
+            "en": "Avoid crossing flooded streets, even if they look shallow."
+        },
+        {
+            "id": 3,
+            "category": "general",
+            "es": "Reducir residuos también ayuda a prevenir incendios.",
+            "en": "Reducing waste also helps prevent wildfires."
+        }
+    ]
+}
