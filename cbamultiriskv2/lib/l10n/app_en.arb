@@ -1,10 +1,26 @@
 {
     "risk": "Risk",
+    "high": "HIGH",
+    "medium": "MEDIUM",
+    "low": "LOW",
+    "getting": "Getting Risk...",
+    "fireRisk": "Fire Risk",
+    "floodRisk": "Flood Risk",
+    
+    "weather": "Weather Data:",
+    "temperature": "Temperature: {temp} °C",
+    "wind": "Wind Speed: {wind} km/h",
+    "humidity": "Humidity: {hum} %",
+    "rain": "Rain: {rain} mm",
+    "rainRate": "Rain rate: {rainRate} mm/h",
+    "spi": "Spi: {spi}",
 
     "tips": "Tips",
     
     "settings": "Settings",
     "settingTitle": "Settings",
     "darkMode": "Dark Mode",
-    "language": "Language"
+    "language": "Language",
+
+    "error": "Error"
 }

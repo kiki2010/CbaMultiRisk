@@ -12,6 +12,57 @@ class AppLocalizationsEn extends AppLocalizations {
   String get risk => 'Risk';
 
   @override
+  String get high => 'HIGH';
+
+  @override
+  String get medium => 'MEDIUM';
+
+  @override
+  String get low => 'LOW';
+
+  @override
+  String get getting => 'Getting Risk...';
+
+  @override
+  String get fireRisk => 'Fire Risk';
+
+  @override
+  String get floodRisk => 'Flood Risk';
+
+  @override
+  String get weather => 'Weather Data:';
+
+  @override
+  String temperature(Object temp) {
+    return 'Temperature: $temp °C';
+  }
+
+  @override
+  String wind(Object wind) {
+    return 'Wind Speed: $wind km/h';
+  }
+
+  @override
+  String humidity(Object hum) {
+    return 'Humidity: $hum %';
+  }
+
+  @override
+  String rain(Object rain) {
+    return 'Rain: $rain mm';
+  }
+
+  @override
+  String rainRate(Object rainRate) {
+    return 'Rain rate: $rainRate mm/h';
+  }
+
+  @override
+  String spi(Object spi) {
+    return 'Spi: $spi';
+  }
+
+  @override
   String get tips => 'Tips';
 
   @override
@@ -25,4 +76,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get language => 'Language';
+
+  @override
+  String get error => 'Error';
 }
