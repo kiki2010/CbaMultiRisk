@@ -101,6 +101,84 @@ abstract class AppLocalizations {
   /// **'Risk'**
   String get risk;
 
+  /// No description provided for @high.
+  ///
+  /// In en, this message translates to:
+  /// **'HIGH'**
+  String get high;
+
+  /// No description provided for @medium.
+  ///
+  /// In en, this message translates to:
+  /// **'MEDIUM'**
+  String get medium;
+
+  /// No description provided for @low.
+  ///
+  /// In en, this message translates to:
+  /// **'LOW'**
+  String get low;
+
+  /// No description provided for @getting.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting Risk...'**
+  String get getting;
+
+  /// No description provided for @fireRisk.
+  ///
+  /// In en, this message translates to:
+  /// **'Fire Risk'**
+  String get fireRisk;
+
+  /// No description provided for @floodRisk.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood Risk'**
+  String get floodRisk;
+
+  /// No description provided for @weather.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather Data:'**
+  String get weather;
+
+  /// No description provided for @temperature.
+  ///
+  /// In en, this message translates to:
+  /// **'Temperature: {temp} °C'**
+  String temperature(Object temp);
+
+  /// No description provided for @wind.
+  ///
+  /// In en, this message translates to:
+  /// **'Wind Speed: {wind} km/h'**
+  String wind(Object wind);
+
+  /// No description provided for @humidity.
+  ///
+  /// In en, this message translates to:
+  /// **'Humidity: {hum} %'**
+  String humidity(Object hum);
+
+  /// No description provided for @rain.
+  ///
+  /// In en, this message translates to:
+  /// **'Rain: {rain} mm'**
+  String rain(Object rain);
+
+  /// No description provided for @rainRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Rain rate: {rainRate} mm/h'**
+  String rainRate(Object rainRate);
+
+  /// No description provided for @spi.
+  ///
+  /// In en, this message translates to:
+  /// **'Spi: {spi}'**
+  String spi(Object spi);
+
   /// No description provided for @tips.
   ///
   /// In en, this message translates to:
@@ -130,6 +208,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Language'**
   String get language;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

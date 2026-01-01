@@ -1,5 +1,19 @@
 {
     "risk": "Riesgo",
+    "high": "ALTO",
+    "medium": "MEDIO",
+    "low": "BAJO",
+    "getting": "Calculando",
+    "fireRisk": "Riesgo Incendios",
+    "floodRisk": "Riesgo Inundaciones",
+    
+    "weather": "Datos Meteorológicos:",
+    "temperature": "Temperatura: {temp} °C",
+    "wind": "Velocidad del Viento: {wind} km/h",
+    "humidity": "Humedad: {hum} %",
+    "rain": "Lluvia: {rain} mm",
+    "rainRate": "Intensidad Lluvias: {rainRate} mm/h",
+    "spi": "Spi: {spi}",
 
     "tips": "Tips",
     

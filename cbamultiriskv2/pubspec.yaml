@@ -39,6 +39,7 @@ dependencies:
   intl: any
   geolocator: ^14.0.2
   provider: ^6.1.5+1
+  weather_icons: ^3.0.0
 
 dev_dependencies:
   flutter_test:
