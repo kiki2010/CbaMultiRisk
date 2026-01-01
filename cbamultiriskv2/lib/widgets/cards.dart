@@ -1,6 +1,5 @@
 import 'package:cbamultiriskv2/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:async/async.dart';
 import 'package:weather_icons/weather_icons.dart';
 
 (Color, String) riskInfo(BuildContext context, String level) {
