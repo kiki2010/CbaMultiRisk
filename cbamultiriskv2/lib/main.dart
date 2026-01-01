@@ -84,7 +84,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   void initState() {
     super.initState();
     _screens = [
-      RiskScreen(),
+      RiskScreen(position: widget.position),
       SuquiScreen(),
       SettingScreen(),
     ];
