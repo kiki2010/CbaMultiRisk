@@ -30,6 +30,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get floodRisk => 'Riesgo Inundaciones';
 
   @override
+  String suquiHi(Object city) {
+    return 'Hola, soy Suqui! \n Datos de $city';
+  }
+
+  @override
   String get weather => 'Datos Meteorológicos:';
 
   @override
@@ -61,6 +66,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String spi(Object spi) {
     return 'Spi: $spi';
   }
+
+  @override
+  String get noData => 'No se encontraron datos';
 
   @override
   String get tips => 'Tips';

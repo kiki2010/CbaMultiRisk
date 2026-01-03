@@ -137,6 +137,12 @@ abstract class AppLocalizations {
   /// **'Flood Risk'**
   String get floodRisk;
 
+  /// No description provided for @suquiHi.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi, I\'m Suqui! \n Data from {city}'**
+  String suquiHi(Object city);
+
   /// No description provided for @weather.
   ///
   /// In en, this message translates to:
@@ -178,6 +184,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Spi: {spi}'**
   String spi(Object spi);
+
+  /// No description provided for @noData.
+  ///
+  /// In en, this message translates to:
+  /// **'No data found'**
+  String get noData;
 
   /// No description provided for @tips.
   ///

@@ -1,6 +1,7 @@
 import 'package:cbamultiriskv2/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_icons/weather_icons.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 (Color, String) riskInfo(BuildContext context, String level) {
   switch (level.toUpperCase()) {
@@ -25,7 +26,6 @@ Widget riskCard({
   final cardBg = Theme.of(context).cardColor;
 
   return SizedBox(
-    height: 160,
     width: 140,
     child: Container(
       padding: const EdgeInsets.all(15),
@@ -45,10 +45,12 @@ Widget riskCard({
         children: [
           Icon(icon, color: color, size: 60,),
           const SizedBox(height: 8,),
-          Text(title, style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyMedium?.color)),
+          Text(title,maxLines: 2,overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyMedium?.color)),
           const SizedBox(height: 4),
           Text(
             text,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -121,8 +123,7 @@ Widget weatherCard( BuildContext context,{
   final screenHeigh = MediaQuery.of(context).size.height;
   final cardBg = Theme.of(context).cardColor;
 
-  return SizedBox(
-    height: screenHeigh * 0.30,
+  return Expanded(
     child: Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
@@ -143,13 +144,13 @@ Widget weatherCard( BuildContext context,{
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(AppLocalizations.of(context)!.weather, style: TextStyle(fontSize: 14, color: Theme.of(context).textTheme.bodyMedium?.color),),
-                Text(AppLocalizations.of(context)!.temperature(temp), style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
-                Text(AppLocalizations.of(context)!.wind(wind), style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
-                Text(AppLocalizations.of(context)!.humidity(hum), style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
-                Text(AppLocalizations.of(context)!.rain(rain), style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
-                Text(AppLocalizations.of(context)!.rainRate(rainRate), style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
-                Text(AppLocalizations.of(context)!.spi(spi), style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color))
+                AutoSizeText(AppLocalizations.of(context)!.weather, maxLines: 1, style: TextStyle(fontSize: 14, color: Theme.of(context).textTheme.bodyMedium?.color),),
+                AutoSizeText(AppLocalizations.of(context)!.temperature(temp),  maxLines: 1, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
+                AutoSizeText(AppLocalizations.of(context)!.wind(wind),  maxLines: 2, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
+                AutoSizeText(AppLocalizations.of(context)!.humidity(hum),  maxLines: 1, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
+                AutoSizeText(AppLocalizations.of(context)!.rain(rain),  maxLines: 1, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
+                AutoSizeText(AppLocalizations.of(context)!.rainRate(rainRate),  maxLines: 2, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
+                AutoSizeText(AppLocalizations.of(context)!.spi(spi), maxLines: 1, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color))
               ],
             ),
           ),
