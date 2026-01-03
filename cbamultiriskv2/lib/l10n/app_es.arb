@@ -6,6 +6,8 @@
     "getting": "Calculando",
     "fireRisk": "Riesgo Incendios",
     "floodRisk": "Riesgo Inundaciones",
+
+    "suquiHi": "Hola, soy Suqui! \n Datos de {city}",
     
     "weather": "Datos Meteorológicos:",
     "temperature": "Temperatura: {temp} °C",
@@ -14,6 +16,8 @@
     "rain": "Lluvia: {rain} mm",
     "rainRate": "Intensidad Lluvias: {rainRate} mm/h",
     "spi": "Spi: {spi}",
+
+    "noData": "No se encontraron datos",
 
     "tips": "Tips",
     

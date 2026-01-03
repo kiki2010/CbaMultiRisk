@@ -80,11 +80,17 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   late final List<Widget> _screens;
 
+  void goToSuqui() {
+    setState(() {
+      _currentIndex = 1;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     _screens = [
-      RiskScreen(position: widget.position),
+      RiskScreen(position: widget.position, onSuquiTap: goToSuqui),
       SuquiScreen(),
       SettingScreen(),
     ];

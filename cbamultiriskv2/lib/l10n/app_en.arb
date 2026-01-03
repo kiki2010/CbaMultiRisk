@@ -6,6 +6,8 @@
     "getting": "Getting Risk...",
     "fireRisk": "Fire Risk",
     "floodRisk": "Flood Risk",
+
+    "suquiHi": "Hi, I'm Suqui! \n Data from {city}",
     
     "weather": "Weather Data:",
     "temperature": "Temperature: {temp} °C",
@@ -14,6 +16,8 @@
     "rain": "Rain: {rain} mm",
     "rainRate": "Rain rate: {rainRate} mm/h",
     "spi": "Spi: {spi}",
+
+    "noData": "No data found",
 
     "tips": "Tips",
     
