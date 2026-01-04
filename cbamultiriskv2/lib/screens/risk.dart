@@ -103,7 +103,22 @@ class RiskScreen extends StatelessWidget {
                             context: context,
                             icon: Icons.local_fire_department,
                             title: AppLocalizations.of(context)!.fireRisk,
-                            value: fireRisk
+                            value: fireRisk,
+                            onTap: () {
+                              showInfoDialog(
+                                context,
+                                AppLocalizations.of(context)!.fireTitleExplanation,
+                                AppLocalizations.of(context)!.fireExplanation,
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(Icons.local_fire_department, size: 60, color: Colors.green),
+                                    Icon(Icons.local_fire_department, size: 60, color: Colors.amber),
+                                    Icon(Icons.local_fire_department, size: 60, color: Colors.red),
+                                  ],
+                                ),
+                              );
+                            }
                           ),
 
                           const SizedBox(height: 15),
@@ -113,6 +128,21 @@ class RiskScreen extends StatelessWidget {
                             icon: Icons.flood, 
                             title: AppLocalizations.of(context)!.floodRisk, 
                             value: floodRisk,
+                            onTap: () {
+                              showInfoDialog(
+                                context,
+                                AppLocalizations.of(context)!.floodTitleExplanation,
+                                AppLocalizations.of(context)!.floodExplanation,
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(Icons.flood, size: 60, color: Colors.green),
+                                    Icon(Icons.flood, size: 60, color: Colors.amber),
+                                    Icon(Icons.flood, size: 60, color: Colors.red),
+                                  ],
+                                )
+                              );
+                            },
                           ),
                         ],
                       ),
@@ -121,24 +151,35 @@ class RiskScreen extends StatelessWidget {
                     const SizedBox(width: 15),
 
                     Expanded(
-                      child: Stack(
-                        alignment: Alignment.topCenter,
-                        clipBehavior: Clip.none,
-                        children: [
-                          Positioned(
-                            top: -40,
-                            child: speechBubble(title: AppLocalizations.of(context)!.suquiHi(city), fontSize: 13),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(top: 50),
-                            child: suquiAvatar(
-                              posIndex: suquiRandom, 
-                              height: MediaQuery.of(context).size.height * 0.25, 
-                              onTap: onSuquiTap ?? () {},
-                            ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(Radius.circular(18)),
+                          border: Border.all(
+                            color: Color(0xFF2B70C9),
+                            width: 2,
                           )
-                        ],
+                        ),
+                        child: Stack(
+                          alignment: Alignment.topCenter,
+                          clipBehavior: Clip.none,
+                          children: [
+                            Positioned(
+                              top: -40,
+                              child: speechBubble(
+                                title: AppLocalizations.of(context)!.suquiHi(city),
+                                fontSize: 13
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: suquiAvatar(
+                                posIndex: suquiRandom,
+                                height: MediaQuery.of(context).size.height * 0.25,
+                                onTap: onSuquiTap ?? () {},
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     )
                   ],

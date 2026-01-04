@@ -19,6 +19,11 @@
 
     "noData": "No data found",
 
+    "fireTitleExplanation": "How the fire risk is calculated",
+    "fireExplanation": " The fire risk is calculated by our artificial intelligence model. \n Using data on temperature, humidity, and wind speed. \n The risk is classified as high, medium, or low and is also indicated by colors.",
+    "floodTitleExplanation": "How the flood risk is calculated",
+    "floodExplanation": " The flood risk is calculated by our artificial intelligence model. \n Using data on rain, precipitation rate, humidity, and SPI. \n The risk is classified as high, medium, or low and is also indicated by colors.",
+
     "tips": "Tips",
     
     "settings": "Settings",
@@ -26,5 +31,6 @@
     "darkMode": "Dark Mode",
     "language": "Language",
 
-    "error": "Error"
+    "error": "Error",
+    "close": "Close"
 }

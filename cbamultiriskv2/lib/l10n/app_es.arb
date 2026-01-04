@@ -19,10 +19,18 @@
 
     "noData": "No se encontraron datos",
 
+    "fireTitleExplanation": "Como se calcula el riesgo de incendio",
+    "fireExplanation": " El riesgo de incendio es calculado usando nuestro modelo de Inteligencia Artificial. \n Usando datos de temperatura, humedad y velociddad del viento. \n El riesgo se clasifica en Alto, Medio o Bajo y también se indica con colores.",
+    "floodTitleExplanation": "Como se calcula el riesgo de inundación",
+    "floodExplanation": " El riesgo de inundaciones es calculado usando nuestro modelo de Inteligencia Artificial. \n Usando datos de lluvia, intensidad, humedad y SPI. \n El riesgo se clasifica en Alto, Medio o Bajo y también se indica con colores.",
+
     "tips": "Tips",
     
     "settings": "Ajustes",
     "settingTitle": "Ajustes",
     "darkMode": "Modo Oscuro",
-    "language": "Idioma"
+    "language": "Idioma",
+
+    "error": "Error",
+    "close": "Cerrar"
 }
