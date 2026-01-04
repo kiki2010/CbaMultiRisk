@@ -191,6 +191,30 @@ abstract class AppLocalizations {
   /// **'No data found'**
   String get noData;
 
+  /// No description provided for @fireTitleExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'How the fire risk is calculated'**
+  String get fireTitleExplanation;
+
+  /// No description provided for @fireExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **' The fire risk is calculated by our artificial intelligence model. \n Using data on temperature, humidity, and wind speed. \n The risk is classified as high, medium, or low and is also indicated by colors.'**
+  String get fireExplanation;
+
+  /// No description provided for @floodTitleExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'How the flood risk is calculated'**
+  String get floodTitleExplanation;
+
+  /// No description provided for @floodExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **' The flood risk is calculated by our artificial intelligence model. \n Using data on rain, precipitation rate, humidity, and SPI. \n The risk is classified as high, medium, or low and is also indicated by colors.'**
+  String get floodExplanation;
+
   /// No description provided for @tips.
   ///
   /// In en, this message translates to:
@@ -226,6 +250,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error'**
   String get error;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -21,42 +21,46 @@ Widget riskCard({
   required IconData icon,
   required String title,
   required String value,
+  VoidCallback? onTap,
 }) {
   final (color, text) = riskInfo(context, value);
   final cardBg = Theme.of(context).cardColor;
 
-  return SizedBox(
-    width: 140,
-    child: Container(
-      padding: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: cardBg,
-        borderRadius: const BorderRadius.all(Radius.circular(18)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: const Offset(0, 4)
-          )
-        ]
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, color: color, size: 60,),
-          const SizedBox(height: 8,),
-          Text(title,maxLines: 2,overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyMedium?.color)),
-          const SizedBox(height: 4),
-          Text(
-            text,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          )
-        ],
+  return GestureDetector(
+    onTap: onTap,
+    child: SizedBox(
+      width: 140,
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          color: cardBg,
+          borderRadius: const BorderRadius.all(Radius.circular(18)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 8,
+              offset: const Offset(0, 4)
+            )
+          ]
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: color, size: 60,),
+            const SizedBox(height: 8,),
+            Text(title,maxLines: 2,overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyMedium?.color)),
+            const SizedBox(height: 4),
+            Text(
+              text,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            )
+          ],
+        ),
       ),
     ),
   );
@@ -197,5 +201,57 @@ Widget weatherCard( BuildContext context,{
         ],
       ),
     ),
+  );
+}
+
+Widget infoDialog(BuildContext context, {
+  required String title,
+  required String content,
+  required Widget? icon,
+}) {
+  return Dialog(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+    child: Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (icon != null) ...[
+            icon,
+            const SizedBox(height: 10)
+          ],
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold
+            ),
+            textAlign: TextAlign.left,
+          ),
+          
+          const SizedBox(height: 10),
+
+          Text(
+            content,
+            textAlign: TextAlign.left,
+            style: const TextStyle(fontSize: 14),
+          ),
+
+          const SizedBox(height: 20),
+
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(AppLocalizations.of(context)!.close),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+void showInfoDialog(BuildContext context, String title, String content, Widget icon) {
+  showDialog(
+    context: context,
+    builder: (_) => infoDialog(context, title: title, content: content, icon: icon),
   );
 }

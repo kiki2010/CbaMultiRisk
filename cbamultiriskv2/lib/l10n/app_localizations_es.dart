@@ -71,6 +71,18 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noData => 'No se encontraron datos';
 
   @override
+  String get fireTitleExplanation => 'Como se calcula el riesgo de incendio';
+
+  @override
+  String get fireExplanation => ' El riesgo de incendio es calculado usando nuestro modelo de Inteligencia Artificial. \n Usando datos de temperatura, humedad y velociddad del viento. \n El riesgo se clasifica en Alto, Medio o Bajo y también se indica con colores.';
+
+  @override
+  String get floodTitleExplanation => 'Como se calcula el riesgo de inundación';
+
+  @override
+  String get floodExplanation => ' El riesgo de inundaciones es calculado usando nuestro modelo de Inteligencia Artificial. \n Usando datos de lluvia, intensidad, humedad y SPI. \n El riesgo se clasifica en Alto, Medio o Bajo y también se indica con colores.';
+
+  @override
   String get tips => 'Tips';
 
   @override
@@ -87,4 +99,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get error => 'Error';
+
+  @override
+  String get close => 'Cerrar';
 }

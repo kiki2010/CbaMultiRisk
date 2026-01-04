@@ -71,6 +71,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noData => 'No data found';
 
   @override
+  String get fireTitleExplanation => 'How the fire risk is calculated';
+
+  @override
+  String get fireExplanation => ' The fire risk is calculated by our artificial intelligence model. \n Using data on temperature, humidity, and wind speed. \n The risk is classified as high, medium, or low and is also indicated by colors.';
+
+  @override
+  String get floodTitleExplanation => 'How the flood risk is calculated';
+
+  @override
+  String get floodExplanation => ' The flood risk is calculated by our artificial intelligence model. \n Using data on rain, precipitation rate, humidity, and SPI. \n The risk is classified as high, medium, or low and is also indicated by colors.';
+
+  @override
   String get tips => 'Tips';
 
   @override
@@ -87,4 +99,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get error => 'Error';
+
+  @override
+  String get close => 'Close';
 }
