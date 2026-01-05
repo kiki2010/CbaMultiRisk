@@ -71,16 +71,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noData => 'No data found';
 
   @override
-  String get fireTitleExplanation => 'How the fire risk is calculated';
+  String get fireTitleExplanation => 'How fire risk is calculated';
 
   @override
-  String get fireExplanation => ' The fire risk is calculated by our artificial intelligence model. \n Using data on temperature, humidity, and wind speed. \n The risk is classified as high, medium, or low and is also indicated by colors.';
+  String get fireExplanation => ' Fire risk is estimated using our artificial intelligence model. \n The model analyzes environmental data such as air temperature, relative humidity, and wind speed to evaluate conditions that may favor the spread of fire. \n The data used is obtained from the nearest weather stations. \n Based on this analysis, the risk level is classified as Low, Medium, or High and is represented using colors for easier interpretation.';
 
   @override
-  String get floodTitleExplanation => 'How the flood risk is calculated';
+  String get floodTitleExplanation => 'How flood risk is calculated';
 
   @override
-  String get floodExplanation => ' The flood risk is calculated by our artificial intelligence model. \n Using data on rain, precipitation rate, humidity, and SPI. \n The risk is classified as high, medium, or low and is also indicated by colors.';
+  String get floodExplanation => ' Flood risk is estimated using our artificial intelligence model. \n The model processes data including rainfall amount, precipitation intensity, humidity, and the Standardized Precipitation Index (SPI) to assess the likelihood of flooding. \n The data used is obtained from the nearest weather stations. \n The resulting risk level is classified as Low, Medium, or High and is displayed using colors for clear visual understanding.';
 
   @override
   String get tips => 'Tips';

@@ -4,6 +4,8 @@ import 'package:cbamultiriskv2/widgets/avatar.dart';
 import 'package:cbamultiriskv2/widgets/speechBubble.dart';
 import 'package:provider/provider.dart';
 
+import 'package:cbamultiriskv2/l10n/app_localizations.dart';
+
 class SuquiScreen extends StatefulWidget {
   const SuquiScreen({super.key});
 
@@ -47,6 +49,9 @@ class _SuquiScreenState extends State<SuquiScreen> {
     final locale = context.watch<LocaleController>().locale.languageCode;
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context)!.tips),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

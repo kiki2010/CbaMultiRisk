@@ -71,16 +71,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noData => 'No se encontraron datos';
 
   @override
-  String get fireTitleExplanation => 'Como se calcula el riesgo de incendio';
+  String get fireTitleExplanation => 'Cómo se calcula el riesgo de incendio';
 
   @override
-  String get fireExplanation => ' El riesgo de incendio es calculado usando nuestro modelo de Inteligencia Artificial. \n Usando datos de temperatura, humedad y velociddad del viento. \n El riesgo se clasifica en Alto, Medio o Bajo y también se indica con colores.';
+  String get fireExplanation => ' El riesgo de incendio se estima mediante nuestro modelo de Inteligencia Artificial. \n Este modelo analiza variables ambientales como la temperatura del aire, la humedad relativa y la velocidad del viento para evaluar condiciones que pueden favorecer la propagación del fuego. \n Los datos son obtenidos de la estación meteorológica más cercana. \n A partir de este análisis, el riesgo se clasifica en Bajo, Medio o Alto y se representa con colores para facilitar su interpretación.';
 
   @override
-  String get floodTitleExplanation => 'Como se calcula el riesgo de inundación';
+  String get floodTitleExplanation => 'Cómo se calcula el riesgo de inundación';
 
   @override
-  String get floodExplanation => ' El riesgo de inundaciones es calculado usando nuestro modelo de Inteligencia Artificial. \n Usando datos de lluvia, intensidad, humedad y SPI. \n El riesgo se clasifica en Alto, Medio o Bajo y también se indica con colores.';
+  String get floodExplanation => ' El riesgo de inundación se estima mediante nuestro modelo de Inteligencia Artificial. \n El modelo utiliza datos como la cantidad de lluvia, la intensidad de las precipitaciones, la humedad y el Índice de Precipitación Estandarizado (SPI) para evaluar la probabilidad de inundaciones \n Los datos son obtenidos de la estación meteorológica más cercana. \n El resultado se clasifica en Bajo, Medio o Alto y se muestra con colores para una lectura rápida y clara.';
 
   @override
   String get tips => 'Tips';
