@@ -71,16 +71,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noData => 'No data found';
 
   @override
-  String get fireTitleExplanation => 'How fire risk is calculated';
+  String get fireTitleExplanation => 'How the fire risk is calculated';
 
   @override
-  String get fireExplanation => ' Fire risk is estimated using our artificial intelligence model. \n The model analyzes environmental data such as air temperature, relative humidity, and wind speed to evaluate conditions that may favor the spread of fire. \n The data used is obtained from the nearest weather stations. \n Based on this analysis, the risk level is classified as Low, Medium, or High and is represented using colors for easier interpretation.';
+  String get fireExplanation => 'We developed an Artificial Intelligence model to estimate fire risk.\n This model analyzes environmental variables such as temperature, relative humidity, and wind speed to evaluate conditions that may favor the spread of fire.\n The data is obtained from the nearest and most up-to-date meteorological station.\n Based on this analysis, the risk is classified as Low, Medium, or High and is represented with colors to make it easier to understand.';
 
   @override
-  String get floodTitleExplanation => 'How flood risk is calculated';
+  String get floodTitleExplanation => 'How we calculate flood risk';
 
   @override
-  String get floodExplanation => ' Flood risk is estimated using our artificial intelligence model. \n The model processes data including rainfall amount, precipitation intensity, humidity, and the Standardized Precipitation Index (SPI) to assess the likelihood of flooding. \n The data used is obtained from the nearest weather stations. \n The resulting risk level is classified as Low, Medium, or High and is displayed using colors for clear visual understanding.';
+  String get floodExplanation => 'The app analyzes rainfall and humidity conditions to help you understand the flood risk in your area.\n Factors such as the amount and intensity of rainfall, soil moisture, and the Standardized Precipitation Index (SPI) are taken into account, using data from the nearest and most up-to-date meteorological station.\n With this information, we estimate the probability of flooding and classify the risk as Low, Medium, or High, accompanied by colors for quick and clear reading.';
 
   @override
   String get tips => 'Tips';
