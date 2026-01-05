@@ -234,7 +234,7 @@ Widget infoDialog(BuildContext context, {
           Text(
             content,
             textAlign: TextAlign.left,
-            style: const TextStyle(fontSize: 14),
+            style: const TextStyle(fontSize: 14), 
           ),
 
           const SizedBox(height: 20),
