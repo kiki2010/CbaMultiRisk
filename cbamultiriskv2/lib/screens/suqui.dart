@@ -40,6 +40,17 @@ class _SuquiScreenState extends State<SuquiScreen> {
     });
   }
 
+  void _onCategoryTap(String category) {
+    setState(() {
+      final newTip = controller.randomTip(category: category);
+
+      if (newTip.id != currentTip!.id) {
+        controller.nextPose(3);
+        currentTip = newTip;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!loaded || currentTip == null) {
@@ -52,10 +63,12 @@ class _SuquiScreenState extends State<SuquiScreen> {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.tips),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(height: 12),
+            
             speechBubble(
               title: currentTip!.text(locale),
               fontSize: 18,
@@ -63,14 +76,27 @@ class _SuquiScreenState extends State<SuquiScreen> {
 
             const SizedBox(height: 16),
 
-            suquiAvatar(
-              posIndex: controller.currentPose,
-              onTap: _onSuquiTap,
-              height: MediaQuery.of(context).size.height * 0.50,
-            )
+            Expanded(
+              child:GestureDetector(
+                onTap: _onSuquiTap,
+                child: suquiAvatar(
+                  posIndex: controller.currentPose,
+                  height: double.infinity,
+                  onTap: _onSuquiTap,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+            SuquiButtons(
+              onCategoryTap: _onCategoryTap,
+            ),
+            
+            const SizedBox(height: 12),
           ],
         ),
-      ),
+      )
     );
   }
 }

@@ -20,9 +20,9 @@
     "noData": "No se encontraron datos",
 
     "fireTitleExplanation": "Cómo se calcula el riesgo de incendio",
-    "fireExplanation": " El riesgo de incendio se estima mediante nuestro modelo de Inteligencia Artificial. \n Este modelo analiza variables ambientales como la temperatura del aire, la humedad relativa y la velocidad del viento para evaluar condiciones que pueden favorecer la propagación del fuego. \n Los datos son obtenidos de la estación meteorológica más cercana. \n A partir de este análisis, el riesgo se clasifica en Bajo, Medio o Alto y se representa con colores para facilitar su interpretación.",
-    "floodTitleExplanation": "Cómo se calcula el riesgo de inundación",
-    "floodExplanation": " El riesgo de inundación se estima mediante nuestro modelo de Inteligencia Artificial. \n El modelo utiliza datos como la cantidad de lluvia, la intensidad de las precipitaciones, la humedad y el Índice de Precipitación Estandarizado (SPI) para evaluar la probabilidad de inundaciones \n Los datos son obtenidos de la estación meteorológica más cercana. \n El resultado se clasifica en Bajo, Medio o Alto y se muestra con colores para una lectura rápida y clara.",
+    "fireExplanation": " Desarollamos un modelo de Inteligencia Artificial para estimar el riesgo de incendio. \n Este modelo analiza variables ambientales como la temperatura, la humedad relativa y la velocidad del viento para evaluar condiciones que pueden favorecer la propagación del fuego. \n Los datos son obtenidos de la estación meteorológica más cercana y actualizada. \n A partir de este análisis, el riesgo se clasifica en Bajo, Medio o Alto y se representa con colores para facilitar su interpretación.",
+    "floodTitleExplanation": "Cómo calculamos el riesgo de inundación",
+    "floodExplanation": "La app analiza las condiciones de lluvia y humedad para ayudarte a comprender el riesgo de inundación en tu zona.\n Se tienen en cuenta factores como la cantidad e intensidad de las precipitaciones, la humedad del suelo y el Índice de Precipitación Estandarizado (SPI), utilizando datos de la estación meteorológica más cercana y actualizada.\n Con esta información, estimamos la probabilidad de que ocurran inundaciones y clasificamos el riesgo como Bajo, Medio o Alto, acompañado de colores para una lectura rápida y clara.",
 
     "tips": "Tips",
     

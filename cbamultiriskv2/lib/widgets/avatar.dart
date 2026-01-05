@@ -92,3 +92,54 @@ class SuquiController {
     if (_currentPose > maxPose) _currentPose = 1;
   }
 }
+
+class SuquiButtons extends StatelessWidget {
+  void Function(String category) onCategoryTap;
+  SuquiButtons({
+    super.key,
+    required this.onCategoryTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        iconButton(
+          Icons.local_fire_department,
+          () {
+            onCategoryTap('fire');
+          }
+        ),
+        iconButton(
+          Icons.water,
+          () {
+            onCategoryTap('flood');
+          }
+        ),
+        iconButton(
+          Icons.info,
+          () {
+            onCategoryTap('general');
+          }
+        )
+      ],
+    );
+  }
+}
+
+Widget iconButton(IconData icon, VoidCallback onTap) {
+  return InkWell(
+    borderRadius: BorderRadius.circular(16),
+    onTap: onTap,
+    child: Container(
+      width: 70,
+      height: 70,
+      decoration: BoxDecoration(
+        border: Border.all(color: Color(0xFF2B70C9)),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Icon(icon, color: Color(0xFF2B70C9),),
+    ),
+  );
+}

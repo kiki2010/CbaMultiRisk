@@ -194,25 +194,25 @@ abstract class AppLocalizations {
   /// No description provided for @fireTitleExplanation.
   ///
   /// In en, this message translates to:
-  /// **'How fire risk is calculated'**
+  /// **'How the fire risk is calculated'**
   String get fireTitleExplanation;
 
   /// No description provided for @fireExplanation.
   ///
   /// In en, this message translates to:
-  /// **' Fire risk is estimated using our artificial intelligence model. \n The model analyzes environmental data such as air temperature, relative humidity, and wind speed to evaluate conditions that may favor the spread of fire. \n The data used is obtained from the nearest weather stations. \n Based on this analysis, the risk level is classified as Low, Medium, or High and is represented using colors for easier interpretation.'**
+  /// **'We developed an Artificial Intelligence model to estimate fire risk.\n This model analyzes environmental variables such as temperature, relative humidity, and wind speed to evaluate conditions that may favor the spread of fire.\n The data is obtained from the nearest and most up-to-date meteorological station.\n Based on this analysis, the risk is classified as Low, Medium, or High and is represented with colors to make it easier to understand.'**
   String get fireExplanation;
 
   /// No description provided for @floodTitleExplanation.
   ///
   /// In en, this message translates to:
-  /// **'How flood risk is calculated'**
+  /// **'How we calculate flood risk'**
   String get floodTitleExplanation;
 
   /// No description provided for @floodExplanation.
   ///
   /// In en, this message translates to:
-  /// **' Flood risk is estimated using our artificial intelligence model. \n The model processes data including rainfall amount, precipitation intensity, humidity, and the Standardized Precipitation Index (SPI) to assess the likelihood of flooding. \n The data used is obtained from the nearest weather stations. \n The resulting risk level is classified as Low, Medium, or High and is displayed using colors for clear visual understanding.'**
+  /// **'The app analyzes rainfall and humidity conditions to help you understand the flood risk in your area.\n Factors such as the amount and intensity of rainfall, soil moisture, and the Standardized Precipitation Index (SPI) are taken into account, using data from the nearest and most up-to-date meteorological station.\n With this information, we estimate the probability of flooding and classify the risk as Low, Medium, or High, accompanied by colors for quick and clear reading.'**
   String get floodExplanation;
 
   /// No description provided for @tips.
