@@ -79,7 +79,7 @@ class _SuquiScreenState extends State<SuquiScreen> {
             Expanded(
               child:GestureDetector(
                 onTap: _onSuquiTap,
-                child: suquiAvatar(
+                child: SuquiAvatar(
                   posIndex: controller.currentPose,
                   height: double.infinity,
                   onTap: _onSuquiTap,

@@ -1,19 +1,27 @@
+/*
+Risk Screen
+last edit: 06/01/2026
+Change: Comments were added
+*/
+
 import 'package:flutter/material.dart';
+//geolocation, math and async
 import 'package:geolocator/geolocator.dart';
 import 'dart:math';
 import 'dart:async';
 
+//Services
 import 'package:cbamultiriskv2/services/wudata.dart';
 import 'package:cbamultiriskv2/services/firepredict.dart';
 import 'package:cbamultiriskv2/services/floodpredict.dart';
 
+//Custom widgets
 import 'package:cbamultiriskv2/widgets/avatar.dart';
 import 'package:cbamultiriskv2/widgets/cards.dart';
 import 'package:cbamultiriskv2/widgets/speechBubble.dart';
 
+//Spanish and English
 import 'package:cbamultiriskv2/l10n/app_localizations.dart';
-
-import 'suqui.dart';
 
 class RiskScreen extends StatelessWidget {
   final Position? position;
@@ -23,6 +31,7 @@ class RiskScreen extends StatelessWidget {
   
   RiskScreen({super.key, required this.position, required this.onSuquiTap});
 
+  //We initialize services, load AI models, and wait for your response.
   Future<Map<String, dynamic>> loadEverything() async {
     if (position == null) {
       throw Exception('Unable to get location');
@@ -47,6 +56,7 @@ class RiskScreen extends StatelessWidget {
         title: Text(AppLocalizations.of(context)!.risk),
       ),
 
+      //We wait for everything to load and react according to the result.
       body: FutureBuilder(
         future: loadEverything(), 
         builder: (context, snapshot) {
@@ -58,13 +68,14 @@ class RiskScreen extends StatelessWidget {
             return Center(child: Text(AppLocalizations.of(context)!.noData));
           }
 
+          //We extract
           //General data
           final weather = snapshot.data!['weather'];
           final floodRisk = snapshot.data!['floodRisk'];
           final fireRisk = snapshot.data!['fireRisk'];
 
-          //Station Id data
-          final station = weather!['station'];
+          //Station Id data (Not needed for the final User Interface)
+          // final station = weather!['station'];
 
           //Actual data
           final actual = weather!['actual'];
@@ -87,9 +98,9 @@ class RiskScreen extends StatelessWidget {
           Random random = Random();
           int min = 1;
           int max = 3;
-
           final suquiRandom = random.nextInt(max - min + 1) + min;
-
+          
+          //User Interface
           return Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -99,6 +110,7 @@ class RiskScreen extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
+                          //Risk Levels
                           riskCard(
                             context: context,
                             icon: Icons.local_fire_department,
@@ -150,6 +162,7 @@ class RiskScreen extends StatelessWidget {
 
                     const SizedBox(width: 15),
 
+                    //Suqui
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
@@ -172,7 +185,7 @@ class RiskScreen extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 20),
-                              child: suquiAvatar(
+                              child: SuquiAvatar(
                                 posIndex: suquiRandom,
                                 height: MediaQuery.of(context).size.height * 0.25,
                                 onTap: onSuquiTap ?? () {},
@@ -187,6 +200,7 @@ class RiskScreen extends StatelessWidget {
 
                 const SizedBox(height: 15),
 
+                //Weather data
                 weatherCard(
                   context,
                   temp: temp,

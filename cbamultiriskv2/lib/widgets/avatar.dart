@@ -31,12 +31,12 @@ class SuquiTip {
   }
 }
 
-class suquiAvatar extends StatelessWidget {
+class SuquiAvatar extends StatelessWidget {
   final int posIndex;
   final double height;
   final VoidCallback onTap;
 
-  const suquiAvatar({
+  const SuquiAvatar({
     super.key,
     required this.posIndex,
     required this.height,
