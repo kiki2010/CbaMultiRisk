@@ -121,7 +121,7 @@ Widget weatherCard( BuildContext context,{
   required double hum,
   required double rain,
   required double rainRate,
-  required double spi,
+  required String spi,
   required List<Map<String, dynamic>> forecast, 
 }) {
   // final screenHeigh = MediaQuery.of(context).size.height;

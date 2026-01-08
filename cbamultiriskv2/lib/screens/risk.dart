@@ -89,6 +89,7 @@ class RiskScreen extends StatelessWidget {
           //Historical data
           final historical = weather!['historical'];
           final spi = historical['spi'];
+          final fixedSpi = spi.toStringAsFixed(2);
 
           //Forecast data
           final forecast = weather!['forecast'];
@@ -208,7 +209,7 @@ class RiskScreen extends StatelessWidget {
                   hum: humidity,
                   rain: rain,
                   rainRate: precipRate,
-                  spi: spi,
+                  spi: fixedSpi,
                   forecast: threeDayForecast,
                 ),
               ],
