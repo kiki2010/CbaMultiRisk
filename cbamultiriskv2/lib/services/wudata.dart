@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:math';
 import 'package:intl/intl.dart';
+import 'package:statistics/statistics.dart';
 
 const apiKey = '026cda1f35b54cddacda1f35b53cdda3'; //This is a secret lol
 
@@ -119,6 +120,7 @@ class WeatherStationService {
       }
 
       double totalPrecipitation = 0;
+      int daysWithData = 0;
       List<double> precipitationValues = [];
 
       Map<DateTime, List<dynamic>> groupedByDay = {};
@@ -132,37 +134,30 @@ class WeatherStationService {
       }
 
       groupedByDay.forEach((date, entries) {
-        List<double> dailyValues = entries
+        List<double> precipTotal = entries
           .where((e) => e['metric']?['precipTotal'] != null)
           .map((e) => (e['metric']['precipTotal'] as num).toDouble())
           .toList();
         
-        double dailyPrecip = dailyValues.isNotEmpty
-          ? dailyValues.reduce((a, b) => a + b)
-          : 0.0;
+        double dailyPrecipitation =
+            precipTotal.isNotEmpty ? precipTotal.reduce((a, b) => a + b) : 0;
         
-        totalPrecipitation += dailyPrecip;
-        precipitationValues.add(dailyPrecip);
+        totalPrecipitation += dailyPrecipitation;
+        if (dailyPrecipitation > 0) daysWithData++;
+        precipitationValues.add(dailyPrecipitation);
       });
 
-      int n = precipitationValues.length;
-      double avg = n > 0 ? totalPrecipitation / n : 0.0;
+      double avgPrecipitation = totalPrecipitation / 7;
+      double stdDev = precipitationValues.standardDeviation;
 
-      double variance  = 0.0;
-
-      for (var value in precipitationValues) {
-        variance += pow(value - avg, 2);
-      }
-
-      variance = n > 0 ? variance / n : 0.0;
-      double stdDev = sqrt(variance);
-
-      double spi = stdDev > 0 ? (totalPrecipitation - avg * n) / (stdDev * sqrt(n)) : 0.0;
+      double spi = stdDev > 0
+        ? (totalPrecipitation - avgPrecipitation) / stdDev
+        : 0;
 
       _historicalDataSaved = {
         'dailyPrecipitations': precipitationValues,
         'totalPrecipitations': totalPrecipitation,
-        'average': avg,
+        'average': avgPrecipitation,
         'standarDeviation': stdDev,
         'spi': spi,
       };
