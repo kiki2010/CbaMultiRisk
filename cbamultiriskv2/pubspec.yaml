@@ -45,6 +45,7 @@ dependencies:
   auto_size_text: ^3.0.0
   shared_preferences: ^2.5.4
   statistics: ^1.2.1
+  workmanager: ^0.9.0+3
 
 dev_dependencies:
   flutter_test:

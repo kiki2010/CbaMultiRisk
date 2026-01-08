@@ -153,6 +153,8 @@ class WeatherStationService {
       double spi = stdDev > 0
         ? (totalPrecipitation - avgPrecipitation) / stdDev
         : 0;
+      
+      print(spi);
 
       _historicalDataSaved = {
         'dailyPrecipitations': precipitationValues,
