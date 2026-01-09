@@ -1,7 +1,6 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'dart:math';
 import 'package:intl/intl.dart';
 import 'package:statistics/statistics.dart';
 

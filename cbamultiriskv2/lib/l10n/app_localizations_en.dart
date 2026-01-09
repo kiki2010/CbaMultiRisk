@@ -98,6 +98,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get language => 'Language';
 
   @override
+  String get notifications => 'Notifications';
+
+  @override
   String get error => 'Error';
 
   @override
