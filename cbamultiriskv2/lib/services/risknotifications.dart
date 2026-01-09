@@ -54,6 +54,11 @@ class RiskService {
   }
 }
 
+//Is HIGH?
+bool isHighRisk(String risk) {
+  return risk.toLowerCase() == 'high';
+}
+
 //Call load everything and show notification
 final riskService = RiskService();
 
@@ -65,7 +70,15 @@ Future<void> calculateRiskAndNotify() async {
   final String floodRisk = data['floodRisk'];
   final String fireRisk = data['fireRisk'];
 
-  await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk);
+  final bool highFlood = isHighRisk(floodRisk);
+  final bool highFire = isHighRisk(fireRisk);
+
+  if (highFlood || highFire) {
+    await showRiskNotification(
+      floodRisk: floodRisk, 
+      fireRisk: fireRisk
+    );
+  }
 }
 
 //Show the notification
@@ -89,10 +102,12 @@ void riskCallbackDispatcher() {
       final riskService = RiskService();
       final data = await riskService.loadEverything();
 
-      await showRiskNotification(
-        floodRisk: data['floodRisk'],
-        fireRisk: data['fireRisk'],
-      );
+      final floodRisk = data['floodRisk'];
+      final fireRisk = data['fireRisk'];
+
+      if (isHighRisk(floodRisk) || isHighRisk(fireRisk)) {
+        await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk);
+      }
     }
     return Future.value(true);
   });
