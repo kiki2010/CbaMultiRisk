@@ -6,17 +6,29 @@ import 'l10n/locale_controller.dart';
 
 import 'package:geolocator/geolocator.dart'; 
 import 'package:provider/provider.dart';
+import 'package:workmanager/workmanager.dart';
 
 import 'screens/risk.dart';
 import 'screens/suqui.dart';
 import 'screens/settings.dart';
 
 import 'package:cbamultiriskv2/services/getlocation.dart';
+import 'package:cbamultiriskv2/services/risknotifications.dart';
 
 import 'package:cbamultiriskv2/theme/theme_controller.dart';
 import 'theme/app_theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Workmanager().initialize(riskCallbackDispatcher);
+  await Workmanager().registerOneOffTask(
+    'risk_debug_once',
+    'calculate_risk',
+  );
+  Workmanager().registerPeriodicTask(
+    "risk_notification",
+    "calculate_risk",
+    frequency: Duration(minutes: 20),
+  );
 
   Position position = await getUserLocation();
 
