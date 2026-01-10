@@ -32,6 +32,7 @@
     "language": "Idioma",
     "notifications": "Notificaciones",
 
-    "error": "Error",
+    "error": "Error {error}",
+    "locationError": "Error de Ubicación",
     "close": "Cerrar"
 }

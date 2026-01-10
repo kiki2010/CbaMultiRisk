@@ -254,8 +254,14 @@ abstract class AppLocalizations {
   /// No description provided for @error.
   ///
   /// In en, this message translates to:
-  /// **'Error'**
-  String get error;
+  /// **'Error {error}'**
+  String error(Object error);
+
+  /// No description provided for @locationError.
+  ///
+  /// In en, this message translates to:
+  /// **'Location Error'**
+  String get locationError;
 
   /// No description provided for @close.
   ///

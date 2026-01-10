@@ -22,7 +22,7 @@ class WeatherStationService {
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode != 200) {
-      throw Exception('error al obtener datos api');
+      throw Exception('Error getting API data');
     } 
     else if (response.statusCode == 200) {  
       final data = json.decode(response.body);
@@ -62,6 +62,7 @@ class WeatherStationService {
     }
     return _selectedStationData!;
   }
+
 
 
   Map<String, dynamic>? _actualDataSaved;

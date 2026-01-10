@@ -1,15 +1,7 @@
-/*
-Notification Services
-last edit: 09/01/2026
-Change: Notifications are sent when the risk is high 
-*/
-
-import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 //services
 import 'getlocation.dart';
 import 'wudata.dart';
@@ -36,10 +28,10 @@ Future<void> initRiskNotifications() async {
 
   await _notifications.initialize(settings);
 
-  final androidplugin = _notifications.resolvePlatformSpecificImplementation<
+  final AndroidPlugin = _notifications.resolvePlatformSpecificImplementation<
     AndroidFlutterLocalNotificationsPlugin>();
   
-  await androidplugin?.createNotificationChannel(_riskChannel);
+  await AndroidPlugin?.createNotificationChannel(_riskChannel);
 }
 
 //Loas Everything
@@ -56,9 +48,9 @@ class RiskService {
     await fire.loadFireModel();
 
     return {
-      'weather': await weatherService.getAllWeatherData(position),
-      'floodRisk': await flood.predictFlood(position),
-      'fireRisk': await fire.predictFire(position),
+      'weather': await weatherService.getAllWeatherData(position!),
+      'floodRisk': await flood.predictFlood(position!),
+      'fireRisk': await fire.predictFire(position!),
     };
   }
 }
@@ -88,6 +80,8 @@ Future<void> calculateRiskAndNotify() async {
       fireRisk: fireRisk
     );
   }
+
+  debugPrint('Risk: $fireRisk | $floodRisk');
 }
 
 //Show the notification
@@ -106,25 +100,15 @@ Future<void> showRiskNotification({
 //Background task Handler
 @pragma('vm:entry-point')
 void riskCallbackDispatcher() {
-
   Workmanager().executeTask((task, inputData) async {
-    debugPrint('⚙️ Background task ejecutada: $task');
-    
     if (task == 'calculate_risk') {
-      final prefs = await SharedPreferences.getInstance();
-      final enabled = prefs.getBool('risk_notifications_enabled') ?? true;
-
-      if (!enabled) {
-        return Future.value(true);
-      }
-
-      await initRiskNotifications();
-
       final riskService = RiskService();
       final data = await riskService.loadEverything();
 
       final floodRisk = data['floodRisk'];
       final fireRisk = data['fireRisk'];
+
+      debugPrint('Risk: $fireRisk | $floodRisk');
 
       if (isHighRisk(floodRisk) || isHighRisk(fireRisk)) {
         await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk);
@@ -132,38 +116,4 @@ void riskCallbackDispatcher() {
     }
     return Future.value(true);
   });
-}
-
-//Notificactions settings
-class NotificationSettings {
-  static const _key = 'risk_notifications_enabled';
-
-  static Future<bool> isEnabled() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_key) ?? true;
-  }
-
-  static Future<void> setEnabled(bool value) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_key, value);
-  }
-}
-
-//Enabled and sidabled
-class RiskTaskManager {
-  static const taskName = 'calculate_risk';
-  static const uniqueName = 'risk_periodic_task';
-
-  static Future<void> enabled() async {
-    await Workmanager().registerPeriodicTask(
-      uniqueName,
-      taskName,
-      frequency: Duration(minutes: 20),
-      existingWorkPolicy: ExistingPeriodicWorkPolicy.replace,
-    );
-  }
-
-  static Future<void> disable() async {
-    await Workmanager().cancelByUniqueName(uniqueName);
-  }
 }
