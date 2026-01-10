@@ -98,7 +98,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get language => 'Language';
 
   @override
-  String get error => 'Error';
+  String get notifications => 'Notifications';
+
+  @override
+  String error(Object error) {
+    return 'Error $error';
+  }
+
+  @override
+  String get locationError => 'Location Error';
 
   @override
   String get close => 'Close';

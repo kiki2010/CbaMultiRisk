@@ -27,7 +27,7 @@ void main() async {
   Workmanager().registerPeriodicTask(
     "risk_notification",
     "calculate_risk",
-    frequency: Duration(minutes: 20),
+    frequency: Duration(hours: 3),
   );
 
   Position position = await getUserLocation();
