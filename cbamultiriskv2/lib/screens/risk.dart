@@ -110,7 +110,7 @@ class RiskScreen extends StatelessWidget {
           //Suqui Avatar (random selector)
           Random random = Random();
           int min = 1;
-          int max = 3;
+          int max = 5;
           final suquiRandom = random.nextInt(max - min + 1) + min;
           
           //User Interface

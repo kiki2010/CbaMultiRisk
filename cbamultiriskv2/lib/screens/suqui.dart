@@ -35,7 +35,7 @@ class _SuquiScreenState extends State<SuquiScreen> {
 
   void _onSuquiTap() {
     setState(() {
-      controller.nextPose(3);
+      controller.nextPose(5);
       currentTip = controller.randomTip();
     });
   }
@@ -45,7 +45,7 @@ class _SuquiScreenState extends State<SuquiScreen> {
       final newTip = controller.randomTip(category: category);
 
       if (newTip.id != currentTip!.id) {
-        controller.nextPose(3);
+        controller.nextPose(5);
         currentTip = newTip;
       }
     });
