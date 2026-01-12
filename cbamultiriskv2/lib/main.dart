@@ -19,15 +19,11 @@ import 'package:cbamultiriskv2/theme/theme_controller.dart';
 import 'theme/app_theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Workmanager().initialize(riskCallbackDispatcher);
   await Workmanager().registerOneOffTask(
     'risk_debug_once',
     'calculate_risk',
-  );
-  Workmanager().registerPeriodicTask(
-    "risk_notification",
-    "calculate_risk",
-    frequency: Duration(hours: 3),
   );
 
   Position position = await getUserLocation();
@@ -37,6 +33,7 @@ void main() async {
     providers: [
       ChangeNotifierProvider(create: (_) => ThemeController()),
       ChangeNotifierProvider(create: (_) => LocaleController()),
+      ChangeNotifierProvider(create: (_) => BackgroundTaskProvider()),
     ],
     child: MyApp(position: position),
   ),

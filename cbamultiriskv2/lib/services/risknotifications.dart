@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator/geolocator.dart';
@@ -116,4 +118,37 @@ void riskCallbackDispatcher() {
     }
     return Future.value(true);
   });
+}
+
+//Settings Provider
+class BackgroundTaskProvider extends ChangeNotifier {
+  static const _prefKey = 'bg_rask_enabled';
+
+  bool isBackgroundTaskEnabled = true;
+
+  BackgroundTaskProvider() {
+    _loadState();
+  }
+
+  Future<void> _loadState() async {
+    final prefs = await SharedPreferences.getInstance();
+    isBackgroundTaskEnabled = prefs.getBool(_prefKey) ?? true;
+    notifyListeners();
+  }
+
+  Future<void> toggleBackgroundTask(bool enabled) async {
+    isBackgroundTaskEnabled = enabled;
+    notifyListeners();
+
+    if (enabled) {
+      await Workmanager().registerPeriodicTask(
+        "risk_notification",
+        "calculate_risk",
+        frequency: Duration(minutes: 20),
+        existingWorkPolicy: ExistingPeriodicWorkPolicy.replace,
+      );
+    } else {
+      await Workmanager().cancelByUniqueName('risk_notification');
+    }
+  }
 }
