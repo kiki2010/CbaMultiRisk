@@ -34,7 +34,7 @@ class RiskScreen extends StatelessWidget {
   //We initialize services, load AI models, and wait for your response.
   Future<Map<String, dynamic>> loadEverything() async {
     if (position == null) {
-      throw Exception('Unable to get location');
+      throw Exception('LOCATION_ERROR');
     }
 
     final weatherService = WeatherStationService();
@@ -63,9 +63,21 @@ class RiskScreen extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
+            final error = snapshot.error.toString();
+
+            if (error.contains('LOCATION_ERROR')) {
+              return SuquiError(
+                message: AppLocalizations.of(context)!.locationError,
+              );
+            }
+
+            return SuquiError(
+              message: AppLocalizations.of(context)!.error(error),
+            );
           } else if (!snapshot.hasData) {
-            return Center(child: Text(AppLocalizations.of(context)!.noData));
+            return SuquiError(
+              message: AppLocalizations.of(context)!.noData,
+            );
           }
 
           //We extract
@@ -98,7 +110,7 @@ class RiskScreen extends StatelessWidget {
           //Suqui Avatar (random selector)
           Random random = Random();
           int min = 1;
-          int max = 3;
+          int max = 5;
           final suquiRandom = random.nextInt(max - min + 1) + min;
           
           //User Interface

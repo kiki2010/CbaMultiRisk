@@ -143,3 +143,42 @@ Widget iconButton(IconData icon, VoidCallback onTap) {
     ),
   );
 }
+
+class SuquiError extends StatelessWidget {
+  final String message;
+
+  const SuquiError({
+    super.key,
+    required this.message,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/gif/e.gif',
+              height: MediaQuery.of(context).size.height * 0.45,
+              fit: BoxFit.contain,
+            ),
+
+            const SizedBox(height: 16,),
+
+            Text(
+              message,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

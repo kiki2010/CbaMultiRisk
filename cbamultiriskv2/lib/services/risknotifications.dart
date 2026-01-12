@@ -1,3 +1,4 @@
+import 'package:flutter/rendering.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator/geolocator.dart';
@@ -79,6 +80,8 @@ Future<void> calculateRiskAndNotify() async {
       fireRisk: fireRisk
     );
   }
+
+  debugPrint('Risk: $fireRisk | $floodRisk');
 }
 
 //Show the notification
@@ -104,6 +107,8 @@ void riskCallbackDispatcher() {
 
       final floodRisk = data['floodRisk'];
       final fireRisk = data['fireRisk'];
+
+      debugPrint('Risk: $fireRisk | $floodRisk');
 
       if (isHighRisk(floodRisk) || isHighRisk(fireRisk)) {
         await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk);

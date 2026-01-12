@@ -1,7 +1,6 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'dart:math';
 import 'package:intl/intl.dart';
 import 'package:statistics/statistics.dart';
 
@@ -23,7 +22,7 @@ class WeatherStationService {
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode != 200) {
-      throw Exception('error al obtener datos api');
+      throw Exception('Error getting API data');
     } 
     else if (response.statusCode == 200) {  
       final data = json.decode(response.body);
@@ -63,6 +62,7 @@ class WeatherStationService {
     }
     return _selectedStationData!;
   }
+
 
 
   Map<String, dynamic>? _actualDataSaved;

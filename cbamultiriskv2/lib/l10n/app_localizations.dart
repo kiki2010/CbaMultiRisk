@@ -245,11 +245,23 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get language;
 
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
   /// No description provided for @error.
   ///
   /// In en, this message translates to:
-  /// **'Error'**
-  String get error;
+  /// **'Error {error}'**
+  String error(Object error);
+
+  /// No description provided for @locationError.
+  ///
+  /// In en, this message translates to:
+  /// **'Location Error'**
+  String get locationError;
 
   /// No description provided for @close.
   ///
