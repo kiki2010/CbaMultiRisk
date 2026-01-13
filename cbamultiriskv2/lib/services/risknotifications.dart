@@ -1,3 +1,8 @@
+/*
+Risk Notifications Settings and Background services
+last edit: 12/01/2026
+Change: Comments were added
+*/
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,7 +41,7 @@ Future<void> initRiskNotifications() async {
   await AndroidPlugin?.createNotificationChannel(_riskChannel);
 }
 
-//Loas Everything
+//Load Everything
 final flood = FloodPrediction();
 final fire = FirePrediction();
 
@@ -144,7 +149,7 @@ class BackgroundTaskProvider extends ChangeNotifier {
       await Workmanager().registerPeriodicTask(
         "risk_notification",
         "calculate_risk",
-        frequency: Duration(minutes: 20),
+        frequency: Duration(minutes: 20), //then I will change this to 4 hours
         existingWorkPolicy: ExistingPeriodicWorkPolicy.replace,
       );
     } else {

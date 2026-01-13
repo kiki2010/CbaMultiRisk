@@ -1,17 +1,25 @@
+/*
+WU data (API Data Handling)
+last edit: 12/01/2026
+Change: Comments were added
+*/
+
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:statistics/statistics.dart';
 
-const apiKey = '026cda1f35b54cddacda1f35b53cdda3'; //This is a secret lol
+const apiKey = '026cda1f35b54cddacda1f35b53cdda3'; // Shhh... This is a secret
 
+// This service is responsible for obtaining the nearest and most up-to-date weather station data, current readings, the weekly record, and the forecast for the next three days. 
+// This data will be displayed on the risk screen and used to calculate the risk of fire and flooding.
 class WeatherStationService {
-
   String? _selectedStationId;
   Map<String, dynamic>? _selectedStationData;
   Map<String, dynamic>? _stationSaved;
-
+  
+  // Based on the user Location we get the nearest and most up-to-date weather station 
   Future<Map<String, dynamic>> getNearestStation(Position position) async {
     if (_stationSaved != null) return _stationSaved!;
 
@@ -63,10 +71,8 @@ class WeatherStationService {
     return _selectedStationData!;
   }
 
-
-
+  // Obtain the actual weather conditions using the selected station. Then saving it on a map.
   Map<String, dynamic>? _actualDataSaved;
-
   Future<Map<String, dynamic>> getActualData(Position position) async {
     if (_actualDataSaved != null) return _actualDataSaved!;
     if (_selectedStationId == null) await getNearestStation(position);
@@ -100,8 +106,8 @@ class WeatherStationService {
     }
   }
 
+  // Obtain the last 7 days conditions using the selected station. Then saving it on a map.
   Map<String, dynamic>? _historicalDataSaved;
-
   Future<Map<String, dynamic>> getHistoricalData(Position position) async {
     if (_historicalDataSaved != null) return _historicalDataSaved!;
     if (_selectedStationId == null) await getNearestStation(position);
@@ -168,8 +174,8 @@ class WeatherStationService {
     }
   }
 
+  // Obtain the forecast using the user location, then saving it on a list -> map.
   List<Map<String, dynamic>> threeDayForecast = [];
-
   Future<List<Map<String, dynamic>>> getForecast(Position position) async {
     final lat = position.latitude;
     final lon = position.longitude;
@@ -201,6 +207,7 @@ class WeatherStationService {
     return threeDayForecast;
   }
 
+  //A Function to return all the data
   Future<Map<String, dynamic>> getAllWeatherData(Position position) async {
     final station = await getNearestStation(position);
     final actual = await getActualData(position);
