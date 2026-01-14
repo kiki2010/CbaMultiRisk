@@ -1,4 +1,7 @@
 {
+    "disclaimer": "Disclaimer",
+    "disclaimerText": "This app is designed to predict the likelihood of wild fires and floods using external weather sources.\n For actual evacuation and safety measures, always follow the instructions of local authorities.\n The developers assume no responsibility for any damage or loss resulting from the use of this app.",
+    "understand": "I Understand",
     "risk": "Risk",
     "high": "HIGH",
     "medium": "MEDIUM",
