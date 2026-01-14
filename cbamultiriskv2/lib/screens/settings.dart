@@ -1,7 +1,8 @@
+import 'package:cbamultiriskv2/services/risknotifications.dart';
+import 'package:cbamultiriskv2/widgets/cards.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:cbamultiriskv2/services/risknotifications.dart';
 import 'package:cbamultiriskv2/theme/theme_controller.dart';
 import 'package:cbamultiriskv2/l10n/locale_controller.dart';
 
@@ -78,6 +79,16 @@ class SettingScreen extends StatelessWidget {
                 ],
               );
             }
+          ),
+
+          const SizedBox(height: 24,),
+
+          ElevatedButton.icon(
+            label: Text(AppLocalizations.of(context)!.disclaimer),
+            icon: Icon(Icons.info_outline_rounded),
+            onPressed: () {
+              showDisclaimerDialog(context);
+            },
           )
         ],
       ),
