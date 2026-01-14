@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "text": {
+      "es": "Tirar residuos contamina el ambiente",
+      "en": "Throwing litter pollutes the environment"
+    },
+    "correct": 1
+  },
+  {
+    "id": 2,
+    "text": {
+      "es": "Las plantas no producen oxígeno",
+      "en": "Plants do not produce oxygen"
+    },
+    "correct": 0
+  },
+  {
+    "id": 3,
+    "text": {
+      "es": "El plástico tarda cientos de años en degradarse",
+      "en": "Plastic takes hundreds of years to decompose"
+    },
+    "correct": 1
+  },
+  {
+    "id": 4,
+    "text": {
+      "es": "El plástico tarda cientos de años en degradarse",
+      "en": "Plastic takes hundreds of years to decompose"
+    },
+    "correct": 1
+  },
+  {
+    "id": 5,
+    "text": {
+      "es": "El plástico tarda cientos de años en degradarse",
+      "en": "Plastic takes hundreds of years to decompose"
+    },
+    "correct": 1
+  }
+]
