@@ -9,6 +9,15 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get disclaimer => 'Disclaimer';
+
+  @override
+  String get disclaimerText => 'This app is designed to predict the likelihood of wild fires and floods using external weather sources.\n For actual evacuation and safety measures, always follow the instructions of local authorities.\n The developers assume no responsibility for any damage or loss resulting from the use of this app.';
+
+  @override
+  String get understand => 'I Understand';
+
+  @override
   String get risk => 'Risk';
 
   @override

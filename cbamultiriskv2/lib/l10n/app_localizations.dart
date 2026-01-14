@@ -95,6 +95,24 @@ abstract class AppLocalizations {
     Locale('es')
   ];
 
+  /// No description provided for @disclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Disclaimer'**
+  String get disclaimer;
+
+  /// No description provided for @disclaimerText.
+  ///
+  /// In en, this message translates to:
+  /// **'This app is designed to predict the likelihood of wild fires and floods using external weather sources.\n For actual evacuation and safety measures, always follow the instructions of local authorities.\n The developers assume no responsibility for any damage or loss resulting from the use of this app.'**
+  String get disclaimerText;
+
+  /// No description provided for @understand.
+  ///
+  /// In en, this message translates to:
+  /// **'I Understand'**
+  String get understand;
+
   /// No description provided for @risk.
   ///
   /// In en, this message translates to:

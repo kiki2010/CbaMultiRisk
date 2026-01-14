@@ -9,6 +9,15 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
+  String get disclaimer => 'Disclaimer';
+
+  @override
+  String get disclaimerText => 'Esta app esta diseñada para predecir la probabilidad de riesgo de incendio e inundaciones usando fuentes meteorologicas externas.\n  Para medidades de evacuación y seguridad reales, siga las instrucciones de las autoridades locales.\n Los desarrolladores no se responsabiliazn de ningún daño o pérdida durante el uso de la app.';
+
+  @override
+  String get understand => 'Lo entiendo';
+
+  @override
   String get risk => 'Riesgo';
 
   @override
