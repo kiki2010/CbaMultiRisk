@@ -1,5 +1,6 @@
 import 'package:cbamultiriskv2/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_icons/weather_icons.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
@@ -254,4 +255,40 @@ void showInfoDialog(BuildContext context, String title, String content, Widget i
     context: context,
     builder: (_) => infoDialog(context, title: title, content: content, icon: icon),
   );
+}
+
+//Disclaimer dialog
+void showDisclaimerDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (_) => AlertDialog(
+      title: Text(AppLocalizations.of(context)!.disclaimer),
+      content: SingleChildScrollView(
+        child: Text(
+          AppLocalizations.of(context)!.disclaimerText,
+          style: TextStyle(fontSize: 14),
+        ),
+      ),
+      actions: [
+        ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text(AppLocalizations.of(context)!.understand),
+        ),
+      ],
+    ),
+  );
+}
+
+//logic for the disclaimer to only appear when it was not accepted.
+Future<bool> shouldShowDisclaimer() async {
+  final prefs = await SharedPreferences.getInstance();
+  return !(prefs.getBool('disclaimer_seen') ?? false);
+}
+
+Future<void> setDisclaimerSeen() async {
+  final prefs =  await SharedPreferences.getInstance();
+  await prefs.setBool('disclaimer_seen', true);
 }
