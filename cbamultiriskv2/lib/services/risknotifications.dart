@@ -5,7 +5,6 @@ Change: Now is avaible in english and spanish
 */
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/rendering.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -175,6 +174,7 @@ void riskCallbackDispatcher() {
 
       debugPrint('Risk: $fireRisk | $floodRisk');
       
+      await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk);
       if (isHighRisk(floodRisk) || isHighRisk(fireRisk)) {
         await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk);
       }

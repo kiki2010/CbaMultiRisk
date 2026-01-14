@@ -1,3 +1,5 @@
+import 'package:cbamultiriskv2/services/risknotifications.dart';
+import 'package:cbamultiriskv2/widgets/cards.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -61,6 +63,33 @@ class SettingScreen extends StatelessWidget {
               ),
             ],
           ),
+
+          const SizedBox(height: 24,),
+
+          Consumer<BackgroundTaskProvider>(
+            builder: (context, bgTask, _) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(AppLocalizations.of(context)!.notification),
+                  Switch(
+                    value: bgTask.isBackgroundTaskEnabled,
+                    onChanged: bgTask.toggleBackgroundTask,
+                  )
+                ],
+              );
+            }
+          ),
+
+          const SizedBox(height: 24,),
+
+          ElevatedButton.icon(
+            label: Text(AppLocalizations.of(context)!.disclaimer),
+            icon: Icon(Icons.info_outline_rounded),
+            onPressed: () {
+              showDisclaimerDialog(context);
+            },
+          )
         ],
       ),
     );

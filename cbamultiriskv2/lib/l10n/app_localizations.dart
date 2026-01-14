@@ -263,6 +263,12 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get language;
 
+  /// No description provided for @notification.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notification;
+
   /// No description provided for @error.
   ///
   /// In en, this message translates to:

@@ -107,6 +107,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get language => 'Idioma';
 
   @override
+  String get notification => 'Notificaciones';
+
+  @override
   String get error => 'Error';
 
   @override
