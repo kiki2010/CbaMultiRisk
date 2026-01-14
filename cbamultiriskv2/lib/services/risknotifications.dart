@@ -1,10 +1,10 @@
 /*
 Risk Notifications Settings and Background services
-last edit: 12/01/2026
-Change: Comments were added
+last edit: 14/01/2026
+Change: Now is avaible in english and spanish
 */
+
 import 'package:flutter/foundation.dart';
-import 'package:flutter/rendering.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -62,6 +62,12 @@ class RiskService {
   }
 }
 
+//load the selected language
+Future<String> loadSavedLocale() async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.getString('locale') ?? 'es';
+}
+
 //Is HIGH?
 bool isHighRisk(String risk) {
   return risk.toLowerCase() == 'high';
@@ -91,17 +97,68 @@ Future<void> calculateRiskAndNotify() async {
   debugPrint('Risk: $fireRisk | $floodRisk');
 }
 
+//Locate strings for Notifications
+class RiskNotificationsStrings {
+  final String lang;
+
+  RiskNotificationsStrings(this.lang);
+
+  static const _strings = {
+    'es': {
+      'title': "Riesgo en tu zona",
+      'fire': "Incendio:",
+      'flood': "Inundación:"
+    },
+    'en': {
+      'title': "Risk on the area",
+      'fire': "Fire:",
+      'flood': "Flood:"
+    }
+  };
+
+  String get title =>
+    _strings[lang]?['title'] ?? _strings['en']!['title']!;
+
+  String get fire =>
+    _strings[lang]?['fire'] ?? _strings['en']!['fire']!;
+  
+  String get flood =>
+    _strings[lang]?['flood'] ?? _strings['en']!['flood']!;
+}
+
+String localizeRiskLevel({
+  required String level,
+  required String lang,
+}) {
+  switch (level.toUpperCase()) {
+    case 'HIGH':
+      return lang == 'es' ? 'Alto' : 'High';
+    case 'MEDIUM':
+      return lang == 'es' ? 'Medio' : 'Medium';
+    case 'LOW':
+      return lang == 'es' ? 'Bajo' : 'Low';
+    default:
+      return level;
+  }
+}
+
+
 //Show the notification
 Future<void> showRiskNotification({
   required String floodRisk,
   required String fireRisk,
 }) async {
-  
+  final lang = await loadSavedLocale();
+  final t = RiskNotificationsStrings(lang);
+
+  final fireText = localizeRiskLevel(level: fireRisk, lang: lang);
+  final FloodText = localizeRiskLevel(level: floodRisk, lang: lang);
+
   const AndroidNotificationDetails androidDetails = AndroidNotificationDetails('risk_channel', 'Risk', importance: Importance.high, priority: Priority.high, icon: 'ic_stat_multirisk');
   
   const NotificationDetails details = NotificationDetails(android: androidDetails);
 
-  await _notifications.show(0, 'Risk on the area', 'Fire: $fireRisk | Flood: $floodRisk', details);
+  await _notifications.show(0, t.title, '${t.fire} $fireText | ${t.flood} $FloodText', details);
 }
 
 //Background task Handler
@@ -116,7 +173,7 @@ void riskCallbackDispatcher() {
       final fireRisk = data['fireRisk'];
 
       debugPrint('Risk: $fireRisk | $floodRisk');
-
+      
       if (isHighRisk(floodRisk) || isHighRisk(fireRisk)) {
         await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk);
       }
