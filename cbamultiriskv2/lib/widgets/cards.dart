@@ -292,3 +292,36 @@ Future<void> setDisclaimerSeen() async {
   final prefs =  await SharedPreferences.getInstance();
   await prefs.setBool('disclaimer_seen', true);
 }
+
+//Close Button for the game
+
+class CloseButtonWidget extends StatelessWidget {
+  const CloseButtonWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 12,
+      left: 12,
+      child: SafeArea(
+        child: InkWell(
+          borderRadius: BorderRadius.circular(20),
+          onTap: () {
+            Navigator.pop(context);
+          },
+
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.close,
+              size: 22,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

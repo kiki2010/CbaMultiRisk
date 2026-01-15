@@ -95,9 +95,12 @@ class SuquiController {
 
 class SuquiButtons extends StatelessWidget {
   void Function(String category) onCategoryTap;
+  final VoidCallback onQuizTap;
+
   SuquiButtons({
     super.key,
     required this.onCategoryTap,
+    required this.onQuizTap,
   });
 
   @override
@@ -118,10 +121,8 @@ class SuquiButtons extends StatelessWidget {
           }
         ),
         iconButton(
-          Icons.info,
-          () {
-            onCategoryTap('general');
-          }
+          Icons.sports_esports,
+          onQuizTap,
         )
       ],
     );

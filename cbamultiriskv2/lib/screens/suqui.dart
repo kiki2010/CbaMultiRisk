@@ -1,4 +1,5 @@
 import 'package:cbamultiriskv2/l10n/locale_controller.dart';
+import 'package:cbamultiriskv2/screens/quiz.dart';
 import 'package:flutter/material.dart';
 import 'package:cbamultiriskv2/widgets/avatar.dart';
 import 'package:cbamultiriskv2/widgets/speechBubble.dart';
@@ -91,6 +92,9 @@ class _SuquiScreenState extends State<SuquiScreen> {
 
             SuquiButtons(
               onCategoryTap: _onCategoryTap,
+              onQuizTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const QuizMenuScreen()));
+              },
             ),
             
             const SizedBox(height: 12),
