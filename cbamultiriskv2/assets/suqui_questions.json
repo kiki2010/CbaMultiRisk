@@ -1,3 +1,38 @@
-{
-    
-}
+[
+    {
+        "id": 1,
+        "es": "El fuego necesita oxígeno para mantenerse encendido.",
+        "en": "Fire needs oxygen to keep burning.",
+        "answer": 1
+    },
+    {
+        "id": 2,
+        "es": "El agua puede arder si está lo suficientemente caliente.",
+        "en": "Water can burn if it gets hot enough.",
+        "answer": 0
+    },
+    {
+        "id": 3,
+        "es": "Los incendios forestales pueden comenzar por causas naturales como los rayos.",
+        "en": "Wildfires can start from natural causes like lightning.",
+        "answer": 1
+    },
+    {
+        "id": 4,
+        "es": "El viento fuerte ayuda a apagar los incendios forestales.",
+        "en": "Strong wind helps to put out wildfires.",
+        "answer": 0
+    },
+    {
+        "id": 5,
+        "es": "La mayoría de los incendios forestales son causados por actividades humanas.",
+        "en": "Most wildfires are caused by human activities.",
+        "answer": 1
+    },
+    {
+        "id": 6,
+        "es": "La humedad alta reduce el riesgo de incendios.",
+        "en": "High humidity reduces fire risk.",
+        "answer": 1
+    }
+]
