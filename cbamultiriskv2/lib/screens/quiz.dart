@@ -1,19 +1,29 @@
 /*
 Quiz Screen
-Last Edit: 16/01
+Last Edit: 16/01/2026
 Change: Comments were added
 */
 
-import 'package:cbamultiriskv2/l10n/app_localizations.dart';
-import 'package:cbamultiriskv2/widgets/cards.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+//Quiz Logic
+import 'package:cbamultiriskv2/services/quizlogic.dart';
+
+//Widgets used on the screen
+import 'package:cbamultiriskv2/widgets/cards.dart';
 import 'package:cbamultiriskv2/widgets/avatar.dart';
 import 'package:cbamultiriskv2/widgets/speechBubble.dart';
-import 'package:cbamultiriskv2/services/quizlogic.dart';
-import 'package:provider/provider.dart';
-import 'package:cbamultiriskv2/l10n/locale_controller.dart';
 
-//Menu Screen
+//English or Spanish
+import 'package:cbamultiriskv2/l10n/locale_controller.dart';
+import 'package:cbamultiriskv2/l10n/app_localizations.dart';
+
+/*
+-----------
+Menu Screen
+-----------
+*/
 class QuizMenuScreen extends StatefulWidget {
   const QuizMenuScreen({super.key});
 
@@ -22,9 +32,11 @@ class QuizMenuScreen extends StatefulWidget {
 }
 
 class _QuizMenuScreenState extends State<QuizMenuScreen> {
+  //Variables for saving the highest and last scores
   int highScore = 0;
   int lastScore = 0;
 
+  //We start everything (getting the last and highest scores | Saved using sharedPreferences -> lib\services\quizlogic.dart)
   @override
   void initState() {
     _loadHighScore();
@@ -41,13 +53,16 @@ class _QuizMenuScreenState extends State<QuizMenuScreen> {
     });
   }
 
+  //Screen Time!
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
+          //Button for closing the game menu and going back to the Suqui Tips Screen
           const CloseButtonWidget(),
 
+          //Column with a speechBubble with instructions, a Suqui and play button 
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -79,7 +94,11 @@ class _QuizMenuScreenState extends State<QuizMenuScreen> {
   }
 }
 
-//game Screen
+/*
+-----------
+Game Screen
+-----------
+*/
 class QuizGameScreen extends StatefulWidget {
   const QuizGameScreen({super.key});
 
@@ -88,6 +107,7 @@ class QuizGameScreen extends StatefulWidget {
 }
 
 class _QuizGameScreenState extends State<QuizGameScreen> {
+  //Timer + game logic
   QuizEngine? engine;
   TimerManager? timer;
   final GifManager gifManager = GifManager();
@@ -95,6 +115,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
   String currentGif = 'assets/gif/1.gif';
   bool loading = true;
   
+  //We load the Timer + game logic 
   @override
   void initState() {
     _initGame();
@@ -119,6 +140,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
     });
   }
 
+  //Function for whem an answer is OK or Wrong
   void _answer(int value) {
     final correct = engine!.answer(value);
 
@@ -133,6 +155,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
     }
   }
 
+  //Function for when we finish the game
   Future<void> _finishGame() async {
     timer?.stop();
     await ScoreManager().saveScore(engine!.score);
@@ -140,7 +163,9 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
     if (!mounted) return;
     Navigator.pop(context);
   }
+  
 
+  //Screen Time!
   @override
   Widget build(BuildContext context) {
     final lang = context.watch<LocaleController>().locale.languageCode;
@@ -160,6 +185,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
+                //Timer and score points!
                 Text('⏱️ ${timer!.remaining}s', style: const TextStyle(fontSize: 16)),
                 Text(AppLocalizations.of(context)!.score(engine!.score), style: const TextStyle(fontSize: 16))
               ],
@@ -169,7 +195,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              
+              //SpeechBubble with question and Suqui!              
 
               speechBubble(title: engine!.currentQuestion!.getText(lang)),
 
@@ -183,6 +209,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
             ],
           ),
 
+          //True or false buttons
           Positioned(
             bottom: 40,
             left: 20,
