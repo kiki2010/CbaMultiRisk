@@ -1,3 +1,4 @@
+import 'package:cbamultiriskv2/l10n/app_localizations.dart';
 import 'package:cbamultiriskv2/widgets/cards.dart';
 import 'package:flutter/material.dart';
 import 'package:cbamultiriskv2/widgets/avatar.dart';
@@ -45,7 +46,7 @@ class _QuizMenuScreenState extends State<QuizMenuScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               speechBubble(
-                title: "Answer all the questions you can in 60 seconds. Your HighScore is: $highScore | Your last score is: $lastScore"
+                title: AppLocalizations.of(context)!.gameTitle(highScore, lastScore)
               ),
 
               Center(
@@ -61,7 +62,7 @@ class _QuizMenuScreenState extends State<QuizMenuScreen> {
                     Navigator.push(context, MaterialPageRoute(builder: (_) => const QuizGameScreen()));
                     _loadHighScore();
                   },
-                  child: Text("Jugar"),
+                  child: Text(AppLocalizations.of(context)!.play),
                 ),
               ),
             ],
@@ -147,10 +148,6 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          const CloseButtonWidget(),
-
-          const SizedBox(height: 30),
-
           Positioned(
             top: 50,
             right: 16,
@@ -158,7 +155,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text('⏱️ ${timer!.remaining}s', style: const TextStyle(fontSize: 16)),
-                Text('⭐ ${engine!.score}', style: const TextStyle(fontSize: 16))
+                Text(AppLocalizations.of(context)!.score(engine!.score), style: const TextStyle(fontSize: 16))
               ],
             ),
           ),
@@ -189,11 +186,11 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
               children: [
                 ElevatedButton(
                   onPressed: () => _answer(1),
-                  child: Text('Verdadero'),
+                  child: Text(AppLocalizations.of(context)!.trueAnswer),
                 ),
                 ElevatedButton(
                   onPressed: () => _answer(0),
-                  child: Text('Falso'),
+                  child: Text(AppLocalizations.of(context)!.falseAnswer),
                 )
               ],
             ),

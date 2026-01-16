@@ -95,6 +95,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tips => 'Tips';
 
   @override
+  String gameTitle(Object highScore, Object lastScore) {
+    return 'Answer all the questions you can in 60 seconds. \n | Your highest score is: $highScore | \n | Your last score is: $lastScore | ';
+  }
+
+  @override
+  String get play => ' Play ';
+
+  @override
+  String score(Object score) {
+    return ' Score: $score';
+  }
+
+  @override
+  String get trueAnswer => ' True ';
+
+  @override
+  String get falseAnswer => ' False ';
+
+  @override
   String get settings => 'Settings';
 
   @override

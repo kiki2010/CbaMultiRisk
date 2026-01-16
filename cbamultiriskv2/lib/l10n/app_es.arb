@@ -28,6 +28,11 @@
     "floodExplanation": "La app analiza las condiciones de lluvia y humedad para ayudarte a comprender el riesgo de inundación en tu zona.\n Se tienen en cuenta factores como la cantidad e intensidad de las precipitaciones, la humedad del suelo y el Índice de Precipitación Estandarizado (SPI), utilizando datos de la estación meteorológica más cercana y actualizada.\n Con esta información, estimamos la probabilidad de que ocurran inundaciones y clasificamos el riesgo como Bajo, Medio o Alto, acompañado de colores para una lectura rápida y clara.",
 
     "tips": "Tips",
+    "gameTitle": "Responde todas las preguntas que puedas en 60 segundos. \n | Tu puntuación más alta es: {highScore} | \n | Tu última puntuación es: {lastScore} | ",
+    "play": " Jugar ",
+    "score": " Puntos: {score}",
+    "trueAnswer": " Verdadero ",
+    "falseAnswer": " Falso ",
     
     "settings": "Ajustes",
     "settingTitle": "Ajustes",
