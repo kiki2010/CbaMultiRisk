@@ -28,6 +28,11 @@
     "floodExplanation": "The app analyzes rainfall and humidity conditions to help you understand the flood risk in your area.\n Factors such as the amount and intensity of rainfall, soil moisture, and the Standardized Precipitation Index (SPI) are taken into account, using data from the nearest and most up-to-date meteorological station.\n With this information, we estimate the probability of flooding and classify the risk as Low, Medium, or High, accompanied by colors for quick and clear reading.",
 
     "tips": "Tips",
+    "gameTitle": "Answer all the questions you can in 60 seconds. \n | Your highest score is: {highScore} | \n | Your last score is: {lastScore} | ",
+    "play": " Play ",
+    "score": " Score: {score}",
+    "trueAnswer": " True ",
+    "falseAnswer": " False ",
     
     "settings": "Settings",
     "settingTitle": "Settings",

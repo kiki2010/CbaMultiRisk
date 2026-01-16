@@ -239,6 +239,36 @@ abstract class AppLocalizations {
   /// **'Tips'**
   String get tips;
 
+  /// No description provided for @gameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer all the questions you can in 60 seconds. \n | Your highest score is: {highScore} | \n | Your last score is: {lastScore} | '**
+  String gameTitle(Object highScore, Object lastScore);
+
+  /// No description provided for @play.
+  ///
+  /// In en, this message translates to:
+  /// **' Play '**
+  String get play;
+
+  /// No description provided for @score.
+  ///
+  /// In en, this message translates to:
+  /// **' Score: {score}'**
+  String score(Object score);
+
+  /// No description provided for @trueAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **' True '**
+  String get trueAnswer;
+
+  /// No description provided for @falseAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **' False '**
+  String get falseAnswer;
+
   /// No description provided for @settings.
   ///
   /// In en, this message translates to:
