@@ -67,7 +67,8 @@ class _QuizMenuScreenState extends State<QuizMenuScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               speechBubble(
-                title: AppLocalizations.of(context)!.gameTitle(highScore, lastScore)
+                title: AppLocalizations.of(context)!.gameTitle(highScore, lastScore),
+                fontSize: 16,
               ),
 
               Center(
@@ -197,7 +198,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
             children: [
               //SpeechBubble with question and Suqui!              
 
-              speechBubble(title: engine!.currentQuestion!.getText(lang)),
+              speechBubble(title: engine!.currentQuestion!.getText(lang), fontSize: 16),
 
               Center(
                 child: Image.asset(

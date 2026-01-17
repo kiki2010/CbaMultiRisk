@@ -1,21 +1,32 @@
-import 'package:cbamultiriskv2/services/risknotifications.dart';
-import 'package:cbamultiriskv2/widgets/cards.dart';
+/*
+Quiz Screen
+Last Edit: 17/01/2026
+Change: Comments were added
+*/
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:cbamultiriskv2/theme/theme_controller.dart';
-import 'package:cbamultiriskv2/l10n/locale_controller.dart';
+//Notifications and background task logic
+import 'package:cbamultiriskv2/services/risknotifications.dart';
 
+//Cards (In this screen used on the disclaimer)
+import 'package:cbamultiriskv2/widgets/cards.dart';
+
+//Theme controller
+import 'package:cbamultiriskv2/theme/theme_controller.dart';
+
+//Ingles y español
+import 'package:cbamultiriskv2/l10n/locale_controller.dart';
 import 'package:cbamultiriskv2/l10n/app_localizations.dart';
 
 class SettingScreen extends StatelessWidget {
-
   const SettingScreen({super.key});
-
+  
+  //Screen Time!
   @override
   Widget build(BuildContext context) {
     final themeController = context.watch<ThemeController>();
-
+    
     return Scaffold(
       appBar: AppBar(title: Text(AppLocalizations.of(context)!.settingTitle),),
 
@@ -25,6 +36,8 @@ class SettingScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              
+              //Language
               Text(AppLocalizations.of(context)!.language),
               DropdownButtonHideUnderline(
                 child: DropdownButton<Locale>(
@@ -51,6 +64,7 @@ class SettingScreen extends StatelessWidget {
 
           const SizedBox(height: 24,),
           
+          //Theme Mode
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -66,6 +80,7 @@ class SettingScreen extends StatelessWidget {
 
           const SizedBox(height: 24,),
 
+          //Notifications and Background Task
           Consumer<BackgroundTaskProvider>(
             builder: (context, bgTask, _) {
               return Row(
@@ -83,6 +98,7 @@ class SettingScreen extends StatelessWidget {
 
           const SizedBox(height: 24,),
 
+          //Disclaimer of the app
           ElevatedButton.icon(
             label: Text(AppLocalizations.of(context)!.disclaimer),
             icon: Icon(Icons.info_outline_rounded),
