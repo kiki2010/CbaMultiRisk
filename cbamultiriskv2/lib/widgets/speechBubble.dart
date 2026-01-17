@@ -1,6 +1,13 @@
+/*
+Speech Bubble
+last edit: 17/01/2026
+Change: comments were added
+*/
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+//To show text like is type (more aesthetic)
 class TypewriterText extends StatefulWidget {
   final String text;
   final Duration speed;
@@ -59,6 +66,7 @@ class _TypewriterTextState extends State<TypewriterText> {
   }
 }
 
+//The bubble tail effect for the speechBubble
 class BubbleTailPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -79,6 +87,7 @@ class BubbleTailPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
+// THE SPEECH BUBBLE
 Widget speechBubble({
   required String title,
   double fontSize = 13,

@@ -1,9 +1,16 @@
+/*
+Avatar elements
+last edit: 17/01/2026
+Change: comments were added
+*/
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:flutter/services.dart';
-
+//Load and get the tips from the suqui_tips.json
 class SuquiTip {
   final int id;
   final String category;
@@ -31,6 +38,7 @@ class SuquiTip {
   }
 }
 
+//Suqui Avatar, reusable in all the screens --> for this we will need the position, the height and a voice call to detect when the users tap him.
 class SuquiAvatar extends StatelessWidget {
   final int posIndex;
   final double height;
@@ -56,6 +64,7 @@ class SuquiAvatar extends StatelessWidget {
   }
 }
 
+//Suqui Controller (random tip + pose)
 class SuquiController {
   final Random _random = Random();
 
@@ -65,6 +74,7 @@ class SuquiController {
   int get currentPose => _currentPose;
   bool get hasTips => _tips.isNotEmpty;
 
+  //Load the tips
   Future<void> loadTips() async {
     final jsonString = await rootBundle.loadString(
       'assets/suqui_tips.json',
@@ -79,6 +89,7 @@ class SuquiController {
       .toList();
   }
 
+  //Get a random tip
   SuquiTip randomTip({String? category}) {
     final list = category == null
         ? _tips
@@ -87,12 +98,15 @@ class SuquiController {
     return list[_random.nextInt(list.length)];
   }
 
+  //next Pose
   void nextPose(int maxPose) {
     _currentPose++;
     if (_currentPose > maxPose) _currentPose = 1;
   }
 }
 
+
+//Buttons for category + quiz
 class SuquiButtons extends StatelessWidget {
   void Function(String category) onCategoryTap;
   final VoidCallback onQuizTap;
@@ -129,6 +143,7 @@ class SuquiButtons extends StatelessWidget {
   }
 }
 
+//Little IconsButtons setup :D
 Widget iconButton(IconData icon, VoidCallback onTap) {
   return InkWell(
     borderRadius: BorderRadius.circular(16),
@@ -140,11 +155,12 @@ Widget iconButton(IconData icon, VoidCallback onTap) {
         border: Border.all(color: Color(0xFF2B70C9)),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Icon(icon, color: Color(0xFF2B70C9),),
+      child: Icon(icon, color: Color(0xFF2B70C9), size: 40,),
     ),
   );
 }
 
+//Suqui error --> Shown when the api (or any element on the risk screen) fails
 class SuquiError extends StatelessWidget {
   final String message;
 
