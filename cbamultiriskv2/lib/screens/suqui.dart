@@ -1,13 +1,13 @@
 /*
 Suqui Tips Screen
-Last Edit: 16/01
+Last Edit: 16/01/2026
 Change: Comments were added
 */
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-//Widgets used on the app
+//Widgets used on the screen
 import 'package:cbamultiriskv2/widgets/avatar.dart';
 import 'package:cbamultiriskv2/widgets/speechBubble.dart';
 
