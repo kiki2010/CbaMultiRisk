@@ -1,3 +1,9 @@
+/*
+Quiz Logic
+last edit: 17/01/2026
+Change: Comments were added
+*/
+
 import 'dart:math';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -34,7 +40,7 @@ Future<List<QuizQuestion>> loadQuestion(String lang) async {
   return data.map((q) => QuizQuestion.fromJson(q)).toList();
 }
 
-//Random Question
+//Random Question and quiz engine
 class QuizEngine {
   final List<QuizQuestion> _allQuestions;
   final Random _random = Random();
@@ -43,6 +49,7 @@ class QuizEngine {
   int score = 0;
   QuizQuestion? currentQuestion;
 
+  //get question
   QuizEngine(this._allQuestions) {
     _remainingQuestions = List.from(_allQuestions);
     _nextQuestion();
@@ -57,6 +64,7 @@ class QuizEngine {
     currentQuestion = _remainingQuestions.removeAt(index);
   }
 
+  //+ point - points
   bool answer(int userAnswer){
     if (currentQuestion == null) return false;
 

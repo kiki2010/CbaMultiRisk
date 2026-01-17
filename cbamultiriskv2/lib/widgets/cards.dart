@@ -1,9 +1,19 @@
-import 'package:cbamultiriskv2/l10n/app_localizations.dart';
+/*
+General Cards
+last edit: 17/01/2026
+Change: comments were added
+*/
+
 import 'package:flutter/material.dart';
+
 import 'package:weather_icons/weather_icons.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:cbamultiriskv2/l10n/app_localizations.dart';
+
+//Risk info! (colors + localized text)
 (Color, String) riskInfo(BuildContext context, String level) {
   switch (level.toUpperCase()) {
     case 'LOW':
@@ -17,6 +27,7 @@ import 'package:shared_preferences/shared_preferences.dart';
   }
 }
 
+//Risk Cards (Used for flood and fire risk on the risk Screen)
 Widget riskCard({
   required BuildContext context,
   required IconData icon,
@@ -90,6 +101,7 @@ IconData getForecastIcon(String? forecast) {
 
     case 'strong storms':
     case 'thunderstorms':
+    case 'thunderstorm':
     case 'pm thunderstorms':
     case 'am thunderstorm':
     case 'isolated thunderstorms':
@@ -116,6 +128,7 @@ IconData getForecastIcon(String? forecast) {
   }
 }
 
+//Widget Card! Used for showing all the data get from the weather station and forecast icons
 Widget weatherCard( BuildContext context,{
   required double temp,
   required double wind,
@@ -148,6 +161,7 @@ Widget weatherCard( BuildContext context,{
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              //All the data :D
               children: [
                 AutoSizeText(AppLocalizations.of(context)!.weather, maxLines: 1, style: TextStyle(fontSize: 14, color: Theme.of(context).textTheme.bodyMedium?.color),),
                 AutoSizeText(AppLocalizations.of(context)!.temperature(temp),  maxLines: 1, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
@@ -205,6 +219,7 @@ Widget weatherCard( BuildContext context,{
   );
 }
 
+//Info Dialogs (for showing how the risk is calculated)
 Widget infoDialog(BuildContext context, {
   required String title,
   required String content,
@@ -316,8 +331,8 @@ class CloseButtonWidget extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             child: const Icon(
-              Icons.close,
-              size: 22,
+              Icons.arrow_back,
+              size: 40,
             ),
           ),
         ),
