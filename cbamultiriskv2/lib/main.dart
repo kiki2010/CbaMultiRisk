@@ -3,6 +3,7 @@ Main
 last edit: 17/01/2026
 Change: comments were added
 */
+
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart'; //State management
