@@ -34,5 +34,563 @@
         "es": "La humedad alta reduce el riesgo de incendios.",
         "en": "High humidity reduces fire risk.",
         "answer": 1
+    },
+    {
+        "id": 7,
+        "es": "Arrojar colillas en zonas secas es seguro.",
+        "en": "Throwing cigarette butts in dry areas is safe.",
+        "answer": 0
+    },
+    {
+        "id": 8,
+        "es": "Es peligroso acercarse a zonas con fuego activo aunque parezcan controladas.",
+        "en": "It is dangerous to approach areas with active fire even if they appear controlled.",
+        "answer": 1
+    },
+    {
+        "id": 9,
+        "es": "Encender fuego en zonas con vegetación seca no representa riesgo.",
+        "en": "Lighting fires in areas with dry vegetation poses no risk.",
+        "answer": 0
+    },
+    {
+        "id": 10,
+        "es": "Si ves humo o fuego, debes avisar de inmediato a las autoridades.",
+        "en": "If you see smoke or fire, you must report it immediately to the authorities.",
+        "answer": 1
+    },
+    {
+        "id": 11,
+        "es": "Quemar basura al aire libre es una práctica segura.",
+        "en": "Burning trash outdoors is a safe practice.",
+        "answer": 0
+    },
+    {
+        "id": 12,
+        "es": "Solo se debe prender fuego en zonas autorizadas.",
+        "en": "Fires should only be lit in authorized areas.",
+        "answer": 1
+    },
+    {
+        "id": 13,
+        "es": "Mantener despejados los alrededores de la vivienda ayuda a prevenir incendios.",
+        "en": "Keeping the area around the home clear helps prevent fires.",
+        "answer": 1
+    },
+    {
+        "id": 14,
+        "es": "Usar fuego en días de calor extremo es seguro.",
+        "en": "Using fire on extremely hot days is safe.",
+        "answer": 0
+    },
+    {
+        "id": 15,
+        "es": "Prestar atención a alertas de riesgo de incendios ayuda a prevenir desastres.",
+        "en": "Paying attention to wildfire risk alerts helps prevent disasters.",
+        "answer": 1
+    },
+    {
+        "id": 16,
+        "es": "Generar chispas en zonas secas no causa problemas.",
+        "en": "Creating sparks in dry areas causes no problems.",
+        "answer": 0
+    },
+    {
+        "id": 17,
+        "es": "Tener una ruta de evacuación planificada es importante en caso de incendio.",
+        "en": "Having an evacuation route planned is important in case of fire.",
+        "answer": 1
+    },
+    {
+        "id": 18,
+        "es": "Es seguro intentar apagar incendios grandes por tu cuenta.",
+        "en": "It is safe to try to extinguish large fires by yourself.",
+        "answer": 0
+    },
+    {
+        "id": 19,
+        "es": "Informar rápidamente cualquier foco de incendio ayuda a reducir riesgos.",
+        "en": "Reporting any fire outbreak quickly helps reduce risks.",
+        "answer": 1
+    },
+    {
+        "id": 20,
+        "es": "Cerrar ventanas y puertas si el humo se acerca protege la vivienda.",
+        "en": "Closing windows and doors if smoke approaches protects the home.",
+        "answer": 1
+    },
+    {
+        "id": 21,
+        "es": "Circular por zonas con incendios activos es seguro.",
+        "en": "Traveling through areas with active fires is safe.",
+        "answer": 0
+    },
+    {
+        "id": 22,
+        "es": "Retirar materiales inflamables del exterior reduce riesgos de incendio.",
+        "en": "Removing flammable materials from outdoor areas reduces fire risks.",
+        "answer": 1
+    },
+    {
+        "id": 23,
+        "es": "Respetar las prohibiciones de uso del fuego ayuda a prevenir incendios.",
+        "en": "Respecting fire usage bans helps prevent wildfires.",
+        "answer": 1
+    },
+    {
+        "id": 24,
+        "es": "Proteger a mascotas y animales del humo es parte de la prevención.",
+        "en": "Protecting pets and animals from smoke is part of prevention.",
+        "answer": 1
+    },
+    {
+        "id": 25,
+        "es": "Dejar vidrios o botellas en pasto seco no genera riesgos.",
+        "en": "Leaving glass or bottles in dry grass poses no risks.",
+        "answer": 0
+    },
+    {
+        "id": 26,
+        "es": "Apagar completamente las brasas de asado antes de retirarse previene incendios.",
+        "en": "Fully extinguishing barbecue embers before leaving prevents fires.",
+        "answer": 1
+    },
+    {
+        "id": 27,
+        "es": "Mantener herramientas contra incendios en lugares accesibles es recomendable.",
+        "en": "Keeping firefighting tools in accessible places is recommended.",
+        "answer": 1
+    },
+    {
+        "id": 28,
+        "es": "Dejar brasas encendidas sin agua ni arena es seguro.",
+        "en": "Leaving embers burning without water or sand is safe.",
+        "answer": 0
+    },
+    {
+        "id": 29,
+        "es": "Estacionar el auto sobre pasto seco puede provocar incendios.",
+        "en": "Parking the car on dry grass can cause fires.",
+        "answer": 1
+    },
+    {
+        "id": 30,
+        "es": "Crear una franja de seguridad sin vegetación alrededor de la vivienda ayuda a prevenir incendios.",
+        "en": "Creating a vegetation-free safety zone around the home helps prevent fires.",
+        "answer": 1
+    },
+    {
+        "id": 31,
+        "es": "Llevar la basura de regreso evita que los desechos sean combustible peligroso.",
+        "en": "Taking trash back prevents waste from becoming dangerous fuel.",
+        "answer": 1
+    },
+    {
+        "id": 32,
+        "es": "Fomentar la plantación de especies nativas ayuda a reducir riesgos de incendio.",
+        "en": "Encouraging the planting of native species helps reduce fire risks.",
+        "answer": 1
+    },
+    {
+        "id": 33,
+        "es": "Denunciar vertederos ilegales con plásticos acumulados ayuda a prevenir incendios.",
+        "en": "Reporting illegal dumps with plastics helps prevent fires.",
+        "answer": 1
+    },
+    {
+        "id": 34,
+        "es": "Aprender sobre riesgos del fuego y compartir tips de prevención ayuda a la comunidad.",
+        "en": "Learning about fire risks and sharing prevention tips helps the community.",
+        "answer": 1
+    },
+    {
+        "id": 35,
+        "es": "Mojar paredes y techo de la casa si el fuego está cerca ayuda a protegerla.",
+        "en": "Wetting the walls and roof of the house if fire is nearby helps protect it.",
+        "answer": 1
+    },
+    {
+        "id": 36,
+        "es": "Plantar especies invasoras como pinos reduce el riesgo de incendios.",
+        "en": "Planting invasive species like pine trees reduces fire risk.",
+        "answer": 0
+    },
+    {
+        "id": 37,
+        "es": "Cruzar calles inundadas aunque parezcan poco profundas es seguro.",
+        "en": "Crossing flooded streets even if they look shallow is safe.",
+        "answer": 0
+    },
+    {
+        "id": 38,
+        "es": "Ante una inundación, cortar la electricidad, el gas y el agua ayuda a reducir riesgos.",
+        "en": "In the event of a flood, cutting off electricity, gas, and water helps reduce risks.",
+        "answer": 1
+    },
+    {
+        "id": 39,
+        "es": "Buscar refugio en zonas bajas durante lluvias intensas es recomendable.",
+        "en": "Seeking shelter in low areas during heavy rainfall is recommended.",
+        "answer": 0
+    },
+    {
+        "id": 40,
+        "es": "Alejarse de ríos y arroyos durante tormentas fuertes ayuda a prevenir accidentes.",
+        "en": "Staying away from rivers and streams during severe storms helps prevent accidents.",
+        "answer": 1
+    },
+    {
+        "id": 41,
+        "es": "Tocar cables o postes si hay agua acumulada es seguro.",
+        "en": "Touching cables or poles if there is standing water is safe.",
+        "answer": 0
+    },
+    {
+        "id": 42,
+        "es": "Mantener limpias las canaletas y desagües ayuda a prevenir inundaciones.",
+        "en": "Keeping gutters and drains clear helps prevent floods.",
+        "answer": 1
+    },
+    {
+        "id": 43,
+        "es": "Alejarse de zonas bajas durante lluvias intensas no es necesario.",
+        "en": "Staying away from low areas during heavy rain is not necessary.",
+        "answer": 0
+    },
+    {
+        "id": 44,
+        "es": "Evitar circular por zonas con agua en movimiento ayuda a reducir riesgos.",
+        "en": "Avoiding moving through areas with moving water helps reduce risks.",
+        "answer": 1
+    },
+    {
+        "id": 45,
+        "es": "Acercarse al cauce del río si el agua se vuelve marrón es seguro.",
+        "en": "Approaching the riverbed if the water turns brown is safe.",
+        "answer": 0
+    },
+    {
+        "id": 46,
+        "es": "No estacionar vehículos en zonas inundables ayuda a prevenir daños.",
+        "en": "Not parking vehicles in flood-prone areas helps prevent damage.",
+        "answer": 1
+    },
+    {
+        "id": 47,
+        "es": "Elevar electrodomésticos si hay riesgo de inundaciones ayuda a protegerlos.",
+        "en": "Raising appliances if there is a flood risk helps protect them.",
+        "answer": 1
+    },
+    {
+        "id": 48,
+        "es": "Proteger documentos importantes del agua durante una inundación ayuda a evitar pérdidas.",
+        "en": "Protecting important documents from water during a flood helps avoid losses.",
+        "answer": 1
+    },
+    {
+        "id": 49,
+        "es": "Ignorar alertas meteorológicas no afecta la seguridad durante inundaciones.",
+        "en": "Ignoring weather alerts does not affect safety during floods.",
+        "answer": 0
+    },
+    {
+        "id": 50,
+        "es": "Consumir solo agua embotellada o hervida hasta autorización oficial previene enfermedades.",
+        "en": "Drinking only bottled or boiled water until official authorization prevents diseases.",
+        "answer": 1
+    },
+    {
+        "id": 51,
+        "es": "Usar sótanos durante inundaciones es seguro.",
+        "en": "Using basements during floods is safe.",
+        "answer": 0
+    },
+    {
+        "id": 52,
+        "es": "Mantener a las mascotas en lugares seguros y elevados ayuda a protegerlas.",
+        "en": "Keeping pets in safe and elevated places helps protect them.",
+        "answer": 1
+    },
+    {
+        "id": 53,
+        "es": "Ignorar las indicaciones de evacuación oficiales es recomendable.",
+        "en": "Ignoring official evacuation instructions is recommended.",
+        "answer": 0
+    },
+    {
+        "id": 54,
+        "es": "No conducir si la visibilidad es baja ayuda a prevenir accidentes.",
+        "en": "Not driving if visibility is low helps prevent accidents.",
+        "answer": 1
+    },
+    {
+        "id": 55,
+        "es": "Usar zapatos abiertos durante inundaciones evita heridas con objetos ocultos.",
+        "en": "Wearing open shoes during floods prevents injuries from hidden objects.",
+        "answer": 0
+    },
+    {
+        "id": 56,
+        "es": "Esperar autorización antes de regresar a casa tras una inundación reduce riesgos.",
+        "en": "Waiting for authorization before returning home after a flood reduces risks.",
+        "answer": 1
+    },
+    {
+        "id": 57,
+        "es": "Meterse al agua durante una inundación es seguro.",
+        "en": "Entering the water during a flood is safe.",
+        "answer": 0
+    },
+    {
+        "id": 58,
+        "es": "Usar repelente durante inundaciones ayuda a prevenir picaduras de mosquitos.",
+        "en": "Using insect repellent during floods helps prevent mosquito bites.",
+        "answer": 1
+    },
+    {
+        "id": 59,
+        "es": "Sacar la basura durante una alerta de inundación es seguro.",
+        "en": "Taking out trash during a flood alert is safe.",
+        "answer": 0
+    },
+    {
+        "id": 60,
+        "es": "Identificar zonas inundables ayuda a estar mejor preparado.",
+        "en": "Identifying flood-prone areas helps you be better prepared.",
+        "answer": 1
+    },
+    {
+        "id": 61,
+        "es": "Guardar solventes o venenos en estantes bajos evita contaminar el agua.",
+        "en": "Storing solvents or poisons on low shelves prevents water contamination.",
+        "answer": 0
+    },
+    {
+        "id": 62,
+        "es": "Cerrar y asegurar ventanas y puertas durante una inundación ayuda a impedir la entrada de agua.",
+        "en": "Closing and securing windows and doors during a flood helps prevent water from entering.",
+        "answer": 1
+    },
+    {
+        "id": 63,
+        "es": "Salir a la calle en caso de inundación es seguro.",
+        "en": "Going outside during a flood is safe.",
+        "answer": 0
+    },
+    {
+        "id": 64,
+        "es": "Evitar zonas que puedan inundarse al conducir reduce riesgos.",
+        "en": "Avoiding areas that may flood while driving reduces risks.",
+        "answer": 1
+    },
+    {
+        "id": 65,
+        "es": "Ingresar a viviendas inundadas sin verificar la seguridad de la estructura es recomendable.",
+        "en": "Entering flooded homes without verifying structural safety is recommended.",
+        "answer": 0
+    },
+    {
+        "id": 66,
+        "es": "Desinfectar superficies que estuvieron en contacto con agua de inundación ayuda a prevenir enfermedades.",
+        "en": "Disinfecting surfaces that were in contact with floodwater helps prevent diseases.",
+        "answer": 1
+    },
+    {
+        "id": 67,
+        "es": "Reducir residuos no tiene relación con la prevención de incendios.",
+        "en": "Reducing waste has no relation to wildfire prevention.",
+        "answer": 0
+    },
+    {
+        "id": 68,
+        "es": "Seguir siempre la información de fuentes confiables ayuda a reducir riesgos.",
+        "en": "Always following information from official sources helps reduce risks.",
+        "answer": 1
+    },
+    {
+        "id": 69,
+        "es": "Mantener los espacios sucios ayuda a prevenir desastres naturales.",
+        "en": "Keeping spaces dirty helps prevent natural disasters.",
+        "answer": 0
+    },
+    {
+        "id": 70,
+        "es": "Respetar las normas ambientales ayuda a proteger a todos.",
+        "en": "Respecting environmental rules helps protect everyone.",
+        "answer": 1
+    },
+    {
+        "id": 71,
+        "es": "Descuidar el entorno es cuidar a la comunidad.",
+        "en": "Neglecting the environment is caring for the community.",
+        "answer": 0
+    },
+    {
+        "id": 72,
+        "es": "Actuar a tiempo puede reducir daños mayores.",
+        "en": "Acting in time can reduce major damage.",
+        "answer": 1
+    },
+    {
+        "id": 73,
+        "es": "Adoptar hábitos irresponsables reduce el riesgo de desastres.",
+        "en": "Adopting irresponsible habits reduces the risk of disasters.",
+        "answer": 0
+    },
+    {
+        "id": 74,
+        "es": "Cuidar el ambiente disminuye riesgos futuros.",
+        "en": "Caring for the environment reduces future risks.",
+        "answer": 1
+    },
+    {
+        "id": 75,
+        "es": "La prevención empieza con acciones diarias.",
+        "en": "Prevention starts with daily actions.",
+        "answer": 1
+    },
+    {
+        "id": 76,
+        "es": "Ignorar normas de seguridad protege a todos.",
+        "en": "Ignoring safety rules protects everyone.",
+        "answer": 0
+    },
+    {
+        "id": 77,
+        "es": "Prepararse reduce el impacto de emergencias.",
+        "en": "Being prepared reduces the impact of emergencies.",
+        "answer": 1
+    },
+    {
+        "id": 78,
+        "es": "Cuidar el entorno hoy previene emergencias mañana.",
+        "en": "Caring for the environment today prevents emergencies tomorrow.",
+        "answer": 1
+    },
+    {
+        "id": 79,
+        "es": "Pequeñas acciones no tienen impacto en la prevención de daños.",
+        "en": "Small actions have no impact on preventing damage.",
+        "answer": 0
+    },
+    {
+        "id": 80,
+        "es": "Actuar con responsabilidad reduce riesgos.",
+        "en": "Acting responsibly reduces risks.",
+        "answer": 1
+    },
+    {
+        "id": 81,
+        "es": "La prevención es una tarea compartida.",
+        "en": "Prevention is a shared responsibility.",
+        "answer": 1
+    },
+    {
+        "id": 82,
+        "es": "Anticiparse a los riesgos no hace diferencia.",
+        "en": "Anticipating risks makes no difference.",
+        "answer": 0
+    },
+    {
+        "id": 83,
+        "es": "Mantener la calma ayuda a tomar mejores decisiones.",
+        "en": "Staying calm helps make better decisions.",
+        "answer": 1
+    },
+    {
+        "id": 84,
+        "es": "Cuidarte no es parte de la prevención.",
+        "en": "Taking care of yourself is not part of prevention.",
+        "answer": 0
+    },
+    {
+        "id": 85,
+        "es": "La conciencia ambiental reduce emergencias.",
+        "en": "Environmental awareness reduces emergencies.",
+        "answer": 1
+    },
+    {
+        "id": 86,
+        "es": "Conocer los riesgos de tu zona no ayuda a prepararte mejor.",
+        "en": "Knowing the risks in your area does not help you prepare better.",
+        "answer": 0
+    },
+    {
+        "id": 87,
+        "es": "Armar una mochila de emergencia facilita una evacuación rápida.",
+        "en": "Packing an emergency backpack facilitates a quick evacuation.",
+        "answer": 1
+    },
+    {
+        "id": 88,
+        "es": "Participar en simulacros mejora la respuesta ante emergencias reales.",
+        "en": "Participating in drills improves the response to real emergencies.",
+        "answer": 1
+    },
+    {
+        "id": 89,
+        "es": "Compartir información no verificada evita la desinformación.",
+        "en": "Sharing unverified information prevents misinformation.",
+        "answer": 0
+    },
+    {
+        "id": 90,
+        "es": "Identificar puntos de encuentro facilita la organización tras una evacuación.",
+        "en": "Identifying meeting points facilitates organization after an evacuation.",
+        "answer": 1
+    },
+    {
+        "id": 91,
+        "es": "Difundir rumores durante una emergencia ayuda a la comunidad.",
+        "en": "Spreading rumors during an emergency helps the community.",
+        "answer": 0
+    },
+    {
+        "id": 92,
+        "es": "La cooperación comunitaria reduce el impacto de los desastres.",
+        "en": "Community cooperation reduces the impact of disasters.",
+        "answer": 1
+    },
+    {
+        "id": 93,
+        "es": "Aprender primeros auxilios puede salvar vidas.",
+        "en": "Learning first aid can save lives.",
+        "answer": 1
+    },
+    {
+        "id": 94,
+        "es": "Proteger el bosque nativo ayuda a retener humedad y prevenir incendios.",
+        "en": "Protecting the native forest helps retain moisture and prevent fires.",
+        "answer": 1
+    },
+    {
+        "id": 95,
+        "es": "Participar en jornadas de reforestación con especies autóctonas en zonas quemadas ayuda a la recuperación.",
+        "en": "Participating in reforestation with native species in burned areas helps recovery.",
+        "answer": 1
+    },
+    {
+        "id": 96,
+        "es": "Ser un guardián del agua no es importante para la prevención de incendios.",
+        "en": "Being a guardian of water is not important for fire prevention.",
+        "answer": 0
+    },
+    {
+        "id": 97,
+        "es": "Denunciar el desmonte ilegal ayuda a reducir riesgos de incendios.",
+        "en": "Reporting illegal deforestation helps reduce fire risks.",
+        "answer": 1
+    },
+    {
+        "id": 98,
+        "es": "El ecosistema se recupera rápidamente de un descuido humano.",
+        "en": "The ecosystem recovers quickly from a human mistake.",
+        "answer": 0
+    },
+    {
+        "id": 99,
+        "es": "Recordar que el ecosistema tarda décadas en recuperarse de un descuido humano ayuda a valorar la prevención.",
+        "en": "Remembering that the ecosystem takes decades to recover from a human mistake helps value prevention.",
+        "answer": 1
     }
 ]
