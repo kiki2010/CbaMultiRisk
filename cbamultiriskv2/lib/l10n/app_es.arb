@@ -39,8 +39,18 @@
     "darkMode": "Modo Oscuro",
     "language": "Idioma",
     "notifications": "Notificaciones",
+    "phoneSetUp": "Configurar: {title}",
+    "firefighters": "Bomberos",
+    "emergency": "Emergencias",
+    "ambulance": "Ambulancia",
+
+    "resetAll": "Restablecer aplicación",
+    "resetWarning": "La aplicación se restablecerá",
+    "reset": "Las preferencias guardadas de la aplicación se eliminarán.",
 
     "error": "Error {error}",
     "locationError": "Error de Ubicación",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "cancel": "Cancelar",
+    "save": "Guardar"
 }

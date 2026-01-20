@@ -129,6 +129,29 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notifications => 'Notifications';
 
   @override
+  String phoneSetUp(Object title) {
+    return 'Settings: $title';
+  }
+
+  @override
+  String get firefighters => 'Firefighters';
+
+  @override
+  String get emergency => 'Emergency';
+
+  @override
+  String get ambulance => 'Ambulance';
+
+  @override
+  String get resetAll => 'Reset app';
+
+  @override
+  String get resetWarning => 'The app will be reset';
+
+  @override
+  String get reset => 'The app\'s saved preferences will be deleted.';
+
+  @override
   String error(Object error) {
     return 'Error $error';
   }
@@ -138,4 +161,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get close => 'Close';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get save => 'Save';
 }

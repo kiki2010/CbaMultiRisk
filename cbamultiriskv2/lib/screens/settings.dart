@@ -1,8 +1,9 @@
 /*
 Quiz Screen
-Last Edit: 17/01/2026
-Change: Comments were added
+Last Edit: 20/01/2026
+Change: Added button for phonenumber and for reseting preferences.
 */
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +12,7 @@ import 'package:cbamultiriskv2/services/risknotifications.dart';
 
 //Cards (In this screen used on the disclaimer)
 import 'package:cbamultiriskv2/widgets/cards.dart';
+import 'package:cbamultiriskv2/widgets/avatar.dart';
 
 //Theme controller
 import 'package:cbamultiriskv2/theme/theme_controller.dart';
@@ -26,7 +28,11 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeController = context.watch<ThemeController>();
-    
+
+    const String keyFire = 'phone_firefighters';
+    const String keyAmbulance = 'phone_ambulance';
+    const String keyEmergency = 'phone_emergency';
+
     return Scaffold(
       appBar: AppBar(title: Text(AppLocalizations.of(context)!.settingTitle),),
 
@@ -104,6 +110,27 @@ class SettingScreen extends StatelessWidget {
             icon: Icon(Icons.info_outline_rounded),
             onPressed: () {
               showDisclaimerDialog(context);
+            },
+          ),
+
+          const SizedBox(height: 24),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              iconButton(Icons.fire_truck_outlined, () {handleEmergencyButton(context, keyFire, AppLocalizations.of(context)!.firefighters);}),
+              iconButton(Icons.local_hospital_outlined, () {handleEmergencyButton(context, keyAmbulance, AppLocalizations.of(context)!.ambulance);}),
+              iconButton(Icons.add_call, () {handleEmergencyButton(context, keyEmergency, AppLocalizations.of(context)!.emergency);})
+            ],
+          ),
+
+          const SizedBox(height: 24,),
+          
+          ElevatedButton.icon(
+            label: Text(AppLocalizations.of(context)!.resetAll),
+            icon: Icon(Icons.restore),
+            onPressed: () {
+              showResetDialog(context);
             },
           )
         ],

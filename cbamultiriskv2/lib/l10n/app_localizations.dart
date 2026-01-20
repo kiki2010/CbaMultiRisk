@@ -299,6 +299,48 @@ abstract class AppLocalizations {
   /// **'Notifications'**
   String get notifications;
 
+  /// No description provided for @phoneSetUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings: {title}'**
+  String phoneSetUp(Object title);
+
+  /// No description provided for @firefighters.
+  ///
+  /// In en, this message translates to:
+  /// **'Firefighters'**
+  String get firefighters;
+
+  /// No description provided for @emergency.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency'**
+  String get emergency;
+
+  /// No description provided for @ambulance.
+  ///
+  /// In en, this message translates to:
+  /// **'Ambulance'**
+  String get ambulance;
+
+  /// No description provided for @resetAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset app'**
+  String get resetAll;
+
+  /// No description provided for @resetWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'The app will be reset'**
+  String get resetWarning;
+
+  /// No description provided for @reset.
+  ///
+  /// In en, this message translates to:
+  /// **'The app\'s saved preferences will be deleted.'**
+  String get reset;
+
   /// No description provided for @error.
   ///
   /// In en, this message translates to:
@@ -316,6 +358,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Close'**
   String get close;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

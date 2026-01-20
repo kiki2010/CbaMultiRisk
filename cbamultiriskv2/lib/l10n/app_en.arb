@@ -39,8 +39,18 @@
     "darkMode": "Dark Mode",
     "language": "Language",
     "notifications": "Notifications",
+    "phoneSetUp": "Settings: {title}",
+    "firefighters": "Firefighters",
+    "emergency": "Emergency",
+    "ambulance": "Ambulance",
+
+    "resetAll": "Reset app",
+    "resetWarning": "The app will be reset",
+    "reset": "The app's saved preferences will be deleted.",
 
     "error": "Error {error}",
     "locationError": "Location Error",
-    "close": "Close"
+    "close": "Close",
+    "cancel": "Cancel",
+    "save": "Save"
 }

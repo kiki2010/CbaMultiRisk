@@ -1,10 +1,11 @@
 /*
 General Cards
-last edit: 17/01/2026
-Change: comments were added
+last edit: 20/01/2026
+Change: Added handle for emergency buttons
 */
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:weather_icons/weather_icons.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -339,4 +340,87 @@ class CloseButtonWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+//Buttons for calls
+Future<void> handleEmergencyButton(
+  BuildContext context,
+  String prefKey,
+  String title,
+) async {
+  final prefs = await SharedPreferences.getInstance();
+  final phone = prefs.getString(prefKey);
+
+  if (phone == null || phone.isEmpty) {
+    _showAddPhoneDialog(context, prefKey, title);
+  } else {
+    final uri = Uri.parse('tel:$phone');
+    await launchUrl(uri);
+  }
+}
+
+void _showAddPhoneDialog(
+  BuildContext context,
+  String prefKey,
+  String title,
+) {
+  final controller = TextEditingController();
+
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(AppLocalizations.of(context)!.phoneSetUp(title)),
+      content: TextField(
+        controller: controller,
+        keyboardType: TextInputType.phone,
+        decoration: const InputDecoration(
+          hintText: "911, 1O1, +54 9..."
+        ),
+      ),
+
+      actions: [
+        TextButton(
+          child: Text(AppLocalizations.of(context)!.cancel),
+          onPressed: () => Navigator.pop(context),
+        ),
+        ElevatedButton(
+          child: Text(AppLocalizations.of(context)!.save),
+          onPressed: () async {
+            final prefs = await SharedPreferences.getInstance();
+            await prefs.setString(prefKey, controller.text);
+            Navigator.pop(context);
+          },
+        )
+      ],
+    ),
+  );
+}
+
+//Reset dialog
+void showResetDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(AppLocalizations.of(context)!.resetWarning),
+      content: Text(AppLocalizations.of(context)!.reset),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(AppLocalizations.of(context)!.cancel),
+        ),
+        ElevatedButton(
+          onPressed: () async {
+            await resetApp();
+            Navigator.pop(context);
+          },
+          child: Text(AppLocalizations.of(context)!.resetAll),
+        )
+      ],
+    ),
+  );
+}
+
+Future<void> resetApp() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.clear();
 }
