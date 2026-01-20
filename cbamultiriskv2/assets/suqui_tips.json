@@ -129,56 +129,56 @@
         {
             "id": 22,
             "category": "fire",
-            "es": "Apaga las brasas con abundante agua y tierra hasta que esten frías.",
-            "en": ""
+            "es": "Apaga las brasas con abundante agua y arena hasta que esten frías.",
+            "en": "Extinguish the embers with plenty of water and sand until they are cold."
         },
         {
             "id": 23,
             "category": "fire",
             "es": "No estaciones el auto sobre pasto seco, el escape puede prenderlo.",
-            "en": ""
+            "en": "Don't park the car on dry grass, the exhaust could set it on fire."
         },
         {
             "id": 24,
             "category": "fire",
             "es": "Crea una franja de seguridad sin vegetación alrededor de tu vivienda.",
-            "en": ""
+            "en": "Create a vegetation-free safety zone around your home."
         },
         {
             "id": 25,
             "category": "fire",
             "es": "Lleva tu basura de regreso, los desechos pueden ser combustible peligroso.",
-            "en": ""
+            "en": "Take your trash back with you, waste can be dangerous fuel."
         },
         {
             "id": 26,
             "category": "fire",
-            "es": "Fomenta la plantación de especies nativas en jardines y parques.",
-            "en": ""
+            "es": "Fomenta la plantación de especies nativas en jardines y parques de tu comunidad.",
+            "en": "Encourage the planting of native species in gardens and parks in your community."
         },
         {
             "id": 27,
             "category": "fire",
             "es": "Denuncia vertederos ilegales donde se acumulen plásticos y materiales inflamables.",
-            "en": ""
+            "en": "Report illegal dumps where plastics and flammable materials accumulate."
         },
         {
             "id": 28,
             "category": "fire",
             "es": "Aprende sobre los riesgos del fuego y comparte tips de prevención.",
-            "en": ""
+            "en": "Learn about the risks of fire and share prevention tips."
         },
         {
             "id": 29,
             "category": "fire",
-            "es": "Moja las paredes y techo de tu casa si el fuego está cerca,",
-            "en": ""
+            "es": "Moja las paredes y techo de tu casa si el fuego esta cerca.",
+            "en": "Wet the walls and ceiling of your house if the fire is nearby."
         },
         {
             "id": 30,
             "category": "fire",
             "es": "No plantes especies invasoras como pinos, estas arden mucho más rápido.",
-            "en": ""
+            "en": "Don't plant invasive species such as pine trees, they burn much faster."
         },
         {
             "id": 31,
@@ -190,7 +190,7 @@
             "id": 32,
             "category": "flood",
             "es": "Ante una inundación, corta la electricidad, el gas y el agua.",
-            "en": ""
+            "en": "In the event of a flood, cut off the electricity, gas, and water."
         },
         {
             "id": 33,
@@ -231,7 +231,7 @@
             "id": 39,
             "category": "flood",
             "es": "Alejate del cause del río si el agua se vuelve marrón o trae espuma.",
-            "en": ""
+            "en": "Move away from the riverbed if the water turns brown or foams."
         },
         {
             "id": 40,
@@ -261,7 +261,7 @@
             "id": 44,
             "category": "flood",
             "es": "Consume solo agua embotellada o hervida hasta que las autoridades lo autoricen.",
-            "en": ""
+            "en": "Drink only bottled or boiled water until authorities allow it."
         },
         {
             "id": 45,
@@ -291,7 +291,7 @@
             "id": 49,
             "category": "flood",
             "es": "Usa zapatos cerrados para evitar heridas con objetos ocultos.",
-            "en": ""
+            "en": "Wear closed shoes to avoid injuries from hidden objects."
         },
         {
             "id": 50,
@@ -302,62 +302,62 @@
         {
             "id": 51,
             "category": "flood",
-            "es": "Evita meterte al agua durante una inundación.",
-            "en": ""
+            "es": "Evita meterte al agua durante una inundación",
+            "en": "Avoid entering the water during a flood."
         },
         {
             "id": 52,
             "category": "flood",
             "es": "Usa repelente, el agua estancada atrae mosquitos y otras alimañas.",
-            "en": ""
+            "en": "Use insect repellent; stagnant water attracts mosquitoes and other vermin."
         },
         {
             "id": 53,
             "category": "flood",
             "es": "No saces la basura si hay alerta, los desechos tapan los desagues.",
-            "en": ""
+            "en": "Don't put out the trash if there's an alert; the waste clogs the drains."
         },
         {
             "id": 54,
             "category": "flood",
             "es": "Identifica zonas inundables.",
-            "en": ""
+            "en": "Identify flood-prone areas."
         },
         {
             "id": 55,
             "category": "flood",
             "es": "Guarda solventes o venenos en estantes altos para evitar contaminar el agua.",
-            "en": ""
+            "en": "Store solvents or poisons on high shelves to avoid contaminating the water."
         },
         {
             "id": 56,
             "category": "flood",
             "es": "Cerrar y asegurar ventanas y puertas para impedir la entrada del agua.",
-            "en": ""
+            "en": "Close and secure windows and doors to prevent water from entering."
         },
         {
             "id": 57,
             "category": "flood",
             "es": "Evitar salir a la calle en caso de una inundación.",
-            "en": ""
+            "en": "Avoid going outside in case of a flood."
         },
         {
             "id": 58,
             "category": "flood",
             "es": "Si vas conduciendo, evita zonas que puedan inundarse.",
-            "en": ""
+            "en": "If you are driving, avoid areas that may flood."
         },
         {
             "id": 59,
             "category": "flood",
             "es": "No ingreses a viviendas inundadas hasta verificar que la estructura sea segura.",
-            "en": ""
+            "en": "Don't enter flooded homes until you have verified that the structure is safe."
         },
         {
             "id": 60,
             "category": "flood",
             "es": "Desinfectá superficies y objetos que hayan estado en contacto con el agua de inundación.",
-            "en": ""
+            "en": "Disinfect surfaces and objects that have been in contact with floodwater."
         },
         {
             "id": 61,
@@ -483,79 +483,79 @@
             "id": 81,
             "category": "general",
             "es": "Conocer los riesgos de tu zona te ayuda a prepararte mejor.",
-            "en": ""
+            "en": "Knowing the risks in your area helps you prepare better."
         },
         {
             "id": 82,
             "category": "general",
             "es": "Armar una mochila de emergencia facilita una evacuación rápida.",
-            "en": ""
+            "en": "Packing an emergency backpack facilitates a quick evacuation."
         },
         {
             "id": 83,
             "category": "general",
             "es": "Participar en simulacros mejora la respuesta ante emergencias reales.",
-            "en": ""
+            "en": "Participating in drills improves the response to real emergencies."
         },
         {
             "id": 84,
             "category": "general",
             "es": "Compartir información verificada evita la desinformación.",
-            "en": ""
+            "en": "Sharing verified information prevents misinformation."
         },
         {
             "id": 85,
             "category": "general",
             "es": "Identificar puntos de encuentro facilita la organización tras una evacuación.",
-            "en": ""
+            "en": "Identifying meeting points facilitates organization after an evacuation."
         },
         {
             "id": 86,
             "category": "general",
             "es": "No difundas rumores durante una emergencia.",
-            "en": ""
+            "en": "Don't spread rumors during an emergency."
         },
         {
             "id": 87,
             "category": "general",
             "es": "La cooperación comunitaria reduce el impacto de los desastres.",
-            "en": ""
+            "en": "Community cooperation reduces the impact of disasters."
         },
         {
             "id": 88,
             "category": "general",
             "es": "Aprender primeros auxilios puede salvar vidas.",
-            "en": ""
+            "en": "Learning first aid can save lives."
         },
         {
             "id": 89,
             "category": "general",
             "es": "Protegé el bosque nativo, ya que retiene la humedad y evita incendios.",
-            "en": ""
+            "en": "Protect the native forest, as it retains moisture and prevents fires."
         },
         {
             "id": 90,
             "category": "general",
             "es": "Participá en jornadas de reforestación con especies autóctonas en zonas ya quemadas.",
-            "en": ""
+            "en": "Participate in reforestation days with native species in areas that have already been burned."
         },
         {
             "id": 91,
             "category": "general",
             "es": "Sé un guardián del agua, recurso escaso que el fuego consume y contamina.",
-            "en": ""
+            "en": "Be a guardian of water, a scarce resource that fire consumes and contaminates."
         },
         {
             "id": 92,
             "category": "general",
             "es": "Denunciá el desmonte ilegal, ya que deja el terreno expuesto la fuego.",
-            "en": ""
+            "en": "Report illegal deforestation, as it leaves the land exposed to fire."
         },
         {
-            "id": 92,
+            "id": 93,
             "category": "general",
             "es": "Recordá que el ecosistema tarda décadas en recuperarse de un solo descuido humano.",
-            "en": ""
+            "en": "Remember that the ecosystem takes decades to recover from a single human mistake"
         }
     ]
 }
