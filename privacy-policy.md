@@ -1,7 +1,3 @@
-# CbaMultiRisk
-An app focused on the province of Córdoba to find out the risk of fire and floods in your area
-
-
 # Política de Privacidad
 
 ## Última actualización: 21/01/2026
