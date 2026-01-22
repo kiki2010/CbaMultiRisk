@@ -90,47 +90,90 @@ class BubbleTailPainter extends CustomPainter {
 // THE SPEECH BUBBLE
 Widget speechBubble({
   required String title,
+  String? category,
   double fontSize = 13,
 }) {
-  return SizedBox(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 14,
-            vertical: 10,
-          ),
-          constraints: const BoxConstraints(
-            maxWidth: 180,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(14),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 6,
-                offset: Offset(0, 3)
-              )
-            ]
-          ),
-          child: TypewriterText(
-            key: ValueKey(title),
-            text: title,
-            speed: const Duration(milliseconds: 35),
-            style: TextStyle(
-              fontSize: fontSize,
-              height: 1.2,
-              color: Colors.black87
+  final bool showIcon = category != null;
+
+  return Stack(
+    clipBehavior: Clip.none,
+    children: [
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 14,
+              vertical: 10,
+            ),
+            constraints: const BoxConstraints(
+              maxWidth: 180,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(14),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 6,
+                  offset: Offset(0, 3)
+                )
+              ]
+            ),
+
+            child: TypewriterText(
+              key: ValueKey(title),
+              text: title,
+              speed: const Duration(milliseconds: 35),
+              style: TextStyle(
+                fontSize: fontSize,
+                height: 1.2,
+                color: Colors.black87
+              ),
             ),
           ),
+          CustomPaint(
+            size: const Size(20, 10),
+            painter: BubbleTailPainter(),
+          )
+        ],
+      ),
+
+      //ICON
+      if (showIcon)
+        Positioned(
+        top: -10,
+        left: -10,
+        child: Container(
+          width: 36,
+          height: 36,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+            border: Border.all(color: Color(0xFF2B70C9)),
+          ),
+          
+          child: Icon(
+            _iconFromCategory(category),
+            size: 20,
+            color: const Color(0xFF2B70C9),
+          ),
         ),
-        CustomPaint(
-          size: const Size(20, 10),
-          painter: BubbleTailPainter(),
-        )
-      ],
-    ),
+      )
+    ],
   );
+}
+
+//ICON FOR CATEGORY
+IconData _iconFromCategory(String category) {
+  switch (category) {
+    case 'fire':
+      return Icons.local_fire_department;
+
+    case 'flood':
+      return Icons.flood;
+
+    default:
+      return Icons.info;
+  }
 }

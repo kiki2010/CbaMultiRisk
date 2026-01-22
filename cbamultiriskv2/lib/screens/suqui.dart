@@ -92,6 +92,7 @@ class _SuquiScreenState extends State<SuquiScreen> {
             //Tip SpeechBubble
             speechBubble(
               title: currentTip!.text(locale),
+              category: currentTip!.category,
               fontSize: 18,
             ),
 

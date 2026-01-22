@@ -224,7 +224,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
 
           //True or false buttons
           Positioned(
-            bottom: 40,
+            bottom: 120,
             left: 20,
             right: 20,
             child: Row(
