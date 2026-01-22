@@ -74,21 +74,21 @@ class _QuizMenuScreenState extends State<QuizMenuScreen> {
               Center(
                 child: SuquiAvatar(posIndex: 1, height: 300, onTap: () {}),
               ),
-
-              Positioned(
-                bottom: 120,
-                left: 20,
-                right: 20,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) => const QuizGameScreen()));
-                    _loadHighScore();
-                  },
-                  child: Text(AppLocalizations.of(context)!.play),
-                ),
-              ),
             ],
-          )
+          ),
+
+          Positioned(
+            bottom: 120,
+            left: 20,
+            right: 20,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const QuizGameScreen()));
+                _loadHighScore();
+              },
+              child: Text(AppLocalizations.of(context)!.play),
+            ),
+          ),
         ],
       ),
     );
@@ -113,14 +113,20 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
   TimerManager? timer;
   final GifManager gifManager = GifManager();
 
+  bool _initialized = false;
+
   String currentGif = 'assets/gif/1.gif';
   bool loading = true;
   
   //We load the Timer + game logic 
   @override
-  void initState() {
-    _initGame();
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (!_initialized) {
+      _initialized = true;
+      _initGame();
+    }
   }
 
   Future<void> _initGame() async {
@@ -164,6 +170,12 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
     if (!mounted) return;
     Navigator.pop(context);
   }
+
+  @override
+  void dispose() {
+    timer?.stop();
+    super.dispose();
+  }
   
 
   //Screen Time!
@@ -173,7 +185,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
 
     if (loading || engine?.currentQuestion == null) {
       return const Scaffold(
-        body: Center(child: CircularProgressIndicator(),),
+        body: Center(child: CircularProgressIndicator()),
       );
     }
 
