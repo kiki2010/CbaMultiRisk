@@ -1,4 +1,4 @@
-package com.example.cbamultiriskv2
+package com.chiaracatalini.cbamultirisk
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,6 +1,6 @@
 {
     "disclaimer": "Disclaimer",
-    "disclaimerText": "Esta app esta diseñada para predecir la probabilidad de riesgo de incendio e inundaciones usando fuentes meteorologicas externas.\n  Para medidades de evacuación y seguridad reales, siga las instrucciones de las autoridades locales.\n Los desarrolladores no se responsabiliazn de ningún daño o pérdida durante el uso de la app.",
+    "disclaimerText": "Esta app esta diseñada para predecir la probabilidad de riesgo de incendio e inundaciones usando fuentes meteorologicas externas.\n  Para medidades de evacuación y seguridad reales, siga las instrucciones de las autoridades locales.\n Los desarrolladores no se responsabilizan de ningún daño o pérdida durante el uso de la app.",
     "understand": "Lo entiendo",
     "risk": "Riesgo",
     "high": "ALTO",

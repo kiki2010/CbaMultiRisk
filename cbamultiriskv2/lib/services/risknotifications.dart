@@ -206,7 +206,7 @@ class BackgroundTaskProvider extends ChangeNotifier {
       await Workmanager().registerPeriodicTask(
         "risk_notification",
         "calculate_risk",
-        frequency: Duration(minutes: 20), //then I will change this to 4 hours
+        frequency: Duration(minutes: 240), //then I will change this to 4 hours
         existingWorkPolicy: ExistingPeriodicWorkPolicy.replace,
       );
     } else {
