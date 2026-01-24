@@ -142,7 +142,8 @@ Widget weatherCard( BuildContext context,{
   // final screenHeigh = MediaQuery.of(context).size.height;
   final cardBg = Theme.of(context).cardColor;
 
-  return Expanded(
+  return SizedBox(
+    height: 220,
     child: Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
@@ -157,66 +158,74 @@ Widget weatherCard( BuildContext context,{
         ]
       ),
 
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              //All the data :D
-              children: [
-                AutoSizeText(AppLocalizations.of(context)!.weather, maxLines: 1, style: TextStyle(fontSize: 14, color: Theme.of(context).textTheme.bodyMedium?.color),),
-                AutoSizeText(AppLocalizations.of(context)!.temperature(temp),  maxLines: 1, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
-                AutoSizeText(AppLocalizations.of(context)!.wind(wind),  maxLines: 2, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
-                AutoSizeText(AppLocalizations.of(context)!.humidity(hum),  maxLines: 1, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
-                AutoSizeText(AppLocalizations.of(context)!.rain(rain),  maxLines: 1, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
-                AutoSizeText(AppLocalizations.of(context)!.rainRate(rainRate),  maxLines: 2, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
-                AutoSizeText(AppLocalizations.of(context)!.spi(spi), maxLines: 1, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color))
-              ],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                
+                //All the data :D
+                children: [
+                  AutoSizeText(AppLocalizations.of(context)!.weather, maxLines: 1, style: TextStyle(fontSize: 14, color: Theme.of(context).textTheme.bodyMedium?.color),),
+                  AutoSizeText(AppLocalizations.of(context)!.temperature(temp),  maxLines: 1, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
+                  AutoSizeText(AppLocalizations.of(context)!.wind(wind),  maxLines: 2, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
+                  AutoSizeText(AppLocalizations.of(context)!.humidity(hum),  maxLines: 1, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
+                  AutoSizeText(AppLocalizations.of(context)!.rain(rain),  maxLines: 1, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
+                  AutoSizeText(AppLocalizations.of(context)!.rainRate(rainRate),  maxLines: 2, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
+                  AutoSizeText(AppLocalizations.of(context)!.spi(spi), maxLines: 1, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color))
+                ]
+              ),
             ),
-          ),
 
-          const SizedBox(height: 6),
-          
-          Expanded(child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: forecast.map((day) {
-                final String dayName = day['dayOfWeek'];
-                final String description = day['forecast'] as String? ?? 'Unknown';
+            const SizedBox(width: 20),
 
-                return Padding(
-                  padding: const EdgeInsetsGeometry.symmetric(vertical: 3),
-                  child: Column(
-                    children: [
-                      Icon(
-                        getForecastIcon(description),
-                        size: 42,
-                      ),
+            Expanded(
+              flex: 1,
+              child: Column(
+                children: forecast.map((day) {
+                  final String dayName = day['dayOfWeek'];
+                  final String description = day['forecast'] as String? ?? 'Unknown';
 
-                      const SizedBox(height: 2),
-
-                      Text(
-                        dayName,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                          color: Theme.of(context).textTheme.bodyMedium?.color
+                  return Padding(
+                    padding: const EdgeInsetsGeometry.symmetric(vertical: 3),
+                    child: Column(
+                      children: [
+                        Icon(
+                          getForecastIcon(description),
+                          size: 42,
                         ),
-                      ),
-                      Text(
-                        description,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 10, color: Theme.of(context).textTheme.bodyMedium?.color),
-                      )
-                    ],
-                  ),
-                );
-              }).toList(),
-            ),
-          ))
-        ],
+
+
+                        const SizedBox(height: 2),
+
+
+                        Text(
+                          dayName,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                            color: Theme.of(context).textTheme.bodyMedium?.color
+                          ),
+                        ),
+                        Text(
+                          description,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 10, color: Theme.of(context).textTheme.bodyMedium?.color),
+                        )
+                      ],
+                    ),
+                  );
+                }).toList(),
+              )
+            )
+          ],
+        ),
       ),
-    ),
+    )  
   );
 }
 

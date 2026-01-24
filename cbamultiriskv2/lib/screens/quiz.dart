@@ -83,8 +83,12 @@ class _QuizMenuScreenState extends State<QuizMenuScreen> {
             right: 20,
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => const QuizGameScreen()));
-                _loadHighScore();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const QuizGameScreen()),
+                ).then((_) {
+                  _loadHighScore();
+                });
               },
               child: Text(AppLocalizations.of(context)!.play),
             ),
