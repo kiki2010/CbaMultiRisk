@@ -9,10 +9,10 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
-  String get disclaimer => 'Disclaimer';
+  String get disclaimer => 'Exención de Responsabilidad';
 
   @override
-  String get disclaimerText => 'Esta app esta diseñada para predecir la probabilidad de riesgo de incendio e inundaciones usando fuentes meteorologicas externas.\n  Para medidades de evacuación y seguridad reales, siga las instrucciones de las autoridades locales.\n Los desarrolladores no se responsabiliazn de ningún daño o pérdida durante el uso de la app.';
+  String get disclaimerText => 'Esta app está diseñada para predecir la probabilidad de riesgo de incendios e inundaciones usando fuentes meteorológicas externas.\n  Para medidas de evacuación y seguridad reales, siga las instrucciones de las autoridades locales.\n Los desarrolladores no se responsabilizan de ningún daño o pérdida durante el uso de la app.';
 
   @override
   String get understand => 'Lo entiendo';
@@ -83,7 +83,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get fireTitleExplanation => 'Cómo se calcula el riesgo de incendio';
 
   @override
-  String get fireExplanation => ' Desarollamos un modelo de Inteligencia Artificial para estimar el riesgo de incendio. \n Este modelo analiza variables ambientales como la temperatura, la humedad relativa y la velocidad del viento para evaluar condiciones que pueden favorecer la propagación del fuego. \n Los datos son obtenidos de la estación meteorológica más cercana y actualizada. \n A partir de este análisis, el riesgo se clasifica en Bajo, Medio o Alto y se representa con colores para facilitar su interpretación.';
+  String get fireExplanation => 'Desarrollamos un modelo de Inteligencia Artificial para estimar el riesgo de incendio. \n Este modelo analiza variables ambientales como la temperatura, la humedad relativa y la velocidad del viento para evaluar condiciones que pueden favorecer la propagación del fuego. \n Los datos se obtienen de la estación meteorológica más cercana y actualizada. \n A partir de este análisis, el riesgo se clasifica en Bajo, Medio o Alto, y se representa con colores para facilitar su interpretación.';
 
   @override
   String get floodTitleExplanation => 'Cómo calculamos el riesgo de inundación';

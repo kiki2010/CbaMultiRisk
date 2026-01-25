@@ -80,50 +80,83 @@ Widget riskCard({
 }
 
 //Weather Data and Forecast Style and Card
-IconData getForecastIcon(String? forecast) {
-  if (forecast == null || forecast.isEmpty) {
-    return WeatherIcons.na;
-  }
-
-  switch (forecast.toLowerCase()) {
-    case 'sunny':
-    case 'hot':
-    case 'mostly sunny':
-    case 'clear':
-    case 'mostly clear':
-      return WeatherIcons.day_sunny;
-    
-    case 'cloudy':
-      return WeatherIcons.cloud;
-
-    case 'mostly cloudy':
-    case 'partly cloudy':
-      return WeatherIcons.day_cloudy;
-
-    case 'strong storms':
-    case 'thunderstorms':
-    case 'thunderstorm':
-    case 'pm thunderstorms':
-    case 'am thunderstorm':
-    case 'isolated thunderstorms':
-    case 'scattered thunderstorms':
+IconData getForecastIcon(int code) {
+  switch (code) {
+    case 0:
+      return WeatherIcons.tornado;
+    case 1:
+    case 2:
+      return WeatherIcons.storm_warning;
+    case 3:
+    case 4:
       return WeatherIcons.thunderstorm;
-
-    case 'rain':
-    case 'drizzle':
-    case 'showers':
-    case 'am showers':
-    case 'pm showers':
-    case 'scattered showers':
-    case 'heavy rain':
+    case 5:
+      return WeatherIcons.snow;
+    case 6:
+      return WeatherIcons.sleet;
+    case 7:
+    case 17:
+      return WeatherIcons.hail;
+    case 8:
+    case 10:
+      return WeatherIcons.sleet;
+    case 9:
+    case 11:
+    case 12:
+      return WeatherIcons.showers;
+    case 13:
+    case 14:
+    case 16:
+      return WeatherIcons.snow;
+    case 15:
+      return WeatherIcons.snow_wind;
+    case 18:
+      return WeatherIcons.sleet;
+    case 19:
+    case 20:
+    case 21:
+    case 22:
+      return WeatherIcons.fog;
+    case 23:
+    case 24:
+    case 25:
+      return WeatherIcons.wind;
+    case 26:
+      return WeatherIcons.cloud;
+    case 27:
+    case 28:
+      return WeatherIcons.cloudy;
+    case 29:
+    case 30:
+      return WeatherIcons.night_partly_cloudy;
+    case 31:
+    case 32:
+    case 36:
+      return WeatherIcons.day_sunny;
+    case 33:
+    case 34:
+      return WeatherIcons.day_sunny_overcast;
+    case 35:
+      return WeatherIcons.hail;
+    case 37:
+    case 38:
+      return WeatherIcons.thunderstorm;
+    case 39:
+      return WeatherIcons.showers;
+    case 40:
       return WeatherIcons.rain;
-
-    case 'snow':
-    case 'snow showers':
-    case 'heavy snow':
-    case 'blizzard':
-      return WeatherIcons.day_snow;
-
+    case 41:
+    case 42:
+    case 43:
+      return WeatherIcons.snow;
+    case 44:
+      return WeatherIcons.alien;
+    case 45:
+      return WeatherIcons.rain;
+    case 46:
+      return WeatherIcons.snow;
+    case 47:
+      return WeatherIcons.thunderstorm;
     default:
       return WeatherIcons.na;
   }
@@ -189,13 +222,14 @@ Widget weatherCard( BuildContext context,{
                 children: forecast.map((day) {
                   final String dayName = day['dayOfWeek'];
                   final String description = day['forecast'] as String? ?? 'Unknown';
+                  final int code = day['iconCode'] as int? ?? 0;
 
                   return Padding(
                     padding: const EdgeInsetsGeometry.symmetric(vertical: 3),
                     child: Column(
                       children: [
                         Icon(
-                          getForecastIcon(description),
+                          getForecastIcon(code),
                           size: 42,
                         ),
 

@@ -4,6 +4,7 @@ last edit: 12/01/2026
 Change: Comments were added
 */
 
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -176,11 +177,14 @@ class WeatherStationService {
 
   // Obtain the forecast using the user location, then saving it on a list -> map.
   List<Map<String, dynamic>> threeDayForecast = [];
-  Future<List<Map<String, dynamic>>> getForecast(Position position) async {
+  Future<List<Map<String, dynamic>>> getForecast(Position position, BuildContext context) async {
     final lat = position.latitude;
     final lon = position.longitude;
 
-    final url = "https://api.weather.com/v3/wx/forecast/daily/5day?geocode=$lat,$lon&format=json&units=m&language=en-US&apiKey=$apiKey";
+    final locale = Localizations.localeOf(context).languageCode;
+    final lang = locale == 'es' ? 'es-ES' : 'en-US';
+
+    final url = "https://api.weather.com/v3/wx/forecast/daily/5day?geocode=$lat,$lon&format=json&units=m&language=$lang&apiKey=$apiKey";
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode != 200) {
@@ -193,13 +197,28 @@ class WeatherStationService {
       final precipTypes = data['daypart'][0]['precipType']; 
       final daysOfWeek = data['dayOfWeek']; 
       final forecast = data['daypart'][0]['wxPhraseLong'];
+      final iconCode = data['daypart'][0]['iconCode'];
 
       for (int i = 0; i < 3; i++) {
+        int icon;
+        String resume;
+        if (iconCode[i * 2] != null) {
+          icon = iconCode[i * 2];
+          resume = forecast[i * 2];
+        } else if (iconCode[i * 2 + 1] != null) {
+          icon = iconCode[i * 2 + 1];
+          resume = forecast[i * 2 + 1];
+        } else {
+          icon = 0;
+          resume = "null";
+        }
+
         final dailyForecast = {
           'dayOfWeek': daysOfWeek[i],
           'precipChance': precipChances[i * 2],
           'precipType': precipTypes[i * 2] ?? 'N/A',
-          'forecast': forecast[i * 2],
+          'forecast': resume,
+          'iconCode': icon,
         };
         threeDayForecast.add(dailyForecast);
       }
@@ -208,11 +227,11 @@ class WeatherStationService {
   }
 
   //A Function to return all the data
-  Future<Map<String, dynamic>> getAllWeatherData(Position position) async {
+  Future<Map<String, dynamic>> getAllWeatherData(Position position, BuildContext context) async {
     final station = await getNearestStation(position);
     final actual = await getActualData(position);
     final historical = await getHistoricalData(position);
-    final threedayForecast = await getForecast(position);
+    final threedayForecast = await getForecast(position, context);
     return {
       'station': station,
       'actual': actual,

@@ -4,6 +4,7 @@ last edit: 12/01/2026
 Change: Comments were added
 */
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'wudata.dart';
 
 import 'package:geolocator/geolocator.dart';
@@ -26,10 +27,10 @@ class FloodPrediction {
   }
   
   //We use the meteorological data obtained from wudata, process the risk level, and determine whether it is high, medium, or low.
-  Future<String> predictFlood(Position position) async {
+  Future<String> predictFlood(Position position, BuildContext context) async {
     final weatherService = WeatherStationService();
 
-    final allData = await weatherService.getAllWeatherData(position);
+    final allData = await weatherService.getAllWeatherData(position, context);
     final actualData = allData['actual'];
     final historicalData = allData['historical'];
 

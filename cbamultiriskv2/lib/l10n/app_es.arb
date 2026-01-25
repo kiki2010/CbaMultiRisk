@@ -1,6 +1,6 @@
 {
-    "disclaimer": "Disclaimer",
-    "disclaimerText": "Esta app esta diseñada para predecir la probabilidad de riesgo de incendio e inundaciones usando fuentes meteorologicas externas.\n  Para medidades de evacuación y seguridad reales, siga las instrucciones de las autoridades locales.\n Los desarrolladores no se responsabilizan de ningún daño o pérdida durante el uso de la app.",
+    "disclaimer": "Exención de Responsabilidad",
+    "disclaimerText": "Esta app está diseñada para predecir la probabilidad de riesgo de incendios e inundaciones usando fuentes meteorológicas externas.\n  Para medidas de evacuación y seguridad reales, siga las instrucciones de las autoridades locales.\n Los desarrolladores no se responsabilizan de ningún daño o pérdida durante el uso de la app.",
     "understand": "Lo entiendo",
     "risk": "Riesgo",
     "high": "ALTO",
@@ -23,7 +23,7 @@
     "noData": "No se encontraron datos",
 
     "fireTitleExplanation": "Cómo se calcula el riesgo de incendio",
-    "fireExplanation": " Desarollamos un modelo de Inteligencia Artificial para estimar el riesgo de incendio. \n Este modelo analiza variables ambientales como la temperatura, la humedad relativa y la velocidad del viento para evaluar condiciones que pueden favorecer la propagación del fuego. \n Los datos son obtenidos de la estación meteorológica más cercana y actualizada. \n A partir de este análisis, el riesgo se clasifica en Bajo, Medio o Alto y se representa con colores para facilitar su interpretación.",
+    "fireExplanation": "Desarrollamos un modelo de Inteligencia Artificial para estimar el riesgo de incendio. \n Este modelo analiza variables ambientales como la temperatura, la humedad relativa y la velocidad del viento para evaluar condiciones que pueden favorecer la propagación del fuego. \n Los datos se obtienen de la estación meteorológica más cercana y actualizada. \n A partir de este análisis, el riesgo se clasifica en Bajo, Medio o Alto, y se representa con colores para facilitar su interpretación.",
     "floodTitleExplanation": "Cómo calculamos el riesgo de inundación",
     "floodExplanation": "La app analiza las condiciones de lluvia y humedad para ayudarte a comprender el riesgo de inundación en tu zona.\n Se tienen en cuenta factores como la cantidad e intensidad de las precipitaciones, la humedad del suelo y el Índice de Precipitación Estandarizado (SPI), utilizando datos de la estación meteorológica más cercana y actualizada.\n Con esta información, estimamos la probabilidad de que ocurran inundaciones y clasificamos el riesgo como Bajo, Medio o Alto, acompañado de colores para una lectura rápida y clara.",
 

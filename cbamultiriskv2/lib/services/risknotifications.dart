@@ -5,6 +5,7 @@ Change: Now is avaible in english and spanish
 */
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -46,7 +47,7 @@ final flood = FloodPrediction();
 final fire = FirePrediction();
 
 class RiskService {
-  Future<Map<String, dynamic>> loadEverything() async {
+  Future<Map<String, dynamic>> loadEverything(BuildContext context) async {
     final Position position = await getUserLocation();
 
     final weatherService = WeatherStationService();
@@ -55,9 +56,9 @@ class RiskService {
     await fire.loadFireModel();
 
     return {
-      'weather': await weatherService.getAllWeatherData(position!),
-      'floodRisk': await flood.predictFlood(position!),
-      'fireRisk': await fire.predictFire(position!),
+      'weather': await weatherService.getAllWeatherData(position!, context),
+      'floodRisk': await flood.predictFlood(position!, context),
+      'fireRisk': await fire.predictFire(position!, context),
     };
   }
 }
@@ -76,10 +77,10 @@ bool isHighRisk(String risk) {
 //Call load everything and show notification
 final riskService = RiskService();
 
-Future<void> calculateRiskAndNotify() async {
+Future<void> calculateRiskAndNotify( BuildContext context) async {
   await initRiskNotifications();
 
-  final data = await riskService.loadEverything();
+  final data = await riskService.loadEverything(context);
 
   final String floodRisk = data['floodRisk'];
   final String fireRisk = data['fireRisk'];
@@ -163,11 +164,11 @@ Future<void> showRiskNotification({
 
 //Background task Handler
 @pragma('vm:entry-point')
-void riskCallbackDispatcher() {
+void riskCallbackDispatcher(BuildContext context) {
   Workmanager().executeTask((task, inputData) async {
     if (task == 'calculate_risk') {
       final riskService = RiskService();
-      final data = await riskService.loadEverything();
+      final data = await riskService.loadEverything(context);
 
       final floodRisk = data['floodRisk'];
       final fireRisk = data['fireRisk'];

@@ -32,7 +32,7 @@ class RiskScreen extends StatelessWidget {
   RiskScreen({super.key, required this.position, required this.onSuquiTap});
 
   //We initialize services, load AI models, and wait for your response.
-  Future<Map<String, dynamic>> loadEverything() async {
+  Future<Map<String, dynamic>> loadEverything(BuildContext context) async {
     if (position == null) {
       throw Exception('LOCATION_ERROR');
     }
@@ -43,9 +43,9 @@ class RiskScreen extends StatelessWidget {
     await fire.loadFireModel();
 
     return  {
-      'weather' : await weatherService.getAllWeatherData(position!),
-      'floodRisk' : await flood.predictFlood(position!),
-      'fireRisk' : await fire.predictFire(position!),
+      'weather' : await weatherService.getAllWeatherData(position!, context),
+      'floodRisk' : await flood.predictFlood(position!, context),
+      'fireRisk' : await fire.predictFire(position!, context),
     };
   }
   
@@ -58,7 +58,7 @@ class RiskScreen extends StatelessWidget {
 
       //We wait for everything to load and react according to the result.
       body: FutureBuilder(
-        future: loadEverything(), 
+        future: loadEverything(context), 
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
