@@ -271,41 +271,44 @@ Widget infoDialog(BuildContext context, {
 }) {
   return Dialog(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    child: Padding(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (icon != null) ...[
-            icon,
-            const SizedBox(height: 10)
-          ],
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold
+    child: SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (icon != null) ...[
+              icon,
+              const SizedBox(height: 10)
+            ],
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold
+              ),
+              textAlign: TextAlign.left,
             ),
-            textAlign: TextAlign.left,
-          ),
-          
-          const SizedBox(height: 10),
+            
+            const SizedBox(height: 10),
 
-          Text(
-            content,
-            textAlign: TextAlign.left,
-            style: const TextStyle(fontSize: 14), 
-          ),
+            Text(
+              content,
+              textAlign: TextAlign.left,
+              style: const TextStyle(fontSize: 14), 
+            ),
 
-          const SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(AppLocalizations.of(context)!.close),
-          )
-        ],
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(AppLocalizations.of(context)!.close),
+            )
+          ],
+        ),
       ),
-    ),
+    )
   );
 }
 
