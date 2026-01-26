@@ -129,7 +129,7 @@ class SuquiButtons extends StatelessWidget {
           }
         ),
         iconButton(
-          Icons.water,
+          Icons.flood,
           () {
             onCategoryTap('flood');
           }
