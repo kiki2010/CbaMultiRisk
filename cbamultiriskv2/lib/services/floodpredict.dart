@@ -27,10 +27,10 @@ class FloodPrediction {
   }
   
   //We use the meteorological data obtained from wudata, process the risk level, and determine whether it is high, medium, or low.
-  Future<String> predictFlood(Position position, BuildContext context) async {
+  Future<String> predictFlood(Position position) async {
     final weatherService = WeatherStationService();
 
-    final allData = await weatherService.getAllWeatherData(position, context);
+    final allData = await weatherService.getAllWeatherDataBackground(position);
     final actualData = allData['actual'];
     final historicalData = allData['historical'];
 

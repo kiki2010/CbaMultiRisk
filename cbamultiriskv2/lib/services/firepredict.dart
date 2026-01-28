@@ -27,10 +27,10 @@ class FirePrediction {
   }
   
   //We standardize the meteorological data obtained from wudata, process the risk level, and determine whether it is high, medium, or low.
-  Future<String> predictFire(Position position, BuildContext context) async {
+  Future<String> predictFire(Position position) async {
     final weatherService = WeatherStationService();
 
-    final allData = await weatherService.getAllWeatherData(position, context);
+    final allData = await weatherService.getAllWeatherDataBackground(position);
     final actualData = allData['actual'];
     
     double temperature = actualData['temperature'] / 50;

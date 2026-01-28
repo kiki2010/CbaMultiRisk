@@ -47,7 +47,7 @@ final flood = FloodPrediction();
 final fire = FirePrediction();
 
 class RiskService {
-  Future<Map<String, dynamic>> loadEverything(BuildContext context) async {
+  Future<Map<String, dynamic>> loadEverything() async {
     final Position position = await getUserLocation();
 
     final weatherService = WeatherStationService();
@@ -56,9 +56,9 @@ class RiskService {
     await fire.loadFireModel();
 
     return {
-      'weather': await weatherService.getAllWeatherData(position, context),
-      'floodRisk': await flood.predictFlood(position, context),
-      'fireRisk': await fire.predictFire(position, context),
+      'weather': await weatherService.getAllWeatherDataBackground(position),
+      'floodRisk': await flood.predictFlood(position),
+      'fireRisk': await fire.predictFire(position),
     };
   }
 }
@@ -77,10 +77,10 @@ bool isHighRisk(String risk) {
 //Call load everything and show notification
 final riskService = RiskService();
 
-Future<void> calculateRiskAndNotify( BuildContext context) async {
+Future<void> calculateRiskAndNotify() async {
   await initRiskNotifications();
 
-  final data = await riskService.loadEverything(context);
+  final data = await riskService.loadEverything();
 
   final String floodRisk = data['floodRisk'];
   final String fireRisk = data['fireRisk'];
@@ -164,11 +164,11 @@ Future<void> showRiskNotification({
 
 //Background task Handler
 @pragma('vm:entry-point')
-void riskCallbackDispatcher(BuildContext context) {
+void riskCallbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
     if (task == 'calculate_risk') {
       final riskService = RiskService();
-      final data = await riskService.loadEverything(context);
+      final data = await riskService.loadEverything();
 
       final floodRisk = data['floodRisk'];
       final fireRisk = data['fireRisk'];

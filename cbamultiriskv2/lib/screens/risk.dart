@@ -44,8 +44,8 @@ class RiskScreen extends StatelessWidget {
 
     return  {
       'weather' : await weatherService.getAllWeatherData(position!, context),
-      'floodRisk' : await flood.predictFlood(position!, context),
-      'fireRisk' : await fire.predictFire(position!, context),
+      'floodRisk' : await flood.predictFlood(position!),
+      'fireRisk' : await fire.predictFire(position!),
     };
   }
   

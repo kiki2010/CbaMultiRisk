@@ -239,4 +239,16 @@ class WeatherStationService {
       'forecast': threedayForecast,
     };
   }
+
+  //get All weather data for background services
+  Future<Map<String, dynamic>> getAllWeatherDataBackground(Position position) async {
+    final station = await getNearestStation(position);
+    final actual = await getActualData(position);
+    final historical = await getHistoricalData(position);
+    return {
+      'station': station,
+      'actual': actual,
+      'historical': historical,
+    };
+  }
 }
