@@ -45,7 +45,9 @@ To save this preferences we use SharedPreferences, anyway, the logic behind is o
 - For theme → lib\theme\theme_controller.dart
 - For notifications → lib\services\risknotifications.dart
 
-<img width="800" height="600" alt="MultiRisk _ Documentación general" src="https://github.com/user-attachments/assets/c04dad26-d339-4102-9093-a2a1bbc2726f" />
+<img width="1080" height="2400" alt="Screenshot_20260121-170834" src="https://github.com/user-attachments/assets/5a92fc81-e0bc-4bf6-b344-af050d698242" />
+<img width="800" height="600" alt="MultiRisk _ Documentación general (1)" src="https://github.com/user-attachments/assets/db705627-7008-4c36-bf22-a6cacdd62164" />
+
 
 ## AI models:
 The app has two AI models. Both neural networks were developed from scratch. The fire model used around 736 examples, and the flood model used around 1000 examples. I used google colabs for them.
