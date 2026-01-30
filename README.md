@@ -93,6 +93,17 @@ In summary, for all screens:
 ### Settings: 
 1. Using sharedpreferences, we save user preferences. You can modify the language, theme, enable notifications, view the disclaimer, and save the phone numbers of three local authorities.
 
+## Suqui!
+It's the app's mascot fox, designed using Rive, and it has around 6 different poses (including the error pose).
+
+![error](https://github.com/user-attachments/assets/91bfdb6f-6b90-4565-8f43-7ae2273e2099)
+![camara](https://github.com/user-attachments/assets/4d67691f-3908-4b98-8b6d-7740a072c564)
+<img width="1196" height="348" alt="Captura de pantalla 2026-01-08 221911" src="https://github.com/user-attachments/assets/bb0cb0a6-b1c4-4a8b-b3e3-4be6af8c1b2a" />
+<img width="1094" height="1044" alt="Captura de pantalla 2025-12-01 171937" src="https://github.com/user-attachments/assets/888287a9-f4ba-4e3d-8b44-1e50f7e13f63" />
+<img width="866" height="1051" alt="Captura de pantalla 2025-12-01 210230" src="https://github.com/user-attachments/assets/d9553586-ab79-4e3f-9631-6905e0cec4df" />
+<img width="1919" height="1079" alt="Captura de pantalla 2025-12-14 212406" src="https://github.com/user-attachments/assets/159432bf-ca38-415f-a826-03e1b91cf1d6" />
+<img width="2266" height="992" alt="Captura de pantalla 2025-12-06 175457" src="https://github.com/user-attachments/assets/82d912a2-15bb-4120-b84d-6c28aa7654f4" />
+
 ## How to set up the project on your device:
 Once the Flutter SDK is installed and configured, run the command `flutter pub get`. This will install the necessary libraries and allow you to modify the code.
 
