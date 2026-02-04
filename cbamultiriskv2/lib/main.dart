@@ -139,8 +139,8 @@ class _MainScaffoldState extends State<MainScaffold> {
           _startTutorial();
         } else {
           await TutorialController.setStepSeen('welcome');
+          await TutorialController.setTutorialComplete(); //Temporal
           _currentIndex = 0;
-          _welcomeIndex = 0;
           setState(() {});
         }
       },

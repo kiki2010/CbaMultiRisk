@@ -3,9 +3,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 enum TutorialStep {
   welcome,
-  tips,
-  settings,
-  finish
 }
 
 class TutorialController {
