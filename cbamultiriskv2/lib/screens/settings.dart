@@ -1,7 +1,7 @@
 /*
 Quiz Screen
-Last Edit: 20/01/2026
-Change: Added button for phonenumber and for reseting preferences.
+Last Edit: 04/02/2026
+Change: Tutorial.
 */
 
 import 'package:flutter/material.dart';
@@ -20,6 +20,9 @@ import 'package:cbamultiriskv2/theme/theme_controller.dart';
 //Ingles y español
 import 'package:cbamultiriskv2/l10n/locale_controller.dart';
 import 'package:cbamultiriskv2/l10n/app_localizations.dart';
+
+//Tutorial
+import 'package:cbamultiriskv2/tutorial/tutorial_controller.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -125,6 +128,16 @@ class SettingScreen extends StatelessWidget {
           ),
 
           const SizedBox(height: 24,),
+
+          ElevatedButton.icon(
+            label: Text("Tutorial"),
+            icon: Icon(Icons.abc),
+            onPressed: () async {
+              await TutorialController.resetTutorial();
+            },
+          ),
+
+          const SizedBox(height: 24,),
           
           ElevatedButton.icon(
             label: Text(AppLocalizations.of(context)!.resetAll),
@@ -132,7 +145,7 @@ class SettingScreen extends StatelessWidget {
             onPressed: () {
               showResetDialog(context);
             },
-          )
+          ),
         ],
       ),
     );

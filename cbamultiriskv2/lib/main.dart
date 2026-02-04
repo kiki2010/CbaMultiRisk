@@ -1,7 +1,7 @@
 /*
 Main
-last edit: 17/01/2026
-Change: comments were added
+last edit: 04/02/2026
+Change: Tutorial
 */
 
 import 'package:flutter/material.dart';
@@ -32,6 +32,11 @@ import 'package:cbamultiriskv2/widgets/cards.dart';
 //Theme of the app
 import 'package:cbamultiriskv2/theme/theme_controller.dart';
 import 'theme/app_theme.dart';
+
+//Tutorial
+import 'package:cbamultiriskv2/tutorial/tutorial_controller.dart';
+import 'package:cbamultiriskv2/tutorial/tutorial_dialogs.dart';
+import 'package:cbamultiriskv2/tutorial/tutorial_messages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //Ensuring that Flutter is Initialized
 
@@ -111,6 +116,7 @@ class MainScaffold extends StatefulWidget {
 
 class _MainScaffoldState extends State<MainScaffold> {
   int _currentIndex = 0;
+  int _welcomeIndex = 0;
 
   late final List<Widget> _screens;
 
@@ -118,6 +124,27 @@ class _MainScaffoldState extends State<MainScaffold> {
     setState(() {
       _currentIndex = 1;
     });
+  }
+
+  void _startTutorial() {
+    showTutorialDialog(
+      context: context,
+      message: welcomeSequence[_welcomeIndex]['message'],
+      suquiPose: welcomeSequence[_welcomeIndex]['pose'],
+      onNext: () async {
+        Navigator.pop(context);
+
+        if (_welcomeIndex < welcomeSequence.length - 1) {
+          _welcomeIndex++;
+          _startTutorial();
+        } else {
+          await TutorialController.setStepSeen('welcome');
+          _currentIndex = 0;
+          _welcomeIndex = 0;
+          setState(() {});
+        }
+      },
+    );
   }
 
   @override
@@ -134,6 +161,11 @@ class _MainScaffoldState extends State<MainScaffold> {
       if (show && mounted) {
         showDisclaimerDialog(context);
         await setDisclaimerSeen();
+      }
+
+      final showTutorial = await TutorialController.shouldShowTutorial();
+      if (showTutorial && mounted) {
+        _startTutorial();
       }
     });
   }
