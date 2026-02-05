@@ -4,6 +4,7 @@ Last Edit: 16/01/2026
 Change: Comments were added
 */
 
+import 'package:cbamultiriskv2/widgets/cards.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,30 +25,42 @@ import 'package:cbamultiriskv2/tutorial/tutorial_dialogs.dart';
 import 'package:cbamultiriskv2/tutorial/tutorial_messages.dart';
 
 class SuquiScreen extends StatefulWidget {
-  const SuquiScreen({super.key});
+  final bool isActive;
+  const SuquiScreen({super.key, required this.isActive});
 
   @override
   State<SuquiScreen> createState() => _SuquiScreenState();
 }
 
 class _SuquiScreenState extends State<SuquiScreen> {
+  //We show tutorial
+  @override
+  void didUpdateWidget(covariant SuquiScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (!oldWidget.isActive && widget.isActive) {
+      showTutorialIfNeeded();
+    }
+  }
+
   int _suquiIndex = 0;
   bool _tutorialShown = false;
 
-  /*Future<void> showTutorialIfNeeded() async {
+  //Show tutorial if needed
+  Future<void> showTutorialIfNeeded() async {
     if (_tutorialShown) return;
 
-    final lastStep = await TutorialController.getLastStep();
-    final shouldShow = await TutorialController.shouldShowTutorial();
-
-    if (lastStep == TutorialStep.welcome && shouldShow && mounted) {
+    final step = await TutorialController.getCurrentStep();
+    
+    if (step == TutorialStep.suqui && mounted) {
       _tutorialShown = true;
       _suquiIndex = 0;
       _suquiTutorial();
     }
-  }*/
+  }
 
-  /*void _suquiTutorial() {
+  //Suqui Tutorial logic
+  void _suquiTutorial() {
     showTutorialDialog(
       context: context,
       message: suquiSequence[_suquiIndex]['message'],
@@ -65,14 +78,14 @@ class _SuquiScreenState extends State<SuquiScreen> {
         }
       },
     );
-  }*/
+  }
 
   //Suqui Controller
   final SuquiController controller = SuquiController();
 
   SuquiTip? currentTip;
   bool loaded = false;
-  
+
   //We start everything (call _init for loading the tips)
   @override
   void initState() {

@@ -11,12 +11,6 @@ class TutorialController {
   static const String _tutorialSeenKey = 'tutorial_seen';
   static const String _tutorialProgressKey = 'tutorial_progress';
 
-  //if the tutorial has already been viewed
-  static Future<bool> shouldShowTutorial() async {
-    final prefs = await SharedPreferences.getInstance();
-    return !(prefs.getBool(_tutorialSeenKey) ?? false);
-  }
-
   //mark the tutorial as complete
   static Future<void> setTutorialComplete() async {
     final prefs = await SharedPreferences.getInstance();
@@ -38,21 +32,43 @@ class TutorialController {
     return TutorialStep.values.byName(value);
   }
 
+  //Get Current Step
+  static Future<TutorialStep?> getCurrentStep() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    //If tutorial finished
+    final completed = prefs.getBool(_tutorialSeenKey) ?? false;
+    if (completed) return null;
+
+    //Si nunca empezo welcome
+    final lastStep = await getLastStep();
+    if (lastStep == null) return TutorialStep.welcome;
+
+    //Secuencia logica
+    switch (lastStep) {
+      case TutorialStep.welcome:
+        return TutorialStep.suqui;
+
+      case TutorialStep.suqui:
+        return TutorialStep.settings;
+
+      case TutorialStep.settings:
+        return TutorialStep.last;
+
+      case TutorialStep.last:
+        await setTutorialComplete();
+        return null;
+      
+      default:
+        return null;
+    }
+
+  }
+
   //Manual Reset
   static Future<void> resetTutorial() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_tutorialSeenKey);
     await prefs.remove(_tutorialProgressKey);
-  }
-
-  //Check if tutorial should finish
-  static Future<bool> shouldShowFinish() async {
-    final prefs = await SharedPreferences.getInstance();
-
-    final seen = prefs.getBool(_tutorialSeenKey) ?? false;
-    if (seen) return false;
-
-    final last = await getLastStep();
-    return last == TutorialStep.settings;
   }
 }

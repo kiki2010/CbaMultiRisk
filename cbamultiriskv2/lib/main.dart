@@ -118,8 +118,6 @@ class _MainScaffoldState extends State<MainScaffold> {
   int _currentIndex = 0;
   int _welcomeIndex = 0;
 
-  late final List<Widget> _screens;
-
   void goToSuqui() {
     setState(() {
       _currentIndex = 1;
@@ -150,11 +148,6 @@ class _MainScaffoldState extends State<MainScaffold> {
   @override
   void initState() {
     super.initState();
-    _screens = [
-      RiskScreen(position: widget.position, onSuquiTap: goToSuqui),
-      SuquiScreen(),
-      SettingScreen(),
-    ];
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
@@ -167,8 +160,11 @@ class _MainScaffoldState extends State<MainScaffold> {
       }
 
       //Show tutorial
-      final showTutorial = await TutorialController.shouldShowTutorial();
-      if (showTutorial && mounted) {
+      final step = await TutorialController.getCurrentStep();
+
+      if (!mounted || step == null) return;
+
+      if (step  == TutorialStep.welcome) {
         _startTutorial();
       }
     });
@@ -179,7 +175,13 @@ class _MainScaffoldState extends State<MainScaffold> {
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
-        children: _screens,
+        children: [
+          RiskScreen(position: widget.position, onSuquiTap: goToSuqui),
+
+          SuquiScreen(isActive: _currentIndex == 1),
+
+          SettingScreen()
+        ],
       ),
 
       bottomNavigationBar: BottomNavigationBar(
