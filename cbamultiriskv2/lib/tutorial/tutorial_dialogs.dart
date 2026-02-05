@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cbamultiriskv2/widgets/speechBubble.dart';
 import 'package:cbamultiriskv2/widgets/avatar.dart';
-import 'package:provider/provider.dart';
 
 Future<void> showTutorialDialog({
   required BuildContext context,

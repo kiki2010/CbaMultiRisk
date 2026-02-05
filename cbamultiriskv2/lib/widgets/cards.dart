@@ -320,8 +320,8 @@ void showInfoDialog(BuildContext context, String title, String content, Widget i
 }
 
 //Disclaimer dialog
-void showDisclaimerDialog(BuildContext context) {
-  showDialog(
+Future<void> showDisclaimerDialog(BuildContext context) {
+  return showDialog(
     context: context,
     barrierDismissible: false,
     builder: (_) => AlertDialog(

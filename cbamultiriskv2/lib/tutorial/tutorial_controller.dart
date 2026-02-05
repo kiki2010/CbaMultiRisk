@@ -1,8 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum TutorialStep {
   welcome,
+  suqui,
+  settings,
+  last
 }
 
 class TutorialController {
@@ -23,15 +25,17 @@ class TutorialController {
   }
 
   //Save last step
-  static Future<void> setStepSeen(String step) async {
+  static Future<void> setStepSeen(TutorialStep step) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_tutorialProgressKey, step);
+    await prefs.setString(_tutorialProgressKey, step.name);
   }
 
   //Get last step
-  static Future<String?> getLastStep() async {
+  static Future<TutorialStep?> getLastStep() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_tutorialProgressKey);
+    final value = prefs.getString(_tutorialProgressKey);
+    if (value == null) return null;
+    return TutorialStep.values.byName(value);
   }
 
   //Manual Reset
@@ -39,5 +43,16 @@ class TutorialController {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_tutorialSeenKey);
     await prefs.remove(_tutorialProgressKey);
+  }
+
+  //Check if tutorial should finish
+  static Future<bool> shouldShowFinish() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final seen = prefs.getBool(_tutorialSeenKey) ?? false;
+    if (seen) return false;
+
+    final last = await getLastStep();
+    return last == TutorialStep.settings;
   }
 }

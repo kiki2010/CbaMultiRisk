@@ -138,8 +138,8 @@ class _MainScaffoldState extends State<MainScaffold> {
           _welcomeIndex++;
           _startTutorial();
         } else {
-          await TutorialController.setStepSeen('welcome');
-          await TutorialController.setTutorialComplete(); //Temporal
+          await TutorialController.setStepSeen(TutorialStep.welcome);
+          //await TutorialController.setTutorialComplete(); //Mark as seen
           _currentIndex = 0;
           setState(() {});
         }
@@ -157,12 +157,16 @@ class _MainScaffoldState extends State<MainScaffold> {
     ];
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
+
+      //Show disclaimer
       final show = await shouldShowDisclaimer();
       if (show && mounted) {
-        showDisclaimerDialog(context);
+        await showDisclaimerDialog(context);
         await setDisclaimerSeen();
       }
 
+      //Show tutorial
       final showTutorial = await TutorialController.shouldShowTutorial();
       if (showTutorial && mounted) {
         _startTutorial();

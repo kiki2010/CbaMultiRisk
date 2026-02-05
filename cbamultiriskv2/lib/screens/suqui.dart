@@ -18,6 +18,11 @@ import 'package:cbamultiriskv2/screens/quiz.dart';
 import 'package:cbamultiriskv2/l10n/app_localizations.dart';
 import 'package:cbamultiriskv2/l10n/locale_controller.dart';
 
+//Tutorial
+import 'package:cbamultiriskv2/tutorial/tutorial_controller.dart';
+import 'package:cbamultiriskv2/tutorial/tutorial_dialogs.dart';
+import 'package:cbamultiriskv2/tutorial/tutorial_messages.dart';
+
 class SuquiScreen extends StatefulWidget {
   const SuquiScreen({super.key});
 
@@ -26,6 +31,42 @@ class SuquiScreen extends StatefulWidget {
 }
 
 class _SuquiScreenState extends State<SuquiScreen> {
+  int _suquiIndex = 0;
+  bool _tutorialShown = false;
+
+  /*Future<void> showTutorialIfNeeded() async {
+    if (_tutorialShown) return;
+
+    final lastStep = await TutorialController.getLastStep();
+    final shouldShow = await TutorialController.shouldShowTutorial();
+
+    if (lastStep == TutorialStep.welcome && shouldShow && mounted) {
+      _tutorialShown = true;
+      _suquiIndex = 0;
+      _suquiTutorial();
+    }
+  }*/
+
+  /*void _suquiTutorial() {
+    showTutorialDialog(
+      context: context,
+      message: suquiSequence[_suquiIndex]['message'],
+      suquiPose: suquiSequence[_suquiIndex]['pose'],
+      onNext: () async {
+        Navigator.pop(context);
+
+        if (_suquiIndex < suquiSequence.length - 1 ) {
+          _suquiIndex++;
+          _suquiTutorial();
+        } else {
+          await TutorialController.setStepSeen(TutorialStep.suqui);
+
+          setState(() {});
+        }
+      },
+    );
+  }*/
+
   //Suqui Controller
   final SuquiController controller = SuquiController();
 
