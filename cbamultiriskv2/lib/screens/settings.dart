@@ -55,7 +55,7 @@ class _SettingScreenState extends State<SettingScreen> {
 
     if (step == TutorialStep.settings) {
       _tutorialShown = true;
-      await _runTutorialSequence(settingsSequence, TutorialStep.settings);
+      await runTutorialSequence(settingsSequence, TutorialStep.settings);
       await lastStepTutorial();
     } else if (step == TutorialStep.last) {
       await lastStepTutorial();
@@ -67,17 +67,17 @@ class _SettingScreenState extends State<SettingScreen> {
     if (!mounted) return;
 
     if (step == TutorialStep.last && mounted) {
-      await _runTutorialSequence(lastSequence, TutorialStep.last);
+      await runTutorialSequence(lastSequence, TutorialStep.last);
     }
   }
 
-  Future<void> _runTutorialSequence(List<Map<String, dynamic>> sequence, TutorialStep step) async {
+  Future<void> runTutorialSequence(List<Map<String, dynamic>> sequence, TutorialStep step) async {
     for (int index = 0; index < sequence.length; index++) {
       if (!mounted) return;
 
       await showTutorialDialog(
         context: context,
-        message: sequence[index]['message'],
+        message: sequence[index]['message'](context),
         suquiPose: sequence[index]['pose'],
         onNext: () {
           Navigator.pop(context);

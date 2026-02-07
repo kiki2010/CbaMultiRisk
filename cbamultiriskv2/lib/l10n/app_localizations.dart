@@ -95,6 +95,120 @@ abstract class AppLocalizations {
     Locale('es')
   ];
 
+  /// No description provided for @tutorialWelcome1.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Cba MultiRisk, an app that lets you check the wildfire and flood risk in your area.'**
+  String get tutorialWelcome1;
+
+  /// No description provided for @tutorialWelcome2.
+  ///
+  /// In en, this message translates to:
+  /// **'Now we will walk through the app screens so you don’t miss any details.'**
+  String get tutorialWelcome2;
+
+  /// No description provided for @tutorialWelcome3.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember that you can replay this tutorial anytime from the Risk screen.'**
+  String get tutorialWelcome3;
+
+  /// No description provided for @tutorialWelcome4.
+  ///
+  /// In en, this message translates to:
+  /// **'You are about to enter the main screen. There you will see the wildfire and flood risk levels, and you can also learn how they are calculated by tapping each indicator.'**
+  String get tutorialWelcome4;
+
+  /// No description provided for @tutorialWelcome5.
+  ///
+  /// In en, this message translates to:
+  /// **'This screen also shows where we obtain the weather data and the forecast for the next three days.'**
+  String get tutorialWelcome5;
+
+  /// No description provided for @tutorialWelcome6.
+  ///
+  /// In en, this message translates to:
+  /// **'When you\'re ready, I’ll see you on the Tips screen.'**
+  String get tutorialWelcome6;
+
+  /// No description provided for @tutorialSuqui1.
+  ///
+  /// In en, this message translates to:
+  /// **'This is my screen!'**
+  String get tutorialSuqui1;
+
+  /// No description provided for @tutorialSuqui2.
+  ///
+  /// In en, this message translates to:
+  /// **'Here I will show you tips so you know how to prepare and how to act in case of a wildfire or a flood. I will also share some advice to help us take care of the world together.'**
+  String get tutorialSuqui2;
+
+  /// No description provided for @tutorialSuqui3.
+  ///
+  /// In en, this message translates to:
+  /// **'And whenever you want to test your knowledge, we can play a game and see how many questions you can answer in 60 seconds.'**
+  String get tutorialSuqui3;
+
+  /// No description provided for @tutorialSuqui4.
+  ///
+  /// In en, this message translates to:
+  /// **'To finish the tutorial, I’ll see you on the Settings screen.'**
+  String get tutorialSuqui4;
+
+  /// No description provided for @tutorialSetting1.
+  ///
+  /// In en, this message translates to:
+  /// **'This is the Settings screen!'**
+  String get tutorialSetting1;
+
+  /// No description provided for @tutorialSetting2.
+  ///
+  /// In en, this message translates to:
+  /// **'Here you can change key aspects of the app, such as the language, theme, and notifications.'**
+  String get tutorialSetting2;
+
+  /// No description provided for @tutorialSetting3.
+  ///
+  /// In en, this message translates to:
+  /// **'You can also review the disclaimer again and reset the application.'**
+  String get tutorialSetting3;
+
+  /// No description provided for @tutorialSetting4.
+  ///
+  /// In en, this message translates to:
+  /// **'It is important to configure the emergency buttons so you can access them at any time.'**
+  String get tutorialSetting4;
+
+  /// No description provided for @tutorialLast1.
+  ///
+  /// In en, this message translates to:
+  /// **'You have explored the entire app.'**
+  String get tutorialLast1;
+
+  /// No description provided for @tutorialLast2.
+  ///
+  /// In en, this message translates to:
+  /// **'As a final recommendation, we suggest going to your device settings, enabling notifications, and allowing background location access.'**
+  String get tutorialLast2;
+
+  /// No description provided for @tutorialLast3.
+  ///
+  /// In en, this message translates to:
+  /// **'We will not store this information!'**
+  String get tutorialLast3;
+
+  /// No description provided for @tutorialLast4.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember to follow us on Instagram @cbaMultiRisk.'**
+  String get tutorialLast4;
+
+  /// No description provided for @tutorialLast5.
+  ///
+  /// In en, this message translates to:
+  /// **'And please leave us a positive review on the Play Store!'**
+  String get tutorialLast5;
+
   /// No description provided for @disclaimer.
   ///
   /// In en, this message translates to:

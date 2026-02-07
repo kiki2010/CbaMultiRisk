@@ -1,4 +1,28 @@
 {
+    "tutorialWelcome1": "Welcome to Cba MultiRisk, an app that lets you check the wildfire and flood risk in your area.",
+    "tutorialWelcome2": "Now we will walk through the app screens so you don’t miss any details.",
+    "tutorialWelcome3": "Remember that you can replay this tutorial anytime from the Risk screen.",
+    "tutorialWelcome4": "You are about to enter the main screen. There you will see the wildfire and flood risk levels, and you can also learn how they are calculated by tapping each indicator.",
+    "tutorialWelcome5": "This screen also shows where we obtain the weather data and the forecast for the next three days.",
+    "tutorialWelcome6": "When you're ready, I’ll see you on the Tips screen.",
+
+    "tutorialSuqui1": "This is my screen!",
+    "tutorialSuqui2": "Here I will show you tips so you know how to prepare and how to act in case of a wildfire or a flood. I will also share some advice to help us take care of the world together.",
+    "tutorialSuqui3": "And whenever you want to test your knowledge, we can play a game and see how many questions you can answer in 60 seconds.",
+    "tutorialSuqui4": "To finish the tutorial, I’ll see you on the Settings screen.",
+
+    "tutorialSetting1": "This is the Settings screen!",
+    "tutorialSetting2": "Here you can change key aspects of the app, such as the language, theme, and notifications.",
+    "tutorialSetting3": "You can also review the disclaimer again and reset the application.",
+    "tutorialSetting4": "It is important to configure the emergency buttons so you can access them at any time.",
+
+    "tutorialLast1": "You have explored the entire app.",
+    "tutorialLast2": "As a final recommendation, we suggest going to your device settings, enabling notifications, and allowing background location access.",
+    "tutorialLast3": "We will not store this information!",
+    "tutorialLast4": "Remember to follow us on Instagram @cbaMultiRisk.",
+    "tutorialLast5": "And please leave us a positive review on the Play Store!",
+
+
     "disclaimer": "Disclaimer",
     "disclaimerText": "This app is designed to predict the likelihood of wild fires and floods using external weather sources.\n For actual evacuation and safety measures, always follow the instructions of local authorities.\n The developers assume no responsibility for any damage or loss resulting from the use of this app.",
     "understand": "I Understand",

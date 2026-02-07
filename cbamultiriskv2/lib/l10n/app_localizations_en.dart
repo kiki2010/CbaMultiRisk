@@ -9,6 +9,63 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get tutorialWelcome1 => 'Welcome to Cba MultiRisk, an app that lets you check the wildfire and flood risk in your area.';
+
+  @override
+  String get tutorialWelcome2 => 'Now we will walk through the app screens so you don’t miss any details.';
+
+  @override
+  String get tutorialWelcome3 => 'Remember that you can replay this tutorial anytime from the Risk screen.';
+
+  @override
+  String get tutorialWelcome4 => 'You are about to enter the main screen. There you will see the wildfire and flood risk levels, and you can also learn how they are calculated by tapping each indicator.';
+
+  @override
+  String get tutorialWelcome5 => 'This screen also shows where we obtain the weather data and the forecast for the next three days.';
+
+  @override
+  String get tutorialWelcome6 => 'When you\'re ready, I’ll see you on the Tips screen.';
+
+  @override
+  String get tutorialSuqui1 => 'This is my screen!';
+
+  @override
+  String get tutorialSuqui2 => 'Here I will show you tips so you know how to prepare and how to act in case of a wildfire or a flood. I will also share some advice to help us take care of the world together.';
+
+  @override
+  String get tutorialSuqui3 => 'And whenever you want to test your knowledge, we can play a game and see how many questions you can answer in 60 seconds.';
+
+  @override
+  String get tutorialSuqui4 => 'To finish the tutorial, I’ll see you on the Settings screen.';
+
+  @override
+  String get tutorialSetting1 => 'This is the Settings screen!';
+
+  @override
+  String get tutorialSetting2 => 'Here you can change key aspects of the app, such as the language, theme, and notifications.';
+
+  @override
+  String get tutorialSetting3 => 'You can also review the disclaimer again and reset the application.';
+
+  @override
+  String get tutorialSetting4 => 'It is important to configure the emergency buttons so you can access them at any time.';
+
+  @override
+  String get tutorialLast1 => 'You have explored the entire app.';
+
+  @override
+  String get tutorialLast2 => 'As a final recommendation, we suggest going to your device settings, enabling notifications, and allowing background location access.';
+
+  @override
+  String get tutorialLast3 => 'We will not store this information!';
+
+  @override
+  String get tutorialLast4 => 'Remember to follow us on Instagram @cbaMultiRisk.';
+
+  @override
+  String get tutorialLast5 => 'And please leave us a positive review on the Play Store!';
+
+  @override
   String get disclaimer => 'Disclaimer';
 
   @override

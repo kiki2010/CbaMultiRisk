@@ -127,7 +127,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   void _startTutorial() {
     showTutorialDialog(
       context: context,
-      message: welcomeSequence[_welcomeIndex]['message'],
+      message: welcomeSequence[_welcomeIndex]['message'](context),
       suquiPose: welcomeSequence[_welcomeIndex]['pose'],
       onNext: () async {
         Navigator.pop(context);

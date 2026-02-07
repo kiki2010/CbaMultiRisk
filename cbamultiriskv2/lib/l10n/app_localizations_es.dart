@@ -9,6 +9,63 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
+  String get tutorialWelcome1 => 'Bienvenido a Cba MultiRisk, una app que te permite conocer el riesgo de incendios e inundaciones en tu zona.';
+
+  @override
+  String get tutorialWelcome2 => 'Ahora exploraremos las pantallas de la app, para que no te pierdas ningún detalle';
+
+  @override
+  String get tutorialWelcome3 => 'Recuerda que puedes volver a ver este tutorial desde la pantalla de Configuración.';
+
+  @override
+  String get tutorialWelcome4 => 'Estas por entrar a la pantalla de Riesgo, en esta pantalla podras ver el riesgo de incendio e inundación, también podras conocer como se calcula tocandolos.';
+
+  @override
+  String get tutorialWelcome5 => 'Esta pantalla también te muestra de donde obtenemos los datos meteorológicos para calcular el riesgo y el pronóstico de los próximos tres días.';
+
+  @override
+  String get tutorialWelcome6 => 'Cuando estes listo nos vemos en la pantalla de Tips!';
+
+  @override
+  String get tutorialSuqui1 => '¡Esta es mi pantalla!';
+
+  @override
+  String get tutorialSuqui2 => 'Aquí te mostraré tips para que sepas cómo prepararte y cómo actuar en caso de un incendio o una inundación. También compartiré algunos consejos para cuidar el mundo juntos.';
+
+  @override
+  String get tutorialSuqui3 => 'Y cuando quieras poner tus conocimientos a prueba, podemos jugar y ver cuántas preguntas puedes responder en 60 segundos.';
+
+  @override
+  String get tutorialSuqui4 => 'Para terminar el tutorial, nos vemos en la pantalla de Ajustes.';
+
+  @override
+  String get tutorialSetting1 => '¡Esta es la pantalla de Ajustes!';
+
+  @override
+  String get tutorialSetting2 => 'Aquí podrás cambiar aspectos clave de la app, como el idioma, el tema y las notificaciones.';
+
+  @override
+  String get tutorialSetting3 => 'También puedes volver a ver el aviso legal y restablecer la aplicación.';
+
+  @override
+  String get tutorialSetting4 => 'Es importante que recuerdes configurar los botones de emergencia para poder acceder a ellos en cualquier momento.';
+
+  @override
+  String get tutorialLast1 => 'Recorriste toda la app.';
+
+  @override
+  String get tutorialLast2 => 'Como última recomendación, te aconsejo ir a los ajustes del dispositivo, permitir las notificaciones y habilitar el acceso a la ubicación en segundo plano.';
+
+  @override
+  String get tutorialLast3 => '¡Nosotros no vamos a almacenar esta información!';
+
+  @override
+  String get tutorialLast4 => 'Recuerda seguirnos en nuestro Instagram @cbaMultiRisk.';
+
+  @override
+  String get tutorialLast5 => '¡Y dejarnos una opinión positiva en la Play Store!';
+
+  @override
   String get disclaimer => 'Exención de Responsabilidad';
 
   @override

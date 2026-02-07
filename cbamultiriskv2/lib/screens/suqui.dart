@@ -4,7 +4,6 @@ Last Edit: 16/01/2026
 Change: Comments were added
 */
 
-import 'package:cbamultiriskv2/widgets/cards.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -63,7 +62,7 @@ class _SuquiScreenState extends State<SuquiScreen> {
   void _suquiTutorial() {
     showTutorialDialog(
       context: context,
-      message: suquiSequence[_suquiIndex]['message'],
+      message: suquiSequence[_suquiIndex]['message'](context),
       suquiPose: suquiSequence[_suquiIndex]['pose'],
       onNext: () async {
         Navigator.pop(context);
