@@ -23,11 +23,77 @@ import 'package:cbamultiriskv2/l10n/app_localizations.dart';
 
 //Tutorial
 import 'package:cbamultiriskv2/tutorial/tutorial_controller.dart';
+import 'package:cbamultiriskv2/tutorial/tutorial_dialogs.dart';
+import 'package:cbamultiriskv2/tutorial/tutorial_messages.dart';
 
-class SettingScreen extends StatelessWidget {
-  const SettingScreen({super.key});
-  
-  //Screen Time!
+class SettingScreen extends StatefulWidget {
+  final bool isActive;
+  const SettingScreen({super.key, required this.isActive});
+
+  @override
+  State<SettingScreen> createState() => _SettingScreenState();
+}
+
+class _SettingScreenState extends State<SettingScreen> {
+  @override
+  void didUpdateWidget (covariant SettingScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    
+    if (!oldWidget.isActive && widget.isActive) {
+      showTutorialIfNeeded();
+    }
+  }
+
+  bool _tutorialShown = false;
+
+  Future<void> showTutorialIfNeeded() async {
+    if (_tutorialShown) return;
+
+    final step = await TutorialController.getCurrentStep();
+
+    if(!mounted) return;
+
+    if (step == TutorialStep.settings) {
+      _tutorialShown = true;
+      await _runTutorialSequence(settingsSequence, TutorialStep.settings);
+      await lastStepTutorial();
+    } else if (step == TutorialStep.last) {
+      await lastStepTutorial();
+    }
+  }
+
+  Future<void> lastStepTutorial() async {
+    final step = await TutorialController.getCurrentStep();
+    if (!mounted) return;
+
+    if (step == TutorialStep.last && mounted) {
+      await _runTutorialSequence(lastSequence, TutorialStep.last);
+    }
+  }
+
+  Future<void> _runTutorialSequence(List<Map<String, dynamic>> sequence, TutorialStep step) async {
+    for (int index = 0; index < sequence.length; index++) {
+      if (!mounted) return;
+
+      await showTutorialDialog(
+        context: context,
+        message: sequence[index]['message'],
+        suquiPose: sequence[index]['pose'],
+        onNext: () {
+          Navigator.pop(context);
+        },
+      );
+    }
+
+    await TutorialController.setStepSeen(step);
+
+    if (step == TutorialStep.last) {
+      await TutorialController.setTutorialComplete();
+    }
+
+    if (mounted) setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeController = context.watch<ThemeController>();

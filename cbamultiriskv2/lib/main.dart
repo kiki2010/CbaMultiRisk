@@ -180,7 +180,7 @@ class _MainScaffoldState extends State<MainScaffold> {
 
           SuquiScreen(isActive: _currentIndex == 1),
 
-          SettingScreen()
+          SettingScreen(isActive: _currentIndex == 2),
         ],
       ),
 
