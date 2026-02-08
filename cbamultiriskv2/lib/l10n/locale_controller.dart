@@ -12,7 +12,7 @@ class LocaleController extends ChangeNotifier {
   static const _key = 'locale';
 
   //Default language: Spanish
-  Locale _locale = const Locale('es');
+  Locale _locale = Locale('es');
   Locale get locale => _locale;
 
   LocaleController() {
@@ -29,8 +29,22 @@ class LocaleController extends ChangeNotifier {
   //Load the user preferences
   Future<void> _loadLocale() async {
     final prefs = await SharedPreferences.getInstance();
-    final code = prefs.getString(_key) ?? 'es';
-    _locale = Locale(code);
+    final saved = prefs.getString(_key);
+
+    if (saved != null) {
+      _locale = Locale(saved);
+      notifyListeners();
+      return;
+    }
+
+    final deviceLocale = WidgetsBinding.instance.platformDispatcher.locale;
+
+    if (deviceLocale.languageCode == 'es') {
+      _locale = const Locale('es');
+    } else {
+      _locale = const Locale('en');
+    }
+
     notifyListeners();
   }
 
