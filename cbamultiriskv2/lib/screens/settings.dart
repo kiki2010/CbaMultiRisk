@@ -23,12 +23,13 @@ import 'package:cbamultiriskv2/l10n/app_localizations.dart';
 
 //Tutorial
 import 'package:cbamultiriskv2/tutorial/tutorial_controller.dart';
-import 'package:cbamultiriskv2/tutorial/tutorial_dialogs.dart';
-import 'package:cbamultiriskv2/tutorial/tutorial_messages.dart';
+import 'package:cbamultiriskv2/tutorial/tutorial_runner.dart';
 
 class SettingScreen extends StatefulWidget {
   final bool isActive;
-  const SettingScreen({super.key, required this.isActive});
+  final VoidCallback gotoRisk;
+
+  const SettingScreen({super.key, required this.isActive, required this.gotoRisk});
 
   @override
   State<SettingScreen> createState() => _SettingScreenState();
@@ -40,58 +41,8 @@ class _SettingScreenState extends State<SettingScreen> {
     super.didUpdateWidget(oldWidget);
     
     if (!oldWidget.isActive && widget.isActive) {
-      showTutorialIfNeeded();
+      TutorialRunner.runIfNeeded(context);
     }
-  }
-
-  bool _tutorialShown = false;
-
-  Future<void> showTutorialIfNeeded() async {
-    if (_tutorialShown) return;
-
-    final step = await TutorialController.getCurrentStep();
-
-    if(!mounted) return;
-
-    if (step == TutorialStep.settings) {
-      _tutorialShown = true;
-      await runTutorialSequence(settingsSequence, TutorialStep.settings);
-      await lastStepTutorial();
-    } else if (step == TutorialStep.last) {
-      await lastStepTutorial();
-    }
-  }
-
-  Future<void> lastStepTutorial() async {
-    final step = await TutorialController.getCurrentStep();
-    if (!mounted) return;
-
-    if (step == TutorialStep.last && mounted) {
-      await runTutorialSequence(lastSequence, TutorialStep.last);
-    }
-  }
-
-  Future<void> runTutorialSequence(List<Map<String, dynamic>> sequence, TutorialStep step) async {
-    for (int index = 0; index < sequence.length; index++) {
-      if (!mounted) return;
-
-      await showTutorialDialog(
-        context: context,
-        message: sequence[index]['message'](context),
-        suquiPose: sequence[index]['pose'],
-        onNext: () {
-          Navigator.pop(context);
-        },
-      );
-    }
-
-    await TutorialController.setStepSeen(step);
-
-    if (step == TutorialStep.last) {
-      await TutorialController.setTutorialComplete();
-    }
-
-    if (mounted) setState(() {});
   }
 
   @override
@@ -200,6 +151,13 @@ class _SettingScreenState extends State<SettingScreen> {
             icon: Icon(Icons.abc),
             onPressed: () async {
               await TutorialController.resetTutorial();
+
+              widget.gotoRisk();
+              await Future.delayed(const Duration(milliseconds: 200));
+
+              if (mounted) {
+                TutorialRunner.runIfNeeded(context);
+              }
             },
           ),
 

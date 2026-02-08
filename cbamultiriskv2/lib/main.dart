@@ -35,8 +35,8 @@ import 'theme/app_theme.dart';
 
 //Tutorial
 import 'package:cbamultiriskv2/tutorial/tutorial_controller.dart';
-import 'package:cbamultiriskv2/tutorial/tutorial_dialogs.dart';
-import 'package:cbamultiriskv2/tutorial/tutorial_messages.dart';
+import 'package:cbamultiriskv2/tutorial/tutorial_runner.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //Ensuring that Flutter is Initialized
 
@@ -116,33 +116,11 @@ class MainScaffold extends StatefulWidget {
 
 class _MainScaffoldState extends State<MainScaffold> {
   int _currentIndex = 0;
-  int _welcomeIndex = 0;
 
   void goToSuqui() {
     setState(() {
       _currentIndex = 1;
     });
-  }
-
-  void _startTutorial() {
-    showTutorialDialog(
-      context: context,
-      message: welcomeSequence[_welcomeIndex]['message'](context),
-      suquiPose: welcomeSequence[_welcomeIndex]['pose'],
-      onNext: () async {
-        Navigator.pop(context);
-
-        if (_welcomeIndex < welcomeSequence.length - 1) {
-          _welcomeIndex++;
-          _startTutorial();
-        } else {
-          await TutorialController.setStepSeen(TutorialStep.welcome);
-          //await TutorialController.setTutorialComplete(); //Mark as seen
-          _currentIndex = 0;
-          setState(() {});
-        }
-      },
-    );
   }
 
   @override
@@ -165,7 +143,8 @@ class _MainScaffoldState extends State<MainScaffold> {
       if (!mounted || step == null) return;
 
       if (step  == TutorialStep.welcome) {
-        _startTutorial();
+        await Future.delayed(const Duration(milliseconds: 200));
+        await TutorialRunner.runIfNeeded(context);
       }
     });
   }
@@ -180,7 +159,12 @@ class _MainScaffoldState extends State<MainScaffold> {
 
           SuquiScreen(isActive: _currentIndex == 1),
 
-          SettingScreen(isActive: _currentIndex == 2),
+          SettingScreen(
+            isActive: _currentIndex == 2,
+            gotoRisk: () {
+              setState(() => _currentIndex = 0);
+            }
+          ),
         ],
       ),
 
