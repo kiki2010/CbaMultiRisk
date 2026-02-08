@@ -1,11 +1,14 @@
 /*
-Tutorial Messages
-Last Edit: 07/
+Tutorial Messages (and poses of Suqui)
+Last Edit: 08/02/2026
+Change: Comments were added.
 */
 
+//Import needed libraries --> Material and app localizations --> lenguage control
 import 'package:cbamultiriskv2/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
+//App welcome sequence
 final List<Map<String, dynamic>> welcomeSequence = [
   {
     'message': (BuildContext c) => AppLocalizations.of(c)!.tutorialWelcome1,
@@ -33,6 +36,7 @@ final List<Map<String, dynamic>> welcomeSequence = [
   },
 ];
 
+//Suqui Screen tutorial sequence
 final List<Map<String, dynamic>> suquiSequence = [
   {
     'message': (BuildContext c) => AppLocalizations.of(c)!.tutorialSuqui1,
@@ -52,6 +56,7 @@ final List<Map<String, dynamic>> suquiSequence = [
   },
 ];
 
+//Setting Screen tutorial sequence
 final List<Map<String, dynamic>> settingsSequence = [
   {
     'message': (BuildContext c) => AppLocalizations.of(c)!.tutorialSetting1,
@@ -71,6 +76,7 @@ final List<Map<String, dynamic>> settingsSequence = [
   },
 ];
 
+//Last Screen tutorial sequence
 final List<Map<String, dynamic>> lastSequence = [
   {
     'message': (BuildContext c) => AppLocalizations.of(c)!.tutorialLast1,

@@ -1,7 +1,7 @@
 /*
 Suqui Tips Screen
-Last Edit: 16/01/2026
-Change: Comments were added
+Last Edit: 08/02/2026
+Change: Comments about Tutorial were added.
 */
 
 import 'package:flutter/material.dart';
@@ -22,6 +22,7 @@ import 'package:cbamultiriskv2/l10n/locale_controller.dart';
 import 'package:cbamultiriskv2/tutorial/tutorial_runner.dart';
 
 class SuquiScreen extends StatefulWidget {
+  //Check if the screen is avaible
   final bool isActive;
   const SuquiScreen({super.key, required this.isActive});
 

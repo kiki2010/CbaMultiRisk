@@ -1,7 +1,7 @@
 /*
 Quiz Screen
-Last Edit: 04/02/2026
-Change: Tutorial.
+Last Edit: 08/02/2026
+Change: Tutorial comments were added.
 */
 
 import 'package:flutter/material.dart';
@@ -26,6 +26,7 @@ import 'package:cbamultiriskv2/tutorial/tutorial_controller.dart';
 import 'package:cbamultiriskv2/tutorial/tutorial_runner.dart';
 
 class SettingScreen extends StatefulWidget {
+  //Key details to restart the tutorial and check if the screen is active to display it
   final bool isActive;
   final VoidCallback gotoRisk;
 
@@ -36,6 +37,7 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+  //If the screen is active, check if you need to watch the tutorial.
   @override
   void didUpdateWidget (covariant SettingScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -45,6 +47,7 @@ class _SettingScreenState extends State<SettingScreen> {
     }
   }
 
+  //Screen time!
   @override
   Widget build(BuildContext context) {
     final themeController = context.watch<ThemeController>();
@@ -135,6 +138,7 @@ class _SettingScreenState extends State<SettingScreen> {
 
           const SizedBox(height: 24),
 
+          //Call buttons!
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -146,12 +150,14 @@ class _SettingScreenState extends State<SettingScreen> {
 
           const SizedBox(height: 24,),
 
+          //Reset tutorial
           ElevatedButton.icon(
             label: Text("Tutorial"),
             icon: Icon(Icons.abc),
+            //If pressed call reset Tutorial and go back to the main screen --> Previously we had a problem here where we had to exit the app to see the tutorial again.
             onPressed: () async {
               await TutorialController.resetTutorial();
-
+              
               widget.gotoRisk();
               await Future.delayed(const Duration(milliseconds: 200));
 
@@ -163,6 +169,7 @@ class _SettingScreenState extends State<SettingScreen> {
 
           const SizedBox(height: 24,),
           
+          //Button to reset shared preferences.
           ElevatedButton.icon(
             label: Text(AppLocalizations.of(context)!.resetAll),
             icon: Icon(Icons.restore),

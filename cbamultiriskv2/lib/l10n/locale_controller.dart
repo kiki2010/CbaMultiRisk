@@ -1,7 +1,7 @@
 /*
 Locale Controller
-last edit: 17/01/2026
-Change: comments were added
+last edit: 08/02/2026
+Change: Now the app first checks the language of the mobile phone. 
 */
 
 import 'package:flutter/material.dart';

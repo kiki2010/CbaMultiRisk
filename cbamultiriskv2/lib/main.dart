@@ -1,7 +1,7 @@
 /*
 Main
-last edit: 04/02/2026
-Change: Tutorial
+last edit: 08/02/2026
+Change: Tutorial Comments
 */
 
 import 'package:flutter/material.dart';
@@ -127,6 +127,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   void initState() {
     super.initState();
 
+    //It runs after the first frame is rendered
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
 
@@ -137,11 +138,12 @@ class _MainScaffoldState extends State<MainScaffold> {
         await setDisclaimerSeen();
       }
 
-      //Show tutorial
+      //Show tutorial if there is a pending step
       final step = await TutorialController.getCurrentStep();
 
       if (!mounted || step == null) return;
 
+      //If the current step is "welcome", the tutorial sequence begins.
       if (step  == TutorialStep.welcome) {
         await Future.delayed(const Duration(milliseconds: 200));
         await TutorialRunner.runIfNeeded(context);
@@ -149,16 +151,20 @@ class _MainScaffoldState extends State<MainScaffold> {
     });
   }
   
+  //General app construction --> Bottom navigation bar
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
         children: [
+          //Risk Screen
           RiskScreen(position: widget.position, onSuquiTap: goToSuqui),
 
+          //Suqui Screen
           SuquiScreen(isActive: _currentIndex == 1),
 
+          //Setting Screen
           SettingScreen(
             isActive: _currentIndex == 2,
             gotoRisk: () {
@@ -168,6 +174,7 @@ class _MainScaffoldState extends State<MainScaffold> {
         ],
       ),
 
+      //Bottom navigation bar
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {

@@ -1,5 +1,13 @@
+/*
+Tutorial Controller
+Last Edit: 08/02/2026
+Change: Comments were added.
+*/
+
+//Import shared Preferences ..> needed for saving if we already saw the tutorial.
 import 'package:shared_preferences/shared_preferences.dart';
 
+//All the steps
 enum TutorialStep {
   welcome,
   suqui,
@@ -7,6 +15,7 @@ enum TutorialStep {
   last
 }
 
+//Tutorial Controller
 class TutorialController {
   static const String _tutorialSeenKey = 'tutorial_seen';
   static const String _tutorialProgressKey = 'tutorial_progress';
@@ -40,11 +49,11 @@ class TutorialController {
     final completed = prefs.getBool(_tutorialSeenKey) ?? false;
     if (completed) return null;
 
-    //Si nunca empezo welcome
+    //If it never started "welcome".
     final lastStep = await getLastStep();
     if (lastStep == null) return TutorialStep.welcome;
 
-    //Secuencia logica
+    //Logical sequence
     switch (lastStep) {
       case TutorialStep.welcome:
         return TutorialStep.suqui;
@@ -65,7 +74,7 @@ class TutorialController {
 
   }
 
-  //Manual Reset
+  //Manual Reset --> called by the setting screen to restart tutorial.
   static Future<void> resetTutorial() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_tutorialSeenKey);

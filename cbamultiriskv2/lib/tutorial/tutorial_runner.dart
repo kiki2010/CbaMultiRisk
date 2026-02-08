@@ -1,9 +1,22 @@
+/*
+Tutorial Runner
+Last Edit: 08/02/2026
+Change: Comments were added.
+*/
+
+//We import material
+import 'package:flutter/material.dart';
+
+//All the tutorial files needed
 import 'package:cbamultiriskv2/tutorial/tutorial_controller.dart';
 import 'package:cbamultiriskv2/tutorial/tutorial_dialogs.dart';
 import 'package:cbamultiriskv2/tutorial/tutorial_messages.dart';
-import 'package:flutter/material.dart';
 
+//The idea behind Tutorial Runner is to simplify how we call the tutorial on all screens.
+//To do this, we'll use elements created in the other tutorial files and create logic to avoid repeating the tutorial on each screen.
+//This way, if we add more screens, we can add the tutorial as well!
 class TutorialRunner {
+  //Method to verify which sequence to display based on the step we obtain as current Step
   static Future<void> runIfNeeded(BuildContext context) async {
     final step = await TutorialController.getCurrentStep();
     if (step == null) return;
@@ -27,6 +40,7 @@ class TutorialRunner {
     }
   }
 
+  //Execute the complete tutorial sequence, going through each message of the Step.
   static Future<void> _runSequence(
     BuildContext context,
     List<Map<String, dynamic>> sequence,
