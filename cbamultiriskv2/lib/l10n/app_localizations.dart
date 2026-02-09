@@ -110,7 +110,7 @@ abstract class AppLocalizations {
   /// No description provided for @tutorialWelcome3.
   ///
   /// In en, this message translates to:
-  /// **'Remember that you can replay this tutorial anytime from the Risk screen.'**
+  /// **'Remember that you can replay this tutorial anytime from the settings screen.'**
   String get tutorialWelcome3;
 
   /// No description provided for @tutorialWelcome4.

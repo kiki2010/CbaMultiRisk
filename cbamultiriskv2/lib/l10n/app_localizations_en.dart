@@ -15,7 +15,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tutorialWelcome2 => 'Now we will walk through the app screens so you don’t miss any details.';
 
   @override
-  String get tutorialWelcome3 => 'Remember that you can replay this tutorial anytime from the Risk screen.';
+  String get tutorialWelcome3 => 'Remember that you can replay this tutorial anytime from the settings screen.';
 
   @override
   String get tutorialWelcome4 => 'You are about to enter the main screen. There you will see the wildfire and flood risk levels, and you can also learn how they are calculated by tapping each indicator.';
