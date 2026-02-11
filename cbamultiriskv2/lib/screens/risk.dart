@@ -1,7 +1,7 @@
 /*
 Risk Screen
-last edit: 06/01/2026
-Change: Comments were added
+last edit: 11/02/2026
+Change: Changes for google play
 */
 
 import 'package:flutter/material.dart';
@@ -33,10 +33,6 @@ class RiskScreen extends StatelessWidget {
 
   //We initialize services, load AI models, and wait for your response.
   Future<Map<String, dynamic>> loadEverything(BuildContext context) async {
-    if (position == null) {
-      throw Exception('LOCATION_ERROR');
-    }
-
     final weatherService = WeatherStationService();
 
     await flood.loadFloodModel();

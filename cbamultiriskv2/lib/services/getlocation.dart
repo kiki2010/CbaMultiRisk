@@ -1,10 +1,12 @@
 /*
 Location Services
-last edit: 12/01/2026
-Change: Comments were added
+last edit: 11/02/2026
+Change: Location is Saved
 */
 
 import 'package:geolocator/geolocator.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 //Function that returns the user's location
 //Step by step: 1. Check if the location service is enabled | If enabled, get and return the user's location.
@@ -30,4 +32,12 @@ Future<Position> getUserLocation() async {
   return await Geolocator.getCurrentPosition(
     desiredAccuracy: LocationAccuracy.high,
   );
+}
+
+//Save if location is saved
+const _locationDisclosureKey = 'location_disclosure_seen';
+
+Future<void> setLocationDisclosureAccepted() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setBool(_locationDisclosureKey, true);
 }

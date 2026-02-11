@@ -95,6 +95,36 @@ abstract class AppLocalizations {
     Locale('es')
   ];
 
+  /// No description provided for @locationDisclaimerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Location access required'**
+  String get locationDisclaimerTitle;
+
+  /// No description provided for @locationDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'We use your location even when the app is closed to calculate nearby risks and send alerts.'**
+  String get locationDisclaimer;
+
+  /// No description provided for @locationNotNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get locationNotNow;
+
+  /// No description provided for @locationOk.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow'**
+  String get locationOk;
+
+  /// No description provided for @needLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'We need the location access'**
+  String get needLocation;
+
   /// No description provided for @tutorialWelcome1.
   ///
   /// In en, this message translates to:

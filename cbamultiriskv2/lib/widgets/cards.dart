@@ -470,3 +470,31 @@ Future<void> resetApp() async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.clear();
 }
+
+//location Disclaimer (Google Play requirement)
+Future<bool> showLocationDisclosure(BuildContext context) async {
+  return await showDialog<bool>(
+    context: context,
+    barrierDismissible: false,
+    builder: (_) => AlertDialog(
+      title: Text(AppLocalizations.of(context)!.locationDisclaimerTitle),
+      content: Text(AppLocalizations.of(context)!.locationDisclaimer),
+      actions: [
+        ElevatedButton(
+          onPressed: () => Navigator.pop(context, true),
+          child: Text(AppLocalizations.of(context)!.locationOk),
+        ),
+      ],
+    ),
+  ) ?? false;
+}
+
+Future<bool> shouldShowLocationDisclosure() async {
+  final prefs = await SharedPreferences.getInstance();
+  return !(prefs.getBool('location_disclosure_seen') ?? false);
+}
+
+Future<void> setLocationDisclosureSeen() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setBool('location_disclosure_seen', true);
+}

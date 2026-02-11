@@ -9,6 +9,21 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get locationDisclaimerTitle => 'Location access required';
+
+  @override
+  String get locationDisclaimer => 'We use your location even when the app is closed to calculate nearby risks and send alerts.';
+
+  @override
+  String get locationNotNow => 'Not now';
+
+  @override
+  String get locationOk => 'Allow';
+
+  @override
+  String get needLocation => 'We need the location access';
+
+  @override
   String get tutorialWelcome1 => 'Welcome to Cba MultiRisk, an app that lets you check the wildfire and flood risk in your area.';
 
   @override

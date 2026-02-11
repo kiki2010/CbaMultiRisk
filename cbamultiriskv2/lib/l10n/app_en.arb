@@ -1,4 +1,10 @@
 {
+    "locationDisclaimerTitle": "Location access required",
+    "locationDisclaimer": "We use your location even when the app is closed to calculate nearby risks and send alerts.",
+    "locationNotNow": "Not now",
+    "locationOk": "Allow",
+    "needLocation": "We need the location access",
+
     "tutorialWelcome1": "Welcome to Cba MultiRisk, an app that lets you check the wildfire and flood risk in your area.",
     "tutorialWelcome2": "Now we will walk through the app screens so you don’t miss any details.",
     "tutorialWelcome3": "Remember that you can replay this tutorial anytime from the settings screen.",

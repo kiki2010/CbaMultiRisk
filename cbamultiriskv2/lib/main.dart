@@ -1,7 +1,7 @@
 /*
 Main
-last edit: 08/02/2026
-Change: Tutorial Comments
+last edit: 11/02/2026
+Change: Changes for google PLay
 */
 
 import 'package:flutter/material.dart';
@@ -47,9 +47,6 @@ void main() async {
     'calculate_risk',
   );
 
-  //Get user position
-  Position position = await getUserLocation();
-
   //Run the app with multiple Providers (for management of theme, locale and background tasks)
   runApp(
     MultiProvider(
@@ -58,15 +55,14 @@ void main() async {
         ChangeNotifierProvider(create: (_) => LocaleController()),
         ChangeNotifierProvider(create: (_) => BackgroundTaskProvider()),
       ],
-      child: MyApp(position: position),
+      child: MyApp(),
     ),
   );
 }
 
 //Main Widget
 class MyApp extends StatelessWidget {
-  final Position? position;
-  const MyApp({super.key, required this.position});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -99,16 +95,14 @@ class MyApp extends StatelessWidget {
       themeMode: themeController.themeMode,
 
       //Main Scaffold
-      home: MainScaffold(position: position!),
+      home: MainScaffold(),
     );
   }
 }
 
 //Main Scaffold with a bottom navigation bar
 class MainScaffold extends StatefulWidget {
-  final Position position;
-
-  const MainScaffold({super.key, required this.position});
+  const MainScaffold({super.key});
 
   @override
   State<MainScaffold> createState() => _MainScaffoldState();
@@ -116,6 +110,7 @@ class MainScaffold extends StatefulWidget {
 
 class _MainScaffoldState extends State<MainScaffold> {
   int _currentIndex = 0;
+  Position? _position;
 
   void goToSuqui() {
     setState(() {
@@ -130,6 +125,27 @@ class _MainScaffoldState extends State<MainScaffold> {
     //It runs after the first frame is rendered
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
+
+      //Get location:
+      final shouldShow = await shouldShowLocationDisclosure();
+      bool accepted = true;
+
+      if (shouldShow) {
+        accepted = await showLocationDisclosure(context);
+
+        if (accepted) {
+          await setLocationDisclosureAccepted();
+        }
+      }
+
+      if (accepted) {
+        final pos = await getUserLocation();
+        if (!mounted) return;
+
+        setState(() {
+          _position = pos;
+        });
+      }
 
       //Show disclaimer
       final show = await shouldShowDisclaimer();
@@ -148,6 +164,7 @@ class _MainScaffoldState extends State<MainScaffold> {
         await Future.delayed(const Duration(milliseconds: 200));
         await TutorialRunner.runIfNeeded(context);
       }
+
     });
   }
   
@@ -159,7 +176,11 @@ class _MainScaffoldState extends State<MainScaffold> {
         index: _currentIndex,
         children: [
           //Risk Screen
-          RiskScreen(position: widget.position, onSuquiTap: goToSuqui),
+          RiskScreen(
+            key: ValueKey(_position?.latitude.toString() ?? "no_location"),
+            position: _position, 
+            onSuquiTap: goToSuqui
+          ),
 
           //Suqui Screen
           SuquiScreen(isActive: _currentIndex == 1),
