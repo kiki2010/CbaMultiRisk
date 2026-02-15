@@ -44,6 +44,19 @@ class RiskScreen extends StatelessWidget {
       'fireRisk' : await fire.predictFire(position!),
     };
   }
+
+  Future<Map<String, dynamic>> loadWithMinimumTime(BuildContext context) async {
+    final minimumDelay = Future.delayed(const Duration(milliseconds: 200));
+
+    try {
+      final result = await loadEverything(context);
+      await minimumDelay;
+      return result;
+    } catch (e) {
+      await minimumDelay;
+      rethrow;
+    }
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -53,8 +66,17 @@ class RiskScreen extends StatelessWidget {
       ),
 
       //We wait for everything to load and react according to the result.
-      body: FutureBuilder(
-        future: loadEverything(context), 
+      body: position == null
+        ? Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator()
+            ],
+          ),
+        )
+        : FutureBuilder(
+        future: loadWithMinimumTime(context), 
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
