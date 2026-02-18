@@ -25,14 +25,9 @@ class FirePrediction {
       print('error $e');
     }
   }
-  
-  //We standardize the meteorological data obtained from wudata, process the risk level, and determine whether it is high, medium, or low.
-  Future<String> predictFire(Position position) async {
-    final weatherService = WeatherStationService();
 
-    final allData = await weatherService.getAllWeatherDataBackground(position);
-    final actualData = allData['actual'];
-    
+  //We use the meteorological data obtained from wudata, process the risk level, and determine whether it is high, medium, or low.
+  String _runPrediction(Map<String, dynamic> actualData) {
     double temperature = actualData['temperature'] / 50;
     double humidity = actualData['humidity'];
     double wind = actualData['windSpeed'] / 100;
@@ -61,5 +56,16 @@ class FirePrediction {
       default:
         return 'Unknown';
     }
+  }
+  
+  //We get the risk calculated.
+  Future<String> predictFire(Map<String, dynamic> allData) async {
+    final actual = allData['actual'] as Map<String, dynamic>?;
+
+    if (actual == null) {
+      throw Exception('actual=$actual');
+    }
+
+    return _runPrediction(actual);
   }
 }

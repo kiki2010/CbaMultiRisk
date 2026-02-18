@@ -50,15 +50,24 @@ class RiskService {
   Future<Map<String, dynamic>> loadEverything() async {
     final Position position = await getUserLocation();
 
-    final weatherService = WeatherStationService();
-
     await flood.loadFloodModel();
     await fire.loadFireModel();
 
+
+    final weatherService = WeatherStationService();
+    final weatherData = await weatherService.getAllWeatherDataBackground(position);
+
+    final actual = weatherData['actual'] as Map<String, dynamic>?;
+    final historical = weatherData['historical'] as Map<String, dynamic>?;
+
+    if (actual == null || historical == null) {
+      throw Exception('actual=$actual, historical=$historical');
+    }
+
     return {
       'weather': await weatherService.getAllWeatherDataBackground(position),
-      'floodRisk': await flood.predictFlood(position),
-      'fireRisk': await fire.predictFire(position),
+      'floodRisk': await flood.predictFlood(weatherData),
+      'fireRisk': await fire.predictFire(weatherData),
     };
   }
 }
@@ -87,6 +96,8 @@ Future<void> calculateRiskAndNotify() async {
 
   final bool highFlood = isHighRisk(floodRisk);
   final bool highFire = isHighRisk(fireRisk);
+
+  await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk); //Borrar en production
 
   if (highFlood || highFire) {
     await showRiskNotification(
@@ -175,6 +186,7 @@ void riskCallbackDispatcher() {
 
       debugPrint('Risk: $fireRisk | $floodRisk');
       
+      await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk); //Borrar en production
       if (isHighRisk(floodRisk) || isHighRisk(fireRisk)) {
         await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk);
       }

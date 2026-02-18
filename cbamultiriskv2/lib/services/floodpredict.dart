@@ -1,7 +1,7 @@
 /*
 Flood Predict
-last edit: 12/01/2026
-Change: Comments were added
+last edit: 18/02/2026
+Change: Production error lol
 */
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
@@ -25,16 +25,9 @@ class FloodPrediction {
       print('error $e');
     }
   }
-  
+
   //We use the meteorological data obtained from wudata, process the risk level, and determine whether it is high, medium, or low.
-  Future<String> predictFlood(Position position) async {
-    final weatherService = WeatherStationService();
-
-    final allData = await weatherService.getAllWeatherDataBackground(position);
-    final actualData = allData['actual'];
-    final historicalData = allData['historical'];
-
-    //We create variables for all the data we will use for getting the risk
+  String _runPrediction(Map<String, dynamic> actualData, Map<String, dynamic> historicalData) {
     double spi = historicalData['spi'] ?? 0.0;
     double precipTotal = actualData['rain'] ?? 0.0;
     double precipRate = actualData['precipRate'] ?? 0.0;
@@ -60,6 +53,18 @@ class FloodPrediction {
         return 'HIGH';
       default:
         return 'Unknown';
-    } 
+    }
+  }
+  
+ //We get the risk calculated
+  Future<String> predictFlood(Map<String, dynamic> allData) async {
+    final actual = allData['actual'] as Map<String, dynamic>?;
+    final historical = allData['historical'] as Map<String, dynamic>?;
+
+    if (actual == null || historical == null) {
+      throw Exception('actual=$actual, historical=$historical');
+    }
+
+    return _runPrediction(actual, historical);
   }
 }

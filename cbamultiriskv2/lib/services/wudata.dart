@@ -63,6 +63,7 @@ class WeatherStationService {
       if (stations.isNotEmpty) {
         _selectedStationData = stations.first;
         _selectedStationId = stations.first['stationId'];
+        print(stations.first);
       }
       else {
         throw Exception("No valid station");
@@ -79,7 +80,7 @@ class WeatherStationService {
     if (_selectedStationId == null) await getNearestStation(position);
 
     final stationId = _selectedStationId;
-    final url = 'https://api.weather.com/v2/pws/observations/current?stationId=$stationId&format=json&units=m&apiKey=$apiKey';
+    final url = 'https://api.weather.com/v2/pws/observations/current?stationId=$apiKey&format=json&units=m&apiKey=$apiKey';
 
     final response = await http.get(Uri.parse(url));
 
