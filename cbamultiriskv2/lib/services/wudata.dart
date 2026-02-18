@@ -8,10 +8,19 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:math';
 import 'package:intl/intl.dart';
 import 'package:statistics/statistics.dart';
 
-const apiKey = '026cda1f35b54cddacda1f35b53cdda3'; // Shhh... This is a secret
+const List<String> apiKeys = [
+  '026cda1f35b54cddacda1f35b53cdda3',
+  'e1f10a1e78da46f5b10a1e78da96f525'
+];
+
+String getRandomApiKey() {
+  final random = Random();
+  return apiKeys[random.nextInt(apiKeys.length)];
+} // Shhh... This is a secret
 
 // This service is responsible for obtaining the nearest and most up-to-date weather station data, current readings, the weekly record, and the forecast for the next three days. 
 // This data will be displayed on the risk screen and used to calculate the risk of fire and flooding.
@@ -27,7 +36,7 @@ class WeatherStationService {
     final lat = position.latitude;
     final lon = position.longitude;
 
-    final url = 'https://api.weather.com/v3/location/near?geocode=$lat,$lon&product=pws&format=json&apiKey=$apiKey';
+    final url = 'https://api.weather.com/v3/location/near?geocode=$lat,$lon&product=pws&format=json&apiKey=${getRandomApiKey()}';
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode != 200) {
@@ -80,7 +89,7 @@ class WeatherStationService {
     if (_selectedStationId == null) await getNearestStation(position);
 
     final stationId = _selectedStationId;
-    final url = 'https://api.weather.com/v2/pws/observations/current?stationId=$apiKey&format=json&units=m&apiKey=$apiKey';
+    final url = 'https://api.weather.com/v2/pws/observations/current?stationId=$stationId&format=json&units=m&apiKey=${getRandomApiKey()}';
 
     final response = await http.get(Uri.parse(url));
 
@@ -115,7 +124,7 @@ class WeatherStationService {
     if (_selectedStationId == null) await getNearestStation(position);
 
     final stationId = _selectedStationId;
-    final url = 'https://api.weather.com/v2/pws/dailysummary/7day?stationId=$stationId&format=json&units=m&apiKey=$apiKey';
+    final url = 'https://api.weather.com/v2/pws/dailysummary/7day?stationId=$stationId&format=json&units=m&apiKey=${getRandomApiKey()}';
     
     final response = await http.get(Uri.parse(url));
     
@@ -185,7 +194,7 @@ class WeatherStationService {
     final locale = Localizations.localeOf(context).languageCode;
     final lang = locale == 'es' ? 'es-ES' : 'en-US';
 
-    final url = "https://api.weather.com/v3/wx/forecast/daily/5day?geocode=$lat,$lon&format=json&units=m&language=$lang&apiKey=$apiKey";
+    final url = "https://api.weather.com/v3/wx/forecast/daily/5day?geocode=$lat,$lon&format=json&units=m&language=$lang&apiKey=${getRandomApiKey()}";
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode != 200) {

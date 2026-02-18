@@ -179,11 +179,9 @@ class SuquiError extends StatelessWidget {
           children: [
             Image.asset(
               'assets/gif/e.gif',
-              height: MediaQuery.of(context).size.height * 0.45,
+              height: MediaQuery.of(context).size.height * 0.25,
               fit: BoxFit.contain,
             ),
-
-            const SizedBox(height: 16,),
 
             Text(
               message,

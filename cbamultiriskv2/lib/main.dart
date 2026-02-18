@@ -40,13 +40,6 @@ import 'package:cbamultiriskv2/tutorial/tutorial_runner.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //Ensuring that Flutter is Initialized
 
-  //Initialize background task and register a OneOffTask
-  await Workmanager().initialize(riskCallbackDispatcher);
-  await Workmanager().registerOneOffTask(
-    'risk_debug_once',
-    'calculate_risk',
-  );
-
   //Run the app with multiple Providers (for management of theme, locale and background tasks)
   runApp(
     MultiProvider(
@@ -145,6 +138,8 @@ class _MainScaffoldState extends State<MainScaffold> {
         setState(() {
           _position = pos;
         });
+
+        await calculateRiskAndNotify();
       }
 
       //Show disclaimer
@@ -164,7 +159,6 @@ class _MainScaffoldState extends State<MainScaffold> {
         await Future.delayed(const Duration(milliseconds: 200));
         await TutorialRunner.runIfNeeded(context);
       }
-
     });
   }
   

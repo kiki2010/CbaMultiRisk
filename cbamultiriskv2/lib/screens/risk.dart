@@ -4,6 +4,7 @@ last edit: 11/02/2026
 Change: Changes for google play
 */
 
+import 'package:cbamultiriskv2/services/risknotifications.dart';
 import 'package:flutter/material.dart';
 //geolocation, math and async
 import 'package:geolocator/geolocator.dart';
@@ -84,14 +85,44 @@ class RiskScreen extends StatelessWidget {
           } else if (snapshot.hasError) {
             final error = snapshot.error.toString();
 
-            if (error.contains('LOCATION_ERROR')) {
-              return SuquiError(
-                message: AppLocalizations.of(context)!.locationError,
-              );
-            }
+            return FutureBuilder<Map<String, String>>(
+              future: loadLastRisk(),
+              builder: (context, snapshot) {
+                final lastFire = snapshot.data?['fireRisk'] ?? '...';
+                final lastflood = snapshot.data?['floodRisk'] ?? '...';
 
-            return SuquiError(
-              message: AppLocalizations.of(context)!.error(error),
+                String errorMessage;
+                if (error.contains('LOCATION_ERROR')) {
+                  errorMessage = AppLocalizations.of(context)!.locationError;
+                } else {
+                  errorMessage = AppLocalizations.of(context)!.error(error);
+                }
+
+                return Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SuquiError(message: errorMessage),
+
+                      Text(
+                        AppLocalizations.of(context)!.lastKnowRisk,
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+
+                      const SizedBox(height: 10),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          riskCard(context: context, icon: Icons.local_fire_department, title: AppLocalizations.of(context)!.fireRisk, value: lastFire),
+                          riskCard(context: context, icon: Icons.flood, title: AppLocalizations.of(context)!.floodRisk, value: lastflood),
+                        ],
+                      )
+                    ],
+                  ),
+                );
+              },
             );
           } else if (!snapshot.hasData) {
             return SuquiError(

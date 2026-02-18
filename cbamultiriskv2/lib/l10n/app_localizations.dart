@@ -497,6 +497,12 @@ abstract class AppLocalizations {
   /// **'Location Error'**
   String get locationError;
 
+  /// No description provided for @lastKnowRisk.
+  ///
+  /// In en, this message translates to:
+  /// **'We were unable to obtain current data. \n The last recorded risk was:'**
+  String get lastKnowRisk;
+
   /// No description provided for @close.
   ///
   /// In en, this message translates to:

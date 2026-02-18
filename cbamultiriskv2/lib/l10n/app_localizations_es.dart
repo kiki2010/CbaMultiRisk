@@ -232,6 +232,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get locationError => 'Error de Ubicación';
 
   @override
+  String get lastKnowRisk => 'No pudimos obtener datos actuales. \n El último riesgo registrado fue:';
+
+  @override
   String get close => 'Cerrar';
 
   @override

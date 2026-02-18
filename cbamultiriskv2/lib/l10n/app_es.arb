@@ -79,6 +79,7 @@
 
     "error": "Error {error}",
     "locationError": "Error de Ubicación",
+    "lastKnowRisk": "No pudimos obtener datos actuales. \n El último riesgo registrado fue:",
     "close": "Cerrar",
     "cancel": "Cancelar",
     "save": "Guardar"

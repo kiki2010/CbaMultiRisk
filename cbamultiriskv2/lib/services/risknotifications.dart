@@ -17,15 +17,13 @@ import 'floodpredict.dart';
 import 'firepredict.dart';
 
 //Plugin and channel
-final FlutterLocalNotificationsPlugin _notifications =
-  FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin _notifications = FlutterLocalNotificationsPlugin();
 
-const AndroidNotificationChannel _riskChannel =
-  AndroidNotificationChannel(
-    'risk_channel',
-    'Risk',
-    description: 'Actual Risk Level',
-    importance: Importance.high,
+const AndroidNotificationChannel _riskChannel = AndroidNotificationChannel(
+  'risk_channel',
+  'Risk',
+  description: 'Actual Risk Level',
+  importance: Importance.high,
 );
 
 // Init notifications
@@ -46,13 +44,39 @@ Future<void> initRiskNotifications() async {
 final flood = FloodPrediction();
 final fire = FirePrediction();
 
+//Save last risk known
+Future<void> saveLastRisk(String fireRisk, String floodRisk) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('last_fire_risk', fireRisk);
+  await prefs.setString('last_flood_risk', floodRisk);
+}
+
+//Load last risk
+Future<Map<String, String>> loadLastRisk() async {
+  final prefs = await SharedPreferences.getInstance();
+  return {
+    'fireRisk': prefs.getString('last_fire_risk') ?? 'LOW',
+    'floodRisk': prefs.getString('last_flood_risk') ?? 'LOW',
+  };
+}
+
+//Adaptative Frecuence
+int resolveFrecuencyMinutes(String fireRisk, String floodRisk) {
+  final isHigh = (String r) => r.toUpperCase() == 'HIGH';
+  final isMedium = (String r) => r.toUpperCase() == 'MEDIUM';
+
+  if (isHigh(fireRisk) || isHigh(floodRisk)) return 240;
+  if (isMedium(fireRisk) || isMedium(floodRisk)) return 360;
+  return 480;
+}
+
+//Risk Service
 class RiskService {
   Future<Map<String, dynamic>> loadEverything() async {
     final Position position = await getUserLocation();
 
     await flood.loadFloodModel();
     await fire.loadFireModel();
-
 
     final weatherService = WeatherStationService();
     final weatherData = await weatherService.getAllWeatherDataBackground(position);
@@ -61,13 +85,18 @@ class RiskService {
     final historical = weatherData['historical'] as Map<String, dynamic>?;
 
     if (actual == null || historical == null) {
-      throw Exception('actual=$actual, historical=$historical');
+      throw Exception('Incomplete weather data');
     }
 
+    final floodRisk = await flood.predictFlood(weatherData);
+    final fireRisk = await fire.predictFire(weatherData);
+
+    debugPrint('Risk: $fireRisk || $floodRisk');
+
     return {
-      'weather': await weatherService.getAllWeatherDataBackground(position),
-      'floodRisk': await flood.predictFlood(weatherData),
-      'fireRisk': await fire.predictFire(weatherData),
+      'weather': weatherData,
+      'floodRisk': floodRisk,
+      'fireRisk': fireRisk,
     };
   }
 }
@@ -94,10 +123,10 @@ Future<void> calculateRiskAndNotify() async {
   final String floodRisk = data['floodRisk'];
   final String fireRisk = data['fireRisk'];
 
+  await saveLastRisk(fireRisk, floodRisk);
+
   final bool highFlood = isHighRisk(floodRisk);
   final bool highFire = isHighRisk(fireRisk);
-
-  await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk); //Borrar en production
 
   if (highFlood || highFire) {
     await showRiskNotification(
@@ -164,13 +193,13 @@ Future<void> showRiskNotification({
   final t = RiskNotificationsStrings(lang);
 
   final fireText = localizeRiskLevel(level: fireRisk, lang: lang);
-  final FloodText = localizeRiskLevel(level: floodRisk, lang: lang);
+  final floodText = localizeRiskLevel(level: floodRisk, lang: lang);
 
   const AndroidNotificationDetails androidDetails = AndroidNotificationDetails('risk_channel', 'Risk', importance: Importance.high, priority: Priority.high, icon: 'ic_stat_multirisk');
   
   const NotificationDetails details = NotificationDetails(android: androidDetails);
 
-  await _notifications.show(0, t.title, '${t.fire} $fireText | ${t.flood} $FloodText', details);
+  await _notifications.show(0, t.title, '${t.fire} $fireText | ${t.flood} $floodText', details);
 }
 
 //Background task Handler
@@ -186,7 +215,7 @@ void riskCallbackDispatcher() {
 
       debugPrint('Risk: $fireRisk | $floodRisk');
       
-      await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk); //Borrar en production
+      await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk);
       if (isHighRisk(floodRisk) || isHighRisk(fireRisk)) {
         await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk);
       }
@@ -211,17 +240,33 @@ class BackgroundTaskProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  //Setting of the bg task
+  Future<void>  scheduleAdaptativeTask() async {
+    if (!isBackgroundTaskEnabled) return;
+
+    final lastRisk = await loadLastRisk();
+    final fireRisk = lastRisk['fireRisk']  ?? 'LOW';
+    final floodRisk = lastRisk['floodRisk']  ?? 'LOW';
+    final minutes = resolveFrecuencyMinutes(fireRisk, floodRisk);
+
+    debugPrint('Task $minutes');
+
+    await Workmanager().registerPeriodicTask(
+      'risk_notification', 
+      'calculate_risk',
+      frequency: Duration(minutes: minutes),
+      existingWorkPolicy: ExistingPeriodicWorkPolicy.replace,
+    );
+  }
+
   Future<void> toggleBackgroundTask(bool enabled) async {
     isBackgroundTaskEnabled = enabled;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_prefKey, enabled);
     notifyListeners();
 
     if (enabled) {
-      await Workmanager().registerPeriodicTask(
-        "risk_notification",
-        "calculate_risk",
-        frequency: Duration(minutes: 240), //then I will change this to 4 hours
-        existingWorkPolicy: ExistingPeriodicWorkPolicy.replace,
-      );
+      scheduleAdaptativeTask();
     } else {
       await Workmanager().cancelByUniqueName('risk_notification');
     }

@@ -80,6 +80,7 @@
 
     "error": "Error {error}",
     "locationError": "Location Error",
+    "lastKnowRisk": "We were unable to obtain current data. \n The last recorded risk was:",
     "close": "Close",
     "cancel": "Cancel",
     "save": "Save"
