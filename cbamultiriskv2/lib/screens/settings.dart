@@ -1,5 +1,5 @@
 /*
-Quiz Screen
+Setting Screen
 Last Edit: 08/02/2026
 Change: Tutorial comments were added.
 */
@@ -28,7 +28,7 @@ import 'package:cbamultiriskv2/tutorial/tutorial_runner.dart';
 class SettingScreen extends StatefulWidget {
   //Key details to restart the tutorial and check if the screen is active to display it
   final bool isActive;
-  final VoidCallback gotoRisk;
+  final VoidCallback gotoRisk; //Go to the risk screen
 
   const SettingScreen({super.key, required this.isActive, required this.gotoRisk});
 
@@ -52,6 +52,7 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     final themeController = context.watch<ThemeController>();
 
+    //Preferences for saving emergency contact numbers
     const String keyFire = 'phone_firefighters';
     const String keyAmbulance = 'phone_ambulance';
     const String keyEmergency = 'phone_emergency';

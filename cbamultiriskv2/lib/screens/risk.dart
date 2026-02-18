@@ -47,6 +47,7 @@ class RiskScreen extends StatelessWidget {
     };
   }
 
+  //Minimun delay to avoid a loading flash if the data loads too quickly
   Future<Map<String, dynamic>> loadWithMinimumTime(BuildContext context) async {
     final minimumDelay = Future.delayed(const Duration(milliseconds: 200));
 
@@ -60,6 +61,7 @@ class RiskScreen extends StatelessWidget {
     }
   }
   
+  //Screen time!
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,8 +80,10 @@ class RiskScreen extends StatelessWidget {
           ),
         )
         : FutureBuilder(
+        //We call to get the data
         future: loadWithMinimumTime(context), 
         builder: (context, snapshot) {
+          //If loading circular progress indicator, if error show error suqui and last risk registered
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
@@ -98,6 +102,7 @@ class RiskScreen extends StatelessWidget {
                   errorMessage = AppLocalizations.of(context)!.error(error);
                 }
 
+                //Suqui error - Error message - Error warning and last two risk (get from risknotifications.dart | also used to calcule the background task time window)
                 return Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
@@ -136,7 +141,7 @@ class RiskScreen extends StatelessWidget {
           final floodRisk = snapshot.data!['floodRisk'];
           final fireRisk = snapshot.data!['fireRisk'];
 
-          //Station Id data (Not needed for the final User Interface)
+          //Station Id data (Not needed for the final User Interface) This was important for debuggin
           // final station = weather!['station'];
 
           //Actual data
