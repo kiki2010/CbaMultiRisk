@@ -15,12 +15,12 @@ import 'package:statistics/statistics.dart';
 const List<String> apiKeys = [
   '026cda1f35b54cddacda1f35b53cdda3',
   'e1f10a1e78da46f5b10a1e78da96f525'
-];
+]; // Shhh... This is a secret
 
 String getRandomApiKey() {
   final random = Random();
   return apiKeys[random.nextInt(apiKeys.length)];
-} // Shhh... This is a secret
+} //Select random Key
 
 // This service is responsible for obtaining the nearest and most up-to-date weather station data, current readings, the weekly record, and the forecast for the next three days. 
 // This data will be displayed on the risk screen and used to calculate the risk of fire and flooding.

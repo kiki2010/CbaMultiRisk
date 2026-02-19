@@ -1,7 +1,7 @@
 /*
 Risk Notifications Settings and Background services
-last edit: 14/01/2026
-Change: Now is avaible in english and spanish
+last edit: 18/02/2026
+Change: Notification logic changed
 */
 
 import 'package:flutter/foundation.dart';
@@ -60,7 +60,7 @@ Future<Map<String, String>> loadLastRisk() async {
   };
 }
 
-//Adaptative Frecuence
+//Adaptative Frecuence for getting the risk
 int resolveFrecuencyMinutes(String fireRisk, String floodRisk) {
   final isHigh = (String r) => r.toUpperCase() == 'HIGH';
   final isMedium = (String r) => r.toUpperCase() == 'MEDIUM';
@@ -138,7 +138,7 @@ Future<void> calculateRiskAndNotify() async {
   debugPrint('Risk: $fireRisk | $floodRisk');
 }
 
-//Locate strings for Notifications
+//Locate strings for Notifications || Change lenguaje
 class RiskNotificationsStrings {
   final String lang;
 
@@ -207,6 +207,8 @@ Future<void> showRiskNotification({
 void riskCallbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
     if (task == 'calculate_risk') {
+      await initRiskNotifications();
+      
       final riskService = RiskService();
       final data = await riskService.loadEverything();
 
@@ -214,8 +216,7 @@ void riskCallbackDispatcher() {
       final fireRisk = data['fireRisk'];
 
       debugPrint('Risk: $fireRisk | $floodRisk');
-      
-      await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk);
+
       if (isHighRisk(floodRisk) || isHighRisk(fireRisk)) {
         await showRiskNotification(floodRisk: floodRisk, fireRisk: fireRisk);
       }
@@ -226,7 +227,7 @@ void riskCallbackDispatcher() {
 
 //Settings Provider
 class BackgroundTaskProvider extends ChangeNotifier {
-  static const _prefKey = 'bg_rask_enabled';
+  static const _prefKey = 'bg_task_enabled';
 
   bool isBackgroundTaskEnabled = true;
 
@@ -234,14 +235,15 @@ class BackgroundTaskProvider extends ChangeNotifier {
     _loadState();
   }
 
+  //Loafs the bg task state
   Future<void> _loadState() async {
     final prefs = await SharedPreferences.getInstance();
     isBackgroundTaskEnabled = prefs.getBool(_prefKey) ?? true;
     notifyListeners();
   }
 
-  //Setting of the bg task
-  Future<void>  scheduleAdaptativeTask() async {
+  //Schedules the bg task based on the last risk
+  Future<void> scheduleAdaptativeTask() async {
     if (!isBackgroundTaskEnabled) return;
 
     final lastRisk = await loadLastRisk();
@@ -259,6 +261,7 @@ class BackgroundTaskProvider extends ChangeNotifier {
     );
   }
 
+  //Activate or desactivate bg task
   Future<void> toggleBackgroundTask(bool enabled) async {
     isBackgroundTaskEnabled = enabled;
     final prefs = await SharedPreferences.getInstance();
@@ -266,7 +269,7 @@ class BackgroundTaskProvider extends ChangeNotifier {
     notifyListeners();
 
     if (enabled) {
-      scheduleAdaptativeTask();
+      await scheduleAdaptativeTask();
     } else {
       await Workmanager().cancelByUniqueName('risk_notification');
     }
