@@ -485,6 +485,12 @@ abstract class AppLocalizations {
   /// **'The app\'s saved preferences will be deleted.'**
   String get reset;
 
+  /// No description provided for @feedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback form'**
+  String get feedback;
+
   /// No description provided for @error.
   ///
   /// In en, this message translates to:

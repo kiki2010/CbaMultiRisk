@@ -25,6 +25,9 @@ import 'package:cbamultiriskv2/l10n/app_localizations.dart';
 import 'package:cbamultiriskv2/tutorial/tutorial_controller.dart';
 import 'package:cbamultiriskv2/tutorial/tutorial_runner.dart';
 
+//Feedback form
+import 'package:url_launcher/url_launcher.dart';
+
 class SettingScreen extends StatefulWidget {
   //Key details to restart the tutorial and check if the screen is active to display it
   final bool isActive;
@@ -44,6 +47,17 @@ class _SettingScreenState extends State<SettingScreen> {
     
     if (!oldWidget.isActive && widget.isActive) {
       TutorialRunner.runIfNeeded(context);
+    }
+  }
+
+  //Funtion for going to the form
+  Future<void> _openFeedbackForm() async {
+    final Uri url = Uri.parse(
+      'https://docs.google.com/forms/d/e/1FAIpQLSeVlY2xzZJxM4hxnsynW5zXfk2BqpP4iJdPdTuW_Izwkt1MSw/viewform?usp=sharing&ouid=104097908284202419826'
+    );
+
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw Exception('We cannot open the form');
     }
   }
 
@@ -126,17 +140,6 @@ class _SettingScreenState extends State<SettingScreen> {
             }
           ),
 
-          const SizedBox(height: 24,),
-
-          //Disclaimer of the app
-          ElevatedButton.icon(
-            label: Text(AppLocalizations.of(context)!.disclaimer),
-            icon: Icon(Icons.info_outline_rounded),
-            onPressed: () {
-              showDisclaimerDialog(context);
-            },
-          ),
-
           const SizedBox(height: 24),
 
           //Call buttons!
@@ -147,6 +150,17 @@ class _SettingScreenState extends State<SettingScreen> {
               iconButton(Icons.local_hospital_outlined, () {handleEmergencyButton(context, keyAmbulance, AppLocalizations.of(context)!.ambulance);}),
               iconButton(Icons.add_call, () {handleEmergencyButton(context, keyEmergency, AppLocalizations.of(context)!.emergency);})
             ],
+          ),
+
+          const SizedBox(height: 24,),
+
+          //Disclaimer of the app
+          ElevatedButton.icon(
+            label: Text(AppLocalizations.of(context)!.disclaimer),
+            icon: Icon(Icons.info_outline_rounded),
+            onPressed: () {
+              showDisclaimerDialog(context);
+            },
           ),
 
           const SizedBox(height: 24,),
@@ -178,6 +192,14 @@ class _SettingScreenState extends State<SettingScreen> {
               showResetDialog(context);
             },
           ),
+
+          const SizedBox(height: 24,),
+
+          ElevatedButton.icon(
+            label: Text(AppLocalizations.of(context)!.feedback),
+            icon: const Icon(Icons.feedback_outlined),
+            onPressed: _openFeedbackForm,
+          )
         ],
       ),
     );

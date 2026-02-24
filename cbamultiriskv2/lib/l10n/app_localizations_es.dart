@@ -224,6 +224,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get reset => 'Las preferencias guardadas de la aplicación se eliminarán.';
 
   @override
+  String get feedback => 'Formulario de opinión';
+
+  @override
   String error(Object error) {
     return 'Error $error';
   }

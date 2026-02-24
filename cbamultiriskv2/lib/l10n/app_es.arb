@@ -76,6 +76,7 @@
     "resetAll": "Restablecer aplicación",
     "resetWarning": "La aplicación se restablecerá",
     "reset": "Las preferencias guardadas de la aplicación se eliminarán.",
+    "feedback": "Formulario de opinión",
 
     "error": "Error {error}",
     "locationError": "Error de Ubicación",

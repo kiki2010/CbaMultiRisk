@@ -108,7 +108,11 @@ class RiskScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SuquiError(message: errorMessage),
+                      SuquiAvatar(
+                        posIndex: 3,
+                        height: MediaQuery.of(context).size.height * 0.25,
+                        onTap: onSuquiTap ?? () {},
+                      ),
 
                       Text(
                         AppLocalizations.of(context)!.lastKnowRisk,

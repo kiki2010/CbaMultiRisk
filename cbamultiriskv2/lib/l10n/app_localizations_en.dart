@@ -224,6 +224,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reset => 'The app\'s saved preferences will be deleted.';
 
   @override
+  String get feedback => 'Feedback form';
+
+  @override
   String error(Object error) {
     return 'Error $error';
   }
