@@ -211,7 +211,7 @@ Widget weatherCard( BuildContext context,{
                   AutoSizeText(AppLocalizations.of(context)!.rainRate(rainRate),  maxLines: 2, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
                   AutoSizeText(AppLocalizations.of(context)!.spi(spi), maxLines: 1, style: TextStyle(fontSize: 13, color: Theme.of(context).textTheme.bodyMedium?.color)),
                   const SizedBox(height: 10),
-                  AutoSizeText(AppLocalizations.of(context)!.cienciaCiudadana, maxLines:2, style: TextStyle(fontSize: 12, color: Theme.of(context).textTheme.bodyMedium?.color))
+                  AutoSizeText(AppLocalizations.of(context)!.cienciaCiudadana, maxLines:5, style: TextStyle(fontSize: 12, color: Theme.of(context).textTheme.bodyMedium?.color))
                 ]
               ),
             ),
