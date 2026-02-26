@@ -35,6 +35,7 @@ class _QuizMenuScreenState extends State<QuizMenuScreen> {
   //Variables for saving the highest and last scores
   int highScore = 0;
   int lastScore = 0;
+  int lastCorrect = 0;
 
   //We start everything (getting the last and highest scores | Saved using sharedPreferences -> lib\services\quizlogic.dart)
   @override
@@ -46,10 +47,12 @@ class _QuizMenuScreenState extends State<QuizMenuScreen> {
   Future<void> _loadHighScore() async {
     final score = await ScoreManager().getHighScore();
     final last = await ScoreManager().getLastScore();
+    final correct = await ScoreManager().getCorrect();
 
     setState(() {
       lastScore = last;
       highScore = score;
+      lastCorrect = correct;
     });
   }
 
@@ -67,7 +70,9 @@ class _QuizMenuScreenState extends State<QuizMenuScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               speechBubble(
-                title: AppLocalizations.of(context)!.gameTitle(highScore, lastScore),
+                title: lastCorrect > 6
+                  ? AppLocalizations.of(context)!.gameTitleHigh(highScore, lastScore)
+                  : AppLocalizations.of(context)!.gameTitleLow(highScore, lastScore),
                 fontSize: 16,
               ),
 
@@ -169,7 +174,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
   //Function for when we finish the game
   Future<void> _finishGame() async {
     timer?.stop();
-    await ScoreManager().saveScore(engine!.score);
+    await ScoreManager().saveScore(engine!.score, engine!.correctAnswers);
 
     if (!mounted) return;
     Navigator.pop(context);

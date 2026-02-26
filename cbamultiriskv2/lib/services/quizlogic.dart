@@ -47,6 +47,7 @@ class QuizEngine {
   List<QuizQuestion> _remainingQuestions = [];
 
   int score = 0;
+  int correctAnswers = 0;
   QuizQuestion? currentQuestion;
 
   //get question
@@ -72,9 +73,12 @@ class QuizEngine {
 
     if (correct) {
       score += 10;
+      correctAnswers++;
       _nextQuestion();
     } else {
-      score -= 5;
+      if (score > 0) {
+        score -= 5;
+      }
     }
 
     return correct;
@@ -126,6 +130,7 @@ class TimerManager {
 class ScoreManager {
   static const String highScoreKey = 'high_score';
   static const String lastScoreKey = 'last_score';
+  static const String correctKey = 'last_correct';
 
   Future<int> getHighScore() async {
     final prefs = await SharedPreferences.getInstance();
@@ -137,10 +142,16 @@ class ScoreManager {
     return prefs.getInt(lastScoreKey) ?? 0;
   }
 
-  Future<void> saveScore(int score) async {
+  Future<int> getCorrect() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getInt(correctKey) ?? 0;
+  }
+
+  Future<void> saveScore(int score, int correctAnswers) async {
     final prefs = await SharedPreferences.getInstance();
     final highScore = prefs.getInt(highScoreKey) ?? 0;
     await prefs.setInt(lastScoreKey, score);
+    await prefs.setInt(correctKey, correctAnswers);
 
     if (score > highScore) {
       await prefs.setInt(highScoreKey, score);

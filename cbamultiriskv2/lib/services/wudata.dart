@@ -14,7 +14,8 @@ import 'package:statistics/statistics.dart';
 
 const List<String> apiKeys = [
   '026cda1f35b54cddacda1f35b53cdda3',
-  'e1f10a1e78da46f5b10a1e78da96f525'
+  'e1f10a1e78da46f5b10a1e78da96f525',
+  'b6406d53bbee435a806d53bbee735ae1',
 ]; // Shhh... This is a secret
 
 String getRandomApiKey() {

@@ -84,7 +84,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get disclaimer => 'Exención de Responsabilidad';
 
   @override
-  String get disclaimerText => 'Esta app está diseñada para predecir la probabilidad de riesgo de incendios e inundaciones usando fuentes meteorológicas externas.\n  Para medidas de evacuación y seguridad reales, siga las instrucciones de las autoridades locales.\n Los desarrolladores no se responsabilizan de ningún daño o pérdida durante el uso de la app.';
+  String get disclaimerText => 'Esta app está diseñada para estimar la probabilidad de riesgo de incendios e inundaciones utilizando información proveniente de estaciones meteorológicas de ciencia ciudadana y otras fuentes externas.\n Las notificaciones enviadas por la app corresponden a novedades informativas generadas automáticamente en base a estos datos, y no constituyen alertas oficiales.\n Para medidas de evacuación, emergencia o seguridad, siga siempre las indicaciones de las autoridades competentes.\n Los desarrolladores no se responsabilizan por daños, pérdidas o decisiones tomadas en función del uso de la app.';
 
   @override
   String get understand => 'Lo entiendo';
@@ -112,11 +112,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String suquiHi(Object city) {
-    return 'Hola, soy Suqui! \n Datos de $city';
+    return 'Hola, soy Suqui! \n información de la estación más cercana en $city.';
   }
 
   @override
-  String get weather => 'Datos Meteorológicos:';
+  String get weather => 'Datos Meteorológicos locales:';
 
   @override
   String temperature(Object temp) {
@@ -149,6 +149,9 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get cienciaCiudadana => 'Información basada en registros de estaciones meteorológicas de ciencia ciudadana.';
+
+  @override
   String get noData => 'No se encontraron datos';
 
   @override
@@ -167,12 +170,17 @@ class AppLocalizationsEs extends AppLocalizations {
   String get tips => 'Tips';
 
   @override
-  String gameTitle(Object highScore, Object lastScore) {
-    return 'Responde todas las preguntas que puedas en 60 segundos. \n | Tu puntuación más alta es: $highScore | \n | Tu última puntuación es: $lastScore | ';
+  String get play => ' Jugar ';
+
+  @override
+  String gameTitleHigh(Object highScore, Object lastScore) {
+    return 'Responde todas las preguntas que puedas en 60 segundos. \n | Tu puntuación más alta es: $highScore | \n | Tu última puntuación es: $lastScore | \n ¡Felicitaciones! Tu riesgo puede ser más bajo que el estimado.';
   }
 
   @override
-  String get play => ' Jugar ';
+  String gameTitleLow(Object highScore, Object lastScore) {
+    return 'Responde todas las preguntas que puedas en 60 segundos. \n | Tu puntuación más alta es: $highScore | \n | Tu última puntuación es: $lastScore | \n Tu riesgo puede ser más alto que el estimado.';
+  }
 
   @override
   String score(Object score) {
