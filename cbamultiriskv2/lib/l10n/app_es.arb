@@ -39,7 +39,7 @@
     "fireRisk": "Riesgo Incendios",
     "floodRisk": "Riesgo Inundaciones",
 
-    "suquiHi": "Hola, soy Suqui! \n información de la estación más cercana en {city}.",
+    "suquiHi": "Hola, soy Suqui! \n Datos de {city}.",
     
     "weather": "Datos Meteorológicos locales:",
     "temperature": "Temperatura: {temp} °C",
@@ -78,7 +78,7 @@
     "resetAll": "Restablecer aplicación",
     "resetWarning": "La aplicación se restablecerá",
     "reset": "Las preferencias guardadas de la aplicación se eliminarán.",
-    "feedback": "Formulario de opinión",
+    "feedback": "Califica la app",
 
     "error": "Error {error}",
     "locationError": "Error de Ubicación",
