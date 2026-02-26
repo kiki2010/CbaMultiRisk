@@ -133,16 +133,17 @@ class _MainScaffoldState extends State<MainScaffold> {
 
       if (accepted) {
         final pos = await getUserLocation();
-        if (!mounted) return;
-
-        setState(() {
-          _position = pos;
-        });
-
+        if (mounted) {
+          setState(() {
+            _position = pos;
+          });
+        }
         await calculateRiskAndNotify();
       }
 
       //Show disclaimer
+      if (!mounted) return;
+
       final show = await shouldShowDisclaimer();
       if (show && mounted) {
         await showDisclaimerDialog(context);
@@ -150,6 +151,7 @@ class _MainScaffoldState extends State<MainScaffold> {
       }
 
       //Show tutorial if there is a pending step
+      if (!mounted) return;
       final step = await TutorialController.getCurrentStep();
 
       if (!mounted || step == null) return;

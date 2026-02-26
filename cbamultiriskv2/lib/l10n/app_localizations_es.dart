@@ -84,7 +84,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get disclaimer => 'Exención de Responsabilidad';
 
   @override
-  String get disclaimerText => 'Esta app está diseñada para predecir la probabilidad de riesgo de incendios e inundaciones usando fuentes meteorológicas externas.\n  Para medidas de evacuación y seguridad reales, siga las instrucciones de las autoridades locales.\n Los desarrolladores no se responsabilizan de ningún daño o pérdida durante el uso de la app.';
+  String get disclaimerText => 'Esta app está diseñada para estimar la probabilidad de riesgo de incendios e inundaciones utilizando información proveniente de estaciones meteorológicas de ciencia ciudadana y otras fuentes externas.\n Las notificaciones enviadas por la app corresponden a novedades informativas generadas automáticamente en base a estos datos, y no constituyen alertas oficiales.\n Para medidas de evacuación, emergencia o seguridad, siga siempre las indicaciones de las autoridades competentes.\n Los desarrolladores no se responsabilizan por daños, pérdidas o decisiones tomadas en función del uso de la app.';
 
   @override
   String get understand => 'Lo entiendo';

@@ -84,7 +84,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get disclaimer => 'Disclaimer';
 
   @override
-  String get disclaimerText => 'This app is designed to predict the likelihood of wild fires and floods using external weather sources.\n For actual evacuation and safety measures, always follow the instructions of local authorities.\n The developers assume no responsibility for any damage or loss resulting from the use of this app.';
+  String get disclaimerText => 'This app is designed to estimate the probability of wildfire and flood risk using information obtained from citizen science weather stations and other external sources.\n Notifications sent by the app are informational updates automatically generated based on these data and do not constitute official alerts.\n For evacuation procedures, emergency response, or safety measures, always follow the instructions of local authorities.\n The developers are not responsible for any damage, loss, or decisions made based on the use of this app.';
 
   @override
   String get understand => 'I Understand';
