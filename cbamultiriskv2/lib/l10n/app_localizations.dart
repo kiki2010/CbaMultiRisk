@@ -302,7 +302,7 @@ abstract class AppLocalizations {
   /// No description provided for @suquiHi.
   ///
   /// In en, this message translates to:
-  /// **'Hi, I\'m Suqui! \n Information from the nearest station in {city}'**
+  /// **'Hi, I\'m Suqui! \n Data from {city}'**
   String suquiHi(Object city);
 
   /// No description provided for @weather.
@@ -500,7 +500,7 @@ abstract class AppLocalizations {
   /// No description provided for @feedback.
   ///
   /// In en, this message translates to:
-  /// **'Feedback form'**
+  /// **'Rate the app'**
   String get feedback;
 
   /// No description provided for @error.
