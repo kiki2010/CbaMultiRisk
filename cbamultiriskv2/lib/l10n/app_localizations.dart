@@ -302,7 +302,7 @@ abstract class AppLocalizations {
   /// No description provided for @suquiHi.
   ///
   /// In en, this message translates to:
-  /// **'Hi, I\'m Suqui! \n Data from {city}'**
+  /// **'Hi, I\'m Suqui! \n Information from the nearest station in {city}'**
   String suquiHi(Object city);
 
   /// No description provided for @weather.
@@ -347,6 +347,12 @@ abstract class AppLocalizations {
   /// **'Spi: {spi}'**
   String spi(Object spi);
 
+  /// No description provided for @cienciaCiudadana.
+  ///
+  /// In en, this message translates to:
+  /// **'Information based on citizen science weather station records.'**
+  String get cienciaCiudadana;
+
   /// No description provided for @noData.
   ///
   /// In en, this message translates to:
@@ -383,17 +389,23 @@ abstract class AppLocalizations {
   /// **'Tips'**
   String get tips;
 
-  /// No description provided for @gameTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Answer all the questions you can in 60 seconds. \n | Your highest score is: {highScore} | \n | Your last score is: {lastScore} | '**
-  String gameTitle(Object highScore, Object lastScore);
-
   /// No description provided for @play.
   ///
   /// In en, this message translates to:
   /// **' Play '**
   String get play;
+
+  /// No description provided for @gameTitleHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer as many questions as you can in 60 seconds. \n | Your highest score is: {highScore} | \n | Your last score is: {lastScore} | \n Congratulations! Your risk may be lower than estimated.'**
+  String gameTitleHigh(Object highScore, Object lastScore);
+
+  /// No description provided for @gameTitleLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer as many questions as you can in 60 seconds. \n | Your highest score is: {highScore} | \n | Your last score is: {lastScore} | \n Your risk may be higher than estimated.'**
+  String gameTitleLow(Object highScore, Object lastScore);
 
   /// No description provided for @score.
   ///

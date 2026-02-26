@@ -112,11 +112,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String suquiHi(Object city) {
-    return 'Hola, soy Suqui! \n Datos de $city';
+    return 'Hola, soy Suqui! \n información de la estación más cercana en $city.';
   }
 
   @override
-  String get weather => 'Datos Meteorológicos:';
+  String get weather => 'Datos Meteorológicos locales:';
 
   @override
   String temperature(Object temp) {
@@ -149,6 +149,9 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get cienciaCiudadana => 'Información basada en registros de estaciones meteorológicas de ciencia ciudadana.';
+
+  @override
   String get noData => 'No se encontraron datos';
 
   @override
@@ -167,12 +170,17 @@ class AppLocalizationsEs extends AppLocalizations {
   String get tips => 'Tips';
 
   @override
-  String gameTitle(Object highScore, Object lastScore) {
-    return 'Responde todas las preguntas que puedas en 60 segundos. \n | Tu puntuación más alta es: $highScore | \n | Tu última puntuación es: $lastScore | ';
+  String get play => ' Jugar ';
+
+  @override
+  String gameTitleHigh(Object highScore, Object lastScore) {
+    return 'Responde todas las preguntas que puedas en 60 segundos. \n | Tu puntuación más alta es: $highScore | \n | Tu última puntuación es: $lastScore | \n ¡Felicitaciones! Tu riesgo puede ser más bajo que el estimado.';
   }
 
   @override
-  String get play => ' Jugar ';
+  String gameTitleLow(Object highScore, Object lastScore) {
+    return 'Responde todas las preguntas que puedas en 60 segundos. \n | Tu puntuación más alta es: $highScore | \n | Tu última puntuación es: $lastScore | \n Tu riesgo puede ser más alto que el estimado.';
+  }
 
   @override
   String score(Object score) {

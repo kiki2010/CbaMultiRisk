@@ -112,7 +112,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String suquiHi(Object city) {
-    return 'Hi, I\'m Suqui! \n Data from $city';
+    return 'Hi, I\'m Suqui! \n Information from the nearest station in $city';
   }
 
   @override
@@ -149,6 +149,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get cienciaCiudadana => 'Information based on citizen science weather station records.';
+
+  @override
   String get noData => 'No data found';
 
   @override
@@ -167,12 +170,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tips => 'Tips';
 
   @override
-  String gameTitle(Object highScore, Object lastScore) {
-    return 'Answer all the questions you can in 60 seconds. \n | Your highest score is: $highScore | \n | Your last score is: $lastScore | ';
+  String get play => ' Play ';
+
+  @override
+  String gameTitleHigh(Object highScore, Object lastScore) {
+    return 'Answer as many questions as you can in 60 seconds. \n | Your highest score is: $highScore | \n | Your last score is: $lastScore | \n Congratulations! Your risk may be lower than estimated.';
   }
 
   @override
-  String get play => ' Play ';
+  String gameTitleLow(Object highScore, Object lastScore) {
+    return 'Answer as many questions as you can in 60 seconds. \n | Your highest score is: $highScore | \n | Your last score is: $lastScore | \n Your risk may be higher than estimated.';
+  }
 
   @override
   String score(Object score) {

@@ -39,15 +39,16 @@
     "fireRisk": "Riesgo Incendios",
     "floodRisk": "Riesgo Inundaciones",
 
-    "suquiHi": "Hola, soy Suqui! \n Datos de {city}",
+    "suquiHi": "Hola, soy Suqui! \n información de la estación más cercana en {city}.",
     
-    "weather": "Datos Meteorológicos:",
+    "weather": "Datos Meteorológicos locales:",
     "temperature": "Temperatura: {temp} °C",
     "wind": "Velocidad del Viento: {wind} km/h",
     "humidity": "Humedad: {hum} %",
     "rain": "Lluvia: {rain} mm",
     "rainRate": "Intensidad Lluvias: {rainRate} mm/h",
     "spi": "Spi: {spi}",
+    "cienciaCiudadana": "Información basada en registros de estaciones meteorológicas de ciencia ciudadana.",
 
     "noData": "No se encontraron datos",
 
@@ -57,7 +58,8 @@
     "floodExplanation": "La app analiza las condiciones de lluvia y humedad para ayudarte a comprender el riesgo de inundación en tu zona.\n Se tienen en cuenta factores como la cantidad e intensidad de las precipitaciones, la humedad del suelo y el Índice de Precipitación Estandarizado (SPI), utilizando datos de la estación meteorológica más cercana y actualizada.\n Con esta información, estimamos la probabilidad de que ocurran inundaciones y clasificamos el riesgo como Bajo, Medio o Alto, acompañado de colores para una lectura rápida y clara.",
 
     "tips": "Tips",
-    "gameTitle": "Responde todas las preguntas que puedas en 60 segundos. \n | Tu puntuación más alta es: {highScore} | \n | Tu última puntuación es: {lastScore} | ",
+    "gameTitleHigh": "Responde todas las preguntas que puedas en 60 segundos. \n | Tu puntuación más alta es: {highScore} | \n | Tu última puntuación es: {lastScore} | \n ¡Felicitaciones! Tu riesgo puede ser más bajo que el estimado.",
+    "gameTitleLow": "Responde todas las preguntas que puedas en 60 segundos. \n | Tu puntuación más alta es: {highScore} | \n | Tu última puntuación es: {lastScore} | \n Tu riesgo puede ser más alto que el estimado.",
     "play": " Jugar ",
     "score": " Puntos: {score}",
     "trueAnswer": " Verdadero ",
