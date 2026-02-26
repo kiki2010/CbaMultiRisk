@@ -197,8 +197,21 @@ class _SettingScreenState extends State<SettingScreen> {
 
           ElevatedButton.icon(
             label: Text(AppLocalizations.of(context)!.feedback),
-            icon: const Icon(Icons.feedback_outlined),
-            onPressed: _openFeedbackForm,
+            icon: const Icon(Icons.star_rate_outlined),
+            onPressed: () async {
+              final Uri playStoreUrl = Uri.parse(
+                'market://details?id=com.chiaracatalini.cbamultirisk' ,
+              );
+              final Uri webUrl = Uri.parse(
+                'https://play.google.com/store/apps/details?id=com.chiaracatalini.cbamultirisk&showAllReviews=true' ,
+                );
+              if (await canLaunchUrl(playStoreUrl)) {
+                await launchUrl(playStoreUrl);
+              } else{
+                await launchUrl(webUrl, mode: LaunchMode.externalApplication);
+              }
+            },
+          
           )
         ],
       ),
