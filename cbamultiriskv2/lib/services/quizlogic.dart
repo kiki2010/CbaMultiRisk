@@ -1,7 +1,7 @@
 /*
 Quiz Logic
-last edit: 17/01/2026
-Change: Comments were added
+last edit: 26/02/2026
+Change: Save amount of correct answers
 */
 
 import 'dart:math';

@@ -1,7 +1,7 @@
 /*
 Setting Screen
-Last Edit: 08/02/2026
-Change: Tutorial comments were added.
+Last Edit: 26/02/2026
+Change: changed button to redirect to the rate screen.
 */
 
 import 'package:flutter/material.dart';
@@ -50,7 +50,7 @@ class _SettingScreenState extends State<SettingScreen> {
     }
   }
 
-  //Funtion for going to the form
+  //Funtion for going to the playstore to rate the app
   Future<void> _openFeedbackForm() async {
     final Uri url = Uri.parse(
       'https://docs.google.com/forms/d/e/1FAIpQLSeVlY2xzZJxM4hxnsynW5zXfk2BqpP4iJdPdTuW_Izwkt1MSw/viewform?usp=sharing&ouid=104097908284202419826'
