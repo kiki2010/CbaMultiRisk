@@ -52,12 +52,18 @@ class _SettingScreenState extends State<SettingScreen> {
 
   //Funtion for going to the form
   Future<void> _openFeedbackForm() async {
-    final Uri url = Uri.parse(
-      'https://docs.google.com/forms/d/e/1FAIpQLSeVlY2xzZJxM4hxnsynW5zXfk2BqpP4iJdPdTuW_Izwkt1MSw/viewform?usp=sharing&ouid=104097908284202419826'
+    final Uri playStoreUrl = Uri.parse(
+      'market://details?id=com.chiaracatalini.cbamultirisk'
     );
 
-    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-      throw Exception('We cannot open the form');
+    final Uri weburl = Uri.parse(
+      'https://play.google.com/store/apps/details?id=com.chiaracatalini.cbamultirisk&showAllReviews=true'
+    );
+
+    if (await canLaunchUrl(playStoreUrl)) {
+    await launchUrl(playStoreUrl);
+    } else {
+      await launchUrl(weburl, mode: LaunchMode.externalApplication);
     }
   }
 

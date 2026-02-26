@@ -40,7 +40,7 @@
     "fireRisk": "Fire Risk",
     "floodRisk": "Flood Risk",
 
-    "suquiHi": "Hi, I'm Suqui! \n Information from the nearest station in {city}",
+    "suquiHi": "Hi, I'm Suqui! \n Data from {city}",
     
     "weather": "Weather Data:",
     "temperature": "Temperature: {temp} °C",
@@ -79,7 +79,7 @@
     "resetAll": "Reset app",
     "resetWarning": "The app will be reset",
     "reset": "The app's saved preferences will be deleted.",
-    "feedback": "Feedback form",
+    "feedback": "Rate the app",
 
     "error": "Error {error}",
     "locationError": "Location Error",

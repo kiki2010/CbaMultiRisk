@@ -112,7 +112,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String suquiHi(Object city) {
-    return 'Hi, I\'m Suqui! \n Information from the nearest station in $city';
+    return 'Hi, I\'m Suqui! \n Data from $city';
   }
 
   @override
@@ -232,7 +232,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reset => 'The app\'s saved preferences will be deleted.';
 
   @override
-  String get feedback => 'Feedback form';
+  String get feedback => 'Rate the app';
 
   @override
   String error(Object error) {

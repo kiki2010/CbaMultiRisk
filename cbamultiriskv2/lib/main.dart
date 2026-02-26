@@ -131,16 +131,6 @@ class _MainScaffoldState extends State<MainScaffold> {
         }
       }
 
-      if (accepted) {
-        final pos = await getUserLocation();
-        if (mounted) {
-          setState(() {
-            _position = pos;
-          });
-        }
-        await calculateRiskAndNotify();
-      }
-
       //Show disclaimer
       if (!mounted) return;
 
@@ -160,6 +150,17 @@ class _MainScaffoldState extends State<MainScaffold> {
       if (step  == TutorialStep.welcome) {
         await Future.delayed(const Duration(milliseconds: 200));
         await TutorialRunner.runIfNeeded(context);
+      }
+
+      if (accepted) {
+        final pos = await getUserLocation();
+        if (!mounted) return; 
+
+        setState(() {
+          _position = pos;
+        });
+
+        await calculateRiskAndNotify();
       }
     });
   }
