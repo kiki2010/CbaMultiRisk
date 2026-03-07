@@ -133,7 +133,7 @@ class _MainScaffoldState extends State<MainScaffold> {
 
       //Show disclaimer
       if (!mounted) return;
-
+      
       final show = await shouldShowDisclaimer();
       if (show && mounted) {
         await showDisclaimerDialog(context);
@@ -144,18 +144,16 @@ class _MainScaffoldState extends State<MainScaffold> {
       if (!mounted) return;
       final step = await TutorialController.getCurrentStep();
 
-      if (!mounted || step == null) return;
-
       //If the current step is "welcome", the tutorial sequence begins.
-      if (step  == TutorialStep.welcome) {
-        await Future.delayed(const Duration(milliseconds: 200));
+      if (mounted && step == TutorialStep.welcome) {
         await TutorialRunner.runIfNeeded(context);
       }
 
+      //Get position
+      if (!mounted) return; 
       if (accepted) {
         final pos = await getUserLocation();
         if (!mounted) return; 
-
         setState(() {
           _position = pos;
         });

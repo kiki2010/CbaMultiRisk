@@ -35,15 +35,28 @@ class RiskScreen extends StatelessWidget {
   //We initialize services, load AI models, and wait for your response.
   Future<Map<String, dynamic>> loadEverything(BuildContext context) async {
     final weatherService = WeatherStationService();
-    
-    final weatherData = await weatherService.getAllWeatherDataBackground(position!);
-    await flood.loadFloodModel();
-    await fire.loadFireModel();
 
-    return  {
-      'weather' : await weatherService.getAllWeatherData(position!, context),
-      'floodRisk' : await flood.predictFlood(weatherData),
-      'fireRisk' : await fire.predictFire(weatherData),
+    print('=== loadEverything START ===');
+    print(position);
+
+    final results = await Future.wait([
+      weatherService.getAllWeatherDataBackground(position!),
+      flood.loadFloodModel(),
+      fire.loadFireModel(),
+    ]);
+
+    final weatherData = results[0] as Map<String, dynamic>;
+
+    final risks = await Future.wait([
+      weatherService.getAllWeatherData(position!, context),
+      flood.predictFlood(weatherData),
+      fire.predictFire(weatherData),
+    ]);
+
+    return {
+      'weather': risks[0],
+      'floodRisk': risks[1],
+      'fireRisk': risks[2],
     };
   }
 
